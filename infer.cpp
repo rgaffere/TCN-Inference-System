@@ -41,6 +41,14 @@ double hiddenBias2[layerCount - 1][cpl];
 double outputFilter[outChannels][cpl];
 double outputBiases[outChannels];
 
+int head = 0;
+int samplesSeen = 0;
+
+int rbIndex(int delay)
+{
+    return (head - delay + T) % T;
+}
+
 void ReLU(
     double &x // Since we're focused on inference, we only do ReLU on the latest point
 )
@@ -57,16 +65,17 @@ void dilatedConv(
 {
     for (int i = 0; i < k; i++)
     {
-        int index = T - (1 + d * i);
-        if (index < 0)
-            break;                            // zero padding for when we go beyond the size of the sequnce
-        acc += kernel[k - 1 - i] * in[index]; // this skips every point according to the dilation factor
+        int delay = d * i;
+
+        if (delay >= samplesSeen)
+            break;                                     // zero padding for when we go beyond the size of the sequnce
+        acc += kernel[k - 1 - i] * in[rbIndex(delay)]; // this skips every point according to the dilation factor
     }
 }
 
 void doInputLayer()
 {
-    int latest = T - 1;
+    int latest = head;
     int d = dilations[0];
 
     // Conv1: input 6 -> 16
@@ -104,7 +113,7 @@ void doInputLayer()
 void doHiddenLayer(int layerNum)
 {
     // layerNum goes from 1 to 6
-    int latest = T - 1;
+    int latest = head;
     int d = dilations[layerNum];
     int f = layerNum - 1;
 
@@ -138,7 +147,7 @@ void doHiddenLayer(int layerNum)
 
 void doOutputLayer(double output[outChannels])
 {
-    int latest = T - 1;
+    int latest = head;
 
     for (int oc = 0; oc < outChannels; oc++)
     {
@@ -154,13 +163,13 @@ void doOutputLayer(double output[outChannels])
 // now for some cache handling
 void shiftInput(double newSample[inChannels])
 {
-    for (int ch = 0; ch < inChannels; ch++)
-    {
-        for (int t = 0; t < T - 1; t++)
-            input[ch][t] = input[ch][t + 1];
+    head = (head + 1) % T;
 
-        input[ch][T - 1] = newSample[ch];
-    }
+    if (samplesSeen < T)
+        samplesSeen++;
+
+    for (int ch = 0; ch < inChannels; ch++)
+        input[ch][head] = newSample[ch];
 }
 
 void shiftHiddenState()
@@ -169,14 +178,8 @@ void shiftHiddenState()
     {
         for (int ch = 0; ch < cpl; ch++)
         {
-            for (int t = 0; t < T - 1; t++)
-            {
-                midLayers[layer][ch][t] = midLayers[layer][ch][t + 1];
-                hiddenLayers[layer][ch][t] = hiddenLayers[layer][ch][t + 1];
-            }
-
-            midLayers[layer][ch][T - 1] = 0.0;
-            hiddenLayers[layer][ch][T - 1] = 0.0;
+            midLayers[layer][ch][head] = 0.0;
+            hiddenLayers[layer][ch][head] = 0.0;
         }
     }
 }
