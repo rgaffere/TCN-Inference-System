@@ -16,3 +16,15 @@ Stage 5: hardware
 By Ryan
 
 dataset download (OxIOD): https://drive.google.com/file/d/1UCHY3ENCybcBNyiC2wx1gQEWSLqzJag0/view
+
+## Tools & Technologies
+
+- SystemVerilog
+- Synopsys Design Compiler
+- Synopsys VCS
+- Synopsys Verdi
+- VS Code
+- Git/GitHub
+- C++
+- Python
+- PyTorch
