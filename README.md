@@ -29,3 +29,7 @@ dataset download (OxIOD): https://drive.google.com/file/d/1UCHY3ENCybcBNyiC2wx1g
 - C++
 - Python
 - PyTorch
+
+## Note
+
+Due to the accessibility of EDA tools, the scripts in this repo are ran on a remote server with a different file layout. Please adjust the file paths to your needs.
