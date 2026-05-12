@@ -7,9 +7,9 @@ rm -rf work
 vlib work
 
 vlog -sv \
-    ../rtl/common/dilation_offsets.sv \
-    ../tb/dilation_offsets_tb.sv \
-    | tee ../logs/dilation_offsets_compile.log
+    ../../rtl/common/dilation_offsets.sv \
+    ../../tb/dilation_offsets_tb.sv \
+    | tee ../../../results/logs/dilation_offsets_compile.log
 
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
     echo "Compile failed."
@@ -17,4 +17,4 @@ if [ ${PIPESTATUS[0]} -ne 0 ]; then
 fi
 
 vsim -c dilation_offsets_tb -do "run -all; quit" \
-    | tee ../logs/dilation_offsets_sim.log
+    | tee ../../../results/logs/dilation_offsets_sim.log

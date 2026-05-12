@@ -7,9 +7,9 @@ rm -rf work
 vlib work
 
 vlog -sv \
-    ../rtl/common/ring.sv \
-    ../tb/ring_tb.sv \
-    | tee ../logs/ring_compile.log
+    ../../rtl/common/ring.sv \
+    ../../tb/ring_tb.sv \
+    | tee ../../../results/logs/ring_compile.log
 
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
     echo "Compile failed."
@@ -17,4 +17,4 @@ if [ ${PIPESTATUS[0]} -ne 0 ]; then
 fi
 
 vsim -c ring_tb -do "run -all; quit" \
-    | tee ../logs/ring_sim.log
+    | tee ../../../results/logs/ring_sim.log

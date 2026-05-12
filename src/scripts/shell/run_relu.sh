@@ -7,9 +7,9 @@ rm -rf work
 vlib work
 
 vlog -sv \
-    ../rtl/common/ReLU.sv \
-    ../tb/ReLU_tb.sv \
-    | tee ../logs/ReLU_compile.log
+    ../../rtl/common/ReLU.sv \
+    ../../tb/ReLU_tb.sv \
+    | tee ../../../results/logs/ReLU_compile.log
 
 if [ ${PIPESTATUS[0]} -ne 0 ]; then
     echo "Compile failed."
@@ -17,4 +17,4 @@ if [ ${PIPESTATUS[0]} -ne 0 ]; then
 fi
 
 vsim -c ReLU_tb -do "run -all; quit" \
-    | tee ../logs/ReLU_sim.log
+    | tee ../../../results/logs/ReLU_sim.log
