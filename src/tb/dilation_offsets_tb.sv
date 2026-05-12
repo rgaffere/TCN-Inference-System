@@ -12,9 +12,9 @@ module dilation_offsets_tb;
     // [dilation_idx][tap]
     logic [ADDR_WIDTH-1:0] offsets [0:NUM_D-1][0:KERNEL_LEN-1];
 
-    dilation_offsets #(.D(1)) dut_d1 (.offsets(offsets[0]));
-    dilation_offsets #(.D(2)) dut_d2 (.offsets(offsets[1]));
-    dilation_offsets #(.D(4)) dut_d4 (.offsets(offsets[2]));
+    dilation_offsets #(.D(1)) dut_d1 (.read_offsets(offsets[0]));
+    dilation_offsets #(.D(2)) dut_d2 (.read_offsets(offsets[1]));
+    dilation_offsets #(.D(4)) dut_d4 (.read_offsets(offsets[2]));
 
     task automatic check_offsets(
         input int dut_idx,
