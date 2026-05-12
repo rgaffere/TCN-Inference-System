@@ -1,21 +1,57 @@
-# Real-Time-Predictive-Signal-Hardware
-Work for the TCN that predicts stuff
+# Real-Time Predictive Signal Hardware
 
-Based on this paper: https://arxiv.org/pdf/1803.01271
+Hardware/software co-design project implementing a Temporal Convolutional Network (TCN) for real-time multichannel signal prediction and anomaly detection.
 
-Stage 1: Learn the architecture (done)
+The project includes:
+- PyTorch model training
+- C++ streaming inference engine
+- SystemVerilog RTL implementation
+- RTL simulation and verification flow
+- ASIC-oriented design exploration using Synopsys tools
 
-Stage 2: Write the inference engine in cpp (this is also stage 1 part 2 since it helps with understanding) (done)
+Based on the paper:  
+https://arxiv.org/pdf/1803.01271
 
-Stage 3: train a model with pytorch (done)
+Dataset used for validation of architecture (OxIOD):  
+https://drive.google.com/file/d/1UCHY3ENCybcBNyiC2wx1gQEWSLqzJag0/view
 
-Stage 4: see if inference engine is correct, and show results (done)
+---
 
-Stage 5: hardware
+## Project Stages
 
-By Ryan
+### Stage 1 — Learn the Architecture (Done)
+Studied the TCN architecture, residual blocks, dilated causal convolutions, and receptive field behavior.
 
-dataset download (OxIOD): https://drive.google.com/file/d/1UCHY3ENCybcBNyiC2wx1gQEWSLqzJag0/view
+### Stage 2 — C++ Inference Engine (Done)
+Implemented a streaming inference engine in C++ to understand and validate the architecture before hardware implementation.
+
+### Stage 3 — PyTorch Training (Done)
+Trained a TCN model on multichannel IMU data using PyTorch.
+
+### Stage 4 — Validation & Verification (Done)
+Validated the C++ inference engine against PyTorch outputs and documented the results.
+
+### Stage 5 — Hardware Implementation (In Progress)
+Current phase:
+- SystemVerilog RTL development
+- Module-level verification
+- Simulation using QuestaSim and VCS
+- ASIC-oriented synthesis exploration using Synopsys Design Compiler
+
+---
+
+## Repository Structure
+
+```text
+docs/       -> reports, architecture notes, implementation plans
+results/    -> plots, validation output, simulation logs
+src/
+  cpp/      -> C++ inference engine
+  python/   -> PyTorch training and validation
+  rtl/      -> SystemVerilog RTL modules
+  scripts/  -> simulation and utility scripts
+  tb/       -> SystemVerilog testbenches
+```
 
 ## Tools & Technologies
 
@@ -29,7 +65,3 @@ dataset download (OxIOD): https://drive.google.com/file/d/1UCHY3ENCybcBNyiC2wx1g
 - C++
 - Python
 - PyTorch
-
-## Note
-
-Due to the accessibility of EDA tools, the scripts in this repo are ran on a remote server with a different file layout. Please adjust the file paths to your needs.

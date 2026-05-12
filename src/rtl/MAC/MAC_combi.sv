@@ -4,10 +4,7 @@ Date: May 10th, 2026
 Description: Single-cycle combinational MAC datapath
 Notes: INT8 input with INT32 output
 
-MAC is going to stay dumb. Pipelining and such occurs at a higher level.
-
-Also, we already decided to sacrifice space for computation speed since this is an accelerator so high area is ok.
-Note from ryan in the future: im going to bite these words
+MAC is going to stay simple. Pipelining and such occurs at a higher level.
 */
 module MAC_combi #(
     parameter int IN_LEN = 8,
