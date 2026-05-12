@@ -17,7 +17,7 @@ module ring #(
     input logic clk, rst_n, write_en,
 
     input logic signed [DATA_LEN - 1: 0] data_in,
-    input logic [ADDR_WIDTH - 1: 0] read_offsets [0: KERNEL_LEN - 1],
+    input var logic [ADDR_WIDTH - 1: 0] read_offsets [0: KERNEL_LEN - 1],
 
     output logic signed [DATA_LEN - 1: 0] data_out [0: KERNEL_LEN - 1]
 );
