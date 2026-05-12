@@ -21,6 +21,7 @@ dataset download (OxIOD): https://drive.google.com/file/d/1UCHY3ENCybcBNyiC2wx1g
 
 - SystemVerilog
 - Synopsys Design Compiler
+- QuestaSim
 - Synopsys VCS
 - Synopsys Verdi
 - VS Code
