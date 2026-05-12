@@ -45,6 +45,8 @@ Current phase:
 ```text
 docs/       -> reports, architecture notes, implementation plans
 results/    -> plots, validation output, simulation logs
+  logs/     -> Logging outputs from EDA tools
+  media/    -> Plots for architecture validation
 src/
   cpp/      -> C++ inference engine
   python/   -> PyTorch training and validation
