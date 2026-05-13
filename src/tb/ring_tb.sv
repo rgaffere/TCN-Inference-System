@@ -116,16 +116,16 @@ module ring_tb;
 
         // Fill past DEPTH to test ring wrap around
         for (int i = 0; i < DEPTH; i++) begin
-            write_sample(logic'(i[DATA_LEN - 1: 0]));
+            write_sample(DATA_LEN'(i));
         end
 
         // After wrap around, newest value should be DEPTH - 1 truncated to DATA_LEN
-        check_read(logic'((DEPTH - 1)[DATA_LEN - 1: 0]), 0);
-        check_read(logic'((DEPTH - 2)[DATA_LEN - 1: 0]), 1);
-        check_read(logic'((DEPTH - 3)[DATA_LEN - 1: 0]), 2);
+        check_read(DATA_LEN'(DEPTH - 1), 0);
+        check_read(DATA_LEN'(DEPTH - 2), 1);
+        check_read(DATA_LEN'(DEPTH - 3), 2);
 
         // Old pre-wrap data should be overwritten
-        check_read(logic'((DEPTH - 8)[DATA_LEN - 1: 0]), 7);
+        check_read(DATA_LEN'(DEPTH - 8), 7);
 
         // Summary
         if (tests_failed == 0) begin
