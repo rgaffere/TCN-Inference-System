@@ -40,7 +40,7 @@ module dilation_offsets_tb;
     endtask
 
     initial begin
-        int d_vals [0:NUM_D-1] = '{1, 2, 4};
+        static int d_vals [0:NUM_D-1] = '{1, 2, 4};
         int expected [0:NUM_D-1][0:KERNEL_LEN-1];
         string test_name;
 
