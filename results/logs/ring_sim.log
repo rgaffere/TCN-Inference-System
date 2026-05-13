@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2023.2
 
 # vsim -c ring_tb -do "run -all; quit" 
-# Start time: 01:02:48 on May 12,2026
+# Start time: 15:35:17 on May 13,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 2023.2 linux_x86_64 Apr 11 2023
@@ -22,8 +22,8 @@ Reading pref.tcl
 # Loading sv_std.std
 # Loading work.ring_tb(fast)
 # run -all
-# ALL TESTS PASSED: 3 tests run
-# ** Note: $finish    : ../tb/ring_tb.sv(138)
-#    Time: 176 ns  Iteration: 0  Instance: /ring_tb
-# End time: 01:02:48 on May 12,2026, Elapsed time: 0:00:00
+# ALL TESTS PASSED: 21 tests run
+# ** Note: $finish    : ../tb/ring_tb.sv(137)
+#    Time: 10596 ns  Iteration: 0  Instance: /ring_tb
+# End time: 15:35:20 on May 13,2026, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
