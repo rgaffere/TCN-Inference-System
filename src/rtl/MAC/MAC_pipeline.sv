@@ -12,9 +12,9 @@ INT16 product is sign-extended to INT32 before accumulation
 */
 
 module MAC_pipeline #(
-    parameter IN_LEN = 8,
-    localparam PROD_LEN = 2 * IN_LEN,
-    localparam ACC_LEN = 4 * IN_LEN
+    parameter int IN_LEN = 8,
+    localparam int PROD_LEN = 2 * IN_LEN,
+    localparam int ACC_LEN = 4 * IN_LEN
 )(
     input logic clk, rst_n,
 
