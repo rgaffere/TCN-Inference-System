@@ -47,11 +47,18 @@ docs/       -> reports, architecture notes, implementation plans
 results/    -> plots, validation output, simulation logs
   logs/     -> Logging outputs from EDA tools
   media/    -> Plots for architecture validation
+  netlist/  -> Netlist files from DC synthesis
+  reports/  -> Reports from DC synthesis
 src/
   cpp/      -> C++ inference engine
   python/   -> PyTorch training and validation
   rtl/      -> SystemVerilog RTL modules
+    archive/-> .sv files that are no longer used
+    common/ -> Primary .sv files
   scripts/  -> simulation and utility scripts
+    powershell/
+    shell/
+    tcl/
   tb/       -> SystemVerilog testbenches
 ```
 

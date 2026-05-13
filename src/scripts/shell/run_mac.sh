@@ -7,8 +7,8 @@ rm -rf work
 vlib work
 
 vlog -sv \
-    ../../rtl/mac/MAC_combi.sv \
-    ../../rtl/mac/MAC_pipeline.sv \
+    ../../rtl/archive/MAC_combi.sv \
+    ../../rtl/archive/MAC_pipeline.sv \
     ../../tb/MAC_tb.sv \
     | tee ../../../results/logs/MAC_compile.log
 
