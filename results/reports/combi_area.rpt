@@ -1,0 +1,31 @@
+ 
+****************************************
+Report : area
+Design : MAC_combi
+Version: X-2025.06-SP4
+Date   : Wed May 13 00:38:17 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    lsi_10k (File: /dept/enee/software/synopsys/syn/X-2025.06-SP4/libraries/syn/lsi_10k.db)
+
+Number of ports:                           80
+Number of nets:                           340
+Number of cells:                          237
+Number of combinational cells:            237
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         71
+Number of references:                      14
+
+Combinational area:                708.000000
+Buf/Inv area:                       71.000000
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                   708.000000
+Total area:                 undefined
+1
