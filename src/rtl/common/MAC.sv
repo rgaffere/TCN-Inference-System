@@ -48,7 +48,7 @@ module MAC #(
             acc_out <= '0;
             valid_out <= 1'b0;
         end else begin
-            acc_out <= {{PROD_LEN{mul_reg[PROD_LEN-1]}}, mul_reg} + acc_in_reg;
+            acc_out <= ACC_LEN'(mul_reg) + acc_in_reg;
             valid_out <= valid_s1;
         end
     end
