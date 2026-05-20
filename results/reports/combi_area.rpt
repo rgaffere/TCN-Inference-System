@@ -3,29 +3,29 @@
 Report : area
 Design : MAC_combi
 Version: X-2025.06-SP4
-Date   : Wed May 13 00:38:17 2026
+Date   : Tue May 19 21:11:59 2026
 ****************************************
 
 Information: Updating design information... (UID-85)
 Library(s) Used:
 
-    lsi_10k (File: /dept/enee/software/synopsys/syn/X-2025.06-SP4/libraries/syn/lsi_10k.db)
+    NangateOpenCellLibrary (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/NangateOpenCellLibrary_typical.db)
 
 Number of ports:                           80
-Number of nets:                           340
-Number of cells:                          237
-Number of combinational cells:            237
+Number of nets:                           336
+Number of cells:                          233
+Number of combinational cells:            233
 Number of sequential cells:                 0
 Number of macros/black boxes:               0
-Number of buf/inv:                         71
+Number of buf/inv:                         81
 Number of references:                      14
 
-Combinational area:                708.000000
-Buf/Inv area:                       71.000000
+Combinational area:                398.468004
+Buf/Inv area:                       43.092000
 Noncombinational area:               0.000000
 Macro/Black Box area:                0.000000
-Net Interconnect area:      undefined  (No wire load specified)
+Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                   708.000000
+Total cell area:                   398.468004
 Total area:                 undefined
 1

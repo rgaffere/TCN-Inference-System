@@ -6,61 +6,65 @@ Report : timing
         -max_paths 1
 Design : MAC_combi
 Version: X-2025.06-SP4
-Date   : Wed May 13 00:38:17 2026
+Date   : Tue May 19 21:11:59 2026
 ****************************************
 
-Operating Conditions: nom_pvt   Library: lsi_10k
+Operating Conditions: typical   Library: NangateOpenCellLibrary
 Wire Load Model Mode: top
 
-  Startpoint: x[1] (input port)
+  Startpoint: x[3] (input port)
   Endpoint: acc_out[31]
             (output port)
   Path Group: (none)
   Path Type: max
 
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  MAC_combi          5K_hvratio_1_1        NangateOpenCellLibrary
+
   Point                                    Incr       Path
   -----------------------------------------------------------
-  input external delay                     0.00       0.00 f
-  x[1] (in)                                0.00       0.00 f
-  U16/Z (IVP)                              0.69       0.69 r
-  U17/Z (EO1)                              3.17       3.86 r
-  U24/Z (AO3)                              1.07       4.93 f
-  U25/Z (IVP)                              0.62       5.55 r
-  U97/Z (AO2)                              0.63       6.18 f
-  U113/S (FA1A)                            2.28       8.47 r
-  U114/Z (IVP)                             0.23       8.69 f
-  U231/CO (FA1A)                           1.17       9.87 f
-  U230/CO (FA1A)                           2.27      12.14 f
-  U229/CO (FA1A)                           2.27      14.41 f
-  U228/CO (FA1A)                           1.17      15.59 f
-  U133/CO (FA1A)                           2.27      17.86 f
-  U175/CO (FA1A)                           2.27      20.14 f
-  U227/CO (FA1A)                           1.17      21.31 f
-  U226/CO (FA1A)                           2.27      23.58 f
-  U225/CO (FA1A)                           2.27      25.86 f
-  U224/CO (FA1A)                           1.17      27.03 f
-  U204/CO (FA1A)                           2.27      29.30 f
-  U223/CO (FA1A)                           1.17      30.48 f
-  U222/CO (FA1A)                           1.17      31.65 f
-  U221/CO (FA1A)                           1.17      32.83 f
-  U220/CO (FA1A)                           1.17      34.00 f
-  U219/CO (FA1A)                           1.17      35.17 f
-  U218/CO (FA1A)                           1.17      36.35 f
-  U217/CO (FA1A)                           1.17      37.52 f
-  U216/CO (FA1A)                           1.17      38.69 f
-  U215/CO (FA1A)                           1.17      39.87 f
-  U214/CO (FA1A)                           1.17      41.04 f
-  U213/CO (FA1A)                           1.17      42.22 f
-  U212/CO (FA1A)                           1.17      43.39 f
-  U211/CO (FA1A)                           1.17      44.56 f
-  U210/CO (FA1A)                           1.17      45.74 f
-  U209/CO (FA1A)                           1.17      46.91 f
-  U207/CO (FA1A)                           1.31      48.22 f
-  U235/Z (ND2)                             0.64      48.86 r
-  U236/Z (AO3)                             0.62      49.47 f
-  U237/Z (EN)                              1.06      50.53 f
-  acc_out[31] (out)                        0.00      50.53 f
-  data arrival time                                  50.53
+  input external delay                     0.00       0.00 r
+  x[3] (in)                                0.00       0.00 r
+  U5/ZN (INV_X1)                           0.05       0.05 f
+  U22/ZN (AOI22_X1)                        0.14       0.19 r
+  U52/ZN (INV_X1)                          0.05       0.23 f
+  U53/ZN (OAI221_X1)                       0.07       0.30 r
+  U54/ZN (AOI221_X1)                       0.04       0.34 f
+  U55/ZN (AOI21_X1)                        0.07       0.41 r
+  U57/ZN (NOR2_X1)                         0.03       0.45 f
+  U187/S (FA_X1)                           0.15       0.59 r
+  U188/ZN (INV_X1)                         0.02       0.62 f
+  U190/S (FA_X1)                           0.13       0.74 r
+  U191/ZN (INV_X1)                         0.02       0.77 f
+  U228/CO (FA_X1)                          0.10       0.87 f
+  U227/CO (FA_X1)                          0.11       0.98 f
+  U226/CO (FA_X1)                          0.10       1.08 f
+  U225/CO (FA_X1)                          0.09       1.17 f
+  U224/CO (FA_X1)                          0.11       1.28 f
+  U223/CO (FA_X1)                          0.10       1.38 f
+  U222/CO (FA_X1)                          0.09       1.48 f
+  U221/CO (FA_X1)                          0.11       1.58 f
+  U220/CO (FA_X1)                          0.10       1.69 f
+  U219/CO (FA_X1)                          0.09       1.78 f
+  U218/CO (FA_X1)                          0.09       1.87 f
+  U217/CO (FA_X1)                          0.09       1.96 f
+  U216/CO (FA_X1)                          0.09       2.05 f
+  U215/CO (FA_X1)                          0.09       2.14 f
+  U214/CO (FA_X1)                          0.09       2.23 f
+  U213/CO (FA_X1)                          0.09       2.32 f
+  U212/CO (FA_X1)                          0.09       2.41 f
+  U211/CO (FA_X1)                          0.09       2.50 f
+  U210/CO (FA_X1)                          0.09       2.60 f
+  U209/CO (FA_X1)                          0.09       2.69 f
+  U208/CO (FA_X1)                          0.09       2.78 f
+  U207/CO (FA_X1)                          0.09       2.87 f
+  U206/CO (FA_X1)                          0.09       2.96 f
+  U205/CO (FA_X1)                          0.10       3.06 f
+  U232/ZN (OAI221_X1)                      0.07       3.13 r
+  U233/ZN (XNOR2_X1)                       0.06       3.19 r
+  acc_out[31] (out)                        0.00       3.19 r
+  data arrival time                                   3.19
   -----------------------------------------------------------
   (Path is unconstrained)
 
