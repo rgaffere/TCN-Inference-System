@@ -2,73 +2,125 @@ module conv #(
     parameter int DATA_LEN = 8,
     parameter int DEPTH = 512,
     parameter int KERNEL_LEN = 3,
+    localparam int ACC_LEN = 32,
     localparam int ADDR_WIDTH = $clog2(DEPTH)
 )(
     input logic clk, rst_n, valid_in,
     output logic valid_out
 );
-    typedef enum bit [1:0] {0, 1, 2, 3, 4} idx;
-    
-    logic [ADDR_WIDTH - 1: 0] offsets [0: KERNEL_LEN - 1];
-    logic [ADDR_WIDTH - 1: 0] curr_offset;
 
-    logic mac_done;
-    logic [DATA_LEN - 1: 0] data_in, mac_out, read_out, acc_in, relu_in, relu_out, acc_temp;
-    logic [DATA_LEN - 1: 0] mac_out [0: KERNEL_LEN - 1];
+    logic signed [DATA_LEN-1:0] x;
+    logic signed [DATA_LEN-1:0] w;
 
-    // Initialize modules
-    ring init_ring (
-        .clk(clk),
-        .rst_n(rst_n)
-        .write_en(mac_done),
-        .data_in(data_in),
-        .read_offset(curr_offset),
-        .data_out(read_out)
+    logic signed [ACC_LEN - 1:0] acc_in;
+    logic signed [ACC_LEN - 1:0] acc_reg;
+    logic signed [ACC_LEN - 1:0] acc_out;
+
+    logic signed [ACC_LEN - 1:0] relu_out;
+    logic signed [DATA_LEN-1:0] quant_out;
+
+    logic [ADDR_WIDTH-1:0] read_offset;
+    logic [ADDR_WIDTH-1:0] read_offsets [0:KERNEL_LEN-1];
+
+    logic signed [DATA_LEN-1:0] weight_cache [0:KERNEL_LEN-1];
+    logic signed [ACC_LEN - 1:0] bias_cache;
+
+    logic [$clog2(KERNEL_LEN)-1:0] tap_idx;
+
+    // Pipeline signals: load -> MAC -> relu -> requant -> write
+    logic s0, s1, s2, s3, s4;
+    assign valid_out = s4;
+
+    dilation_offsets init_do(
+        .read_offsets(read_offsets)
     );
 
-    ReLU init_relu (
-        .data_in(relu_in),
+    // Initialize modules
+    MAC init_mac(
+        .clk(clk),
+        .rst_n(rst_n),
+        .valid_in(s1),
+        .x(x),
+        .w(w),
+        .acc_in(acc_in),
+        .valid_out(s2),
+        .acc_out(acc_out)
+    );
+
+    ReLU #(.DATA_LEN(32)) init_relu(
+        .data_in(acc_out),
         .data_out(relu_out)
     );
 
-    MAC init_mac (
+    //TODO
+    requantize init_requantize(
+        .data_in(relu_out),
+        .data_out(quant_out)
+    );
+
+    ring init_ring(
         .clk(clk),
         .rst_n(rst_n),
-        .valid_in(valid_in),
-        .x(read_out),
-        .w(w),
-        .acc_in(b),
-        .valid_out(mac_done),
-        .acc_out(mac_out)
+        .write_en(s4),
+        .data_in(quant_out),
+        .read_offset(read_offset),
+        .data_out(x)
     );
 
-    dilation_offsets init_offsets(
-        .read_offsets(offsets)
-    );
+    // Some time mutiplexers
 
-    assign acc_in = mac_out[0] + mac_out[1] + mac_out[2];
-    assign data_in = relu_out;
+    // Time MUX
+    always_comb begin
+        case (tap_idx)
+            0 : w = weight_cache[0];
+            1 : w = weight_cache[1];
+            2 : w = weight_cache[2];
+            default : w = 'x;
+        endcase
+    end
 
+    // Tap select MUX
+    always_comb begin
+        case (tap_idx)
+            0 : read_offset = read_offsets[0];
+            1 : read_offset = read_offsets[1];
+            2 : read_offset = read_offsets[2];
+            default : read_offset = 'x;
+        endcase
+    end
+
+    // Control logic
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            mac_done <= 1'b0;
-            valid_out <= 1'b0;
-            idx <= 0;
-        end else if (valid_in) begin
-            if(idx == 0) begin
-                valid_out <= 1'b0;
-                curr_offset <= offsets[0];
-            end else if (idx == 1) begin
-                curr_offset <= offset[1];
-            end else if (idx == 2) begin
-                curr_offset <= offset[2];
-            end else if (idx == 3) begin
-                curr_offset <= offset[3];
-            end else begin
-                mac_done <= 1'b1;
-                relu_in <= acc_in;
-                valid_out <= mac_done;
+            tap_idx <= '0;
+            acc_reg <= '0;
+            s0 <= 1'b0;
+            s1 <= 1'b0;
+            s3 <= 1'b0;
+            s4 <= 1'b0;
+        end else begin
+            s0 <= valid_in;
+            s1 <= s0;
+            // Don't set s2 here since its contolled by the mac
+            s3 <= s2;
+            s4 <= s3;
+
+            if (s2) begin
+                acc_reg <= acc_out;
+
+                if (tap_idx == KERNEL_LEN-1)
+                    tap_idx <= '0;
+                else
+                    tap_idx <= tap_idx + 1'b1;
             end
         end
+    end
+
+    // control for acc_in
+    always_comb begin
+        if (tap_idx == '0)
+            acc_in = bias_cache;
+        else
+            acc_in = acc_reg;
     end
 endmodule
