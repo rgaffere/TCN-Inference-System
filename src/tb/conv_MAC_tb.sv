@@ -278,7 +278,10 @@ module conv_MAC_tb;
         $display("\n=============================");
         $display("Tests run:    %0d", tests_run);
         $display("Tests failed: %0d", tests_failed);
-        $display(tests_failed == 0 ? "ALL TESTS PASSED" : "SOME TESTS FAILED");
+        if (tests_failed == 0)
+            $display("ALL TESTS PASSED");
+        else
+            $display("SOME TESTS FAILED");
         $display("=============================");
 
         $finish;
