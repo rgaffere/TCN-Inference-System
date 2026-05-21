@@ -11,8 +11,8 @@ current_design conv_MAC
 link
 compile_ultra
 
-report_area > ../logs/combi_area.rpt
-report_timing > ../logs/combi_timing.rpt
-report_power > ../logs/combi_power.rpt
+report_area > ../logs/conv_area.rpt
+report_timing > ../logs/conv_timing.rpt
+report_power > ../logs/conv_power.rpt
 
 write -format verilog -hierarchy -output ../netlist/conv_MAC_synth.v
