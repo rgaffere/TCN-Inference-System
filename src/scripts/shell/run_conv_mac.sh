@@ -16,5 +16,5 @@ if [ ${PIPESTATUS[0]} -ne 0 ]; then
     exit 1
 fi
 
-vsim -c dilation_offsets_tb -do "run -all; quit" \
+vsim -c conv_MAC_tb -do "run -all; quit" \
     | tee ../../../results/logs/conv_MAC_sim.log
