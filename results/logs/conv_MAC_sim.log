@@ -1,0 +1,54 @@
+Reading pref.tcl
+
+# 2023.2
+
+# vsim -c conv_MAC_tb -do "run -all; quit" 
+# Start time: 22:39:18 on May 20,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2023.2 linux_x86_64 Apr 11 2023
+# //
+# //  Copyright 1991-2023 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.conv_MAC_tb(fast)
+# run -all
+# INFO [all positive]: cycles per convolution = 4
+# PASS [all positive]
+# INFO [negative weight]: cycles per convolution = 4
+# PASS [negative weight]
+# INFO [negative input]: cycles per convolution = 4
+# PASS [negative input]
+# INFO [zero bias]: cycles per convolution = 4
+# PASS [zero bias]
+# INFO [max positive]: cycles per convolution = 4
+# PASS [max positive]
+# INFO [max neg input]: cycles per convolution = 4
+# PASS [max neg input]
+# INFO [all zeros]: cycles per convolution = 4
+# PASS [all zeros]
+# INFO [bias only]: cycles per convolution = 4
+# PASS [bias only]
+# INFO [neg bias]: cycles per convolution = 4
+# PASS [neg bias]
+# PASS [back-to-back [conv0]]
+# PASS [back-to-back [conv1]]
+# 
+# =============================
+# Tests run:    64
+# Tests failed: 0
+# ALL TESTS PASSED
+# =============================
+# ** Note: $finish    : ../tb/conv_MAC_tb.sv(287)
+#    Time: 656 ns  Iteration: 0  Instance: /conv_MAC_tb
+# End time: 22:39:19 on May 20,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

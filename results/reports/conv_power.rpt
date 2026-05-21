@@ -1,0 +1,59 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : conv_MAC
+Version: X-2025.06-SP4
+Date   : Wed May 20 22:44:51 2026
+****************************************
+
+
+Library(s) Used:
+
+    NangateOpenCellLibrary (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/NangateOpenCellLibrary_typical.db)
+
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+conv_MAC               5K_hvratio_1_1    NangateOpenCellLibrary
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000ff
+    Time Units = 1ns
+    Dynamic Power Units = 1uW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  = 195.9705 uW   (59%)
+  Net Switching Power  = 138.9286 uW   (41%)
+                         ---------
+Total Dynamic Power    = 334.8991 uW  (100%)
+
+Cell Leakage Power     =  17.7057 uW
+
+Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
+register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
+sequential        53.6075            2.8111        6.9578e+03           63.3765  (  17.97%)
+combinational    142.3630          136.1174        1.0748e+04          289.2283  (  82.03%)
+--------------------------------------------------------------------------------------------------
+Total            195.9705 uW       138.9286 uW     1.7706e+04 nW       352.6048 uW
+1
