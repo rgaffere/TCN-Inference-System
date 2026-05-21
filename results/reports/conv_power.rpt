@@ -4,7 +4,7 @@ Report : power
         -analysis_effort low
 Design : conv_MAC
 Version: X-2025.06-SP4
-Date   : Wed May 20 22:44:51 2026
+Date   : Wed May 20 22:57:47 2026
 ****************************************
 
 
@@ -35,14 +35,13 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  = 195.9705 uW   (59%)
-  Net Switching Power  = 138.9286 uW   (41%)
+  Cell Internal Power  = 332.5434 uW   (79%)
+  Net Switching Power  =  88.0669 uW   (21%)
                          ---------
-Total Dynamic Power    = 334.8991 uW  (100%)
+Total Dynamic Power    = 420.6103 uW  (100%)
 
-Cell Leakage Power     =  17.7057 uW
+Cell Leakage Power     =  20.5947 uW
 
-Information: report_power power group summary does not include estimated clock tree power. (PWR-789)
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
@@ -50,10 +49,10 @@ Power Group      Power            Power               Power              Power  
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)  i
-register           0.0000            0.0000            0.0000            0.0000  (   0.00%)
-sequential        53.6075            2.8111        6.9578e+03           63.3765  (  17.97%)
-combinational    142.3630          136.1174        1.0748e+04          289.2283  (  82.03%)
+clock_network    217.2176            0.0000            0.0000          217.2176  (  49.23%)  i
+register          33.4028           12.8475        7.0742e+03           53.3244  (  12.09%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     81.9230           75.2195        1.3521e+04          170.6630  (  38.68%)
 --------------------------------------------------------------------------------------------------
-Total            195.9705 uW       138.9286 uW     1.7706e+04 nW       352.6048 uW
+Total            332.5434 uW        88.0669 uW     2.0595e+04 nW       441.2050 uW
 1

@@ -9,6 +9,7 @@ analyze -format sverilog ../rtl/common/conv_MAC.sv
 elaborate conv_MAC
 current_design conv_MAC
 link
+create_clock -name clk -period 2.5 [get_ports clk]
 compile_ultra
 
 report_area > ../logs/conv_area.rpt

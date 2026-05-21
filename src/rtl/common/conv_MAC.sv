@@ -31,7 +31,7 @@ module conv_MAC #(
 
     // This is for signed bit extension
     logic signed [ACC_LEN - 1:0] prod_ext;
-    // SV auto sign-extends signed→wider signed
+
     assign prod_ext = $signed(prod_reg);
 
     always_ff @(posedge clk or negedge rst_n) begin
