@@ -31,7 +31,8 @@ module conv_MAC #(
 
     // This is for signed bit extension
     logic signed [ACC_LEN - 1:0] prod_ext;
-    assign prod_ext = ACC_LEN'(prod_reg);
+    // SV auto sign-extends signed→wider signed
+    assign prod_ext = prod_reg;
 
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
