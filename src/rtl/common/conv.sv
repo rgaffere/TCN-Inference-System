@@ -31,6 +31,8 @@ module conv #(
     logic s0, s1, s2, s3, s4;
     assign valid_out = s4;
 
+    // Add cache to store relevants weights and bias for convolution
+
     dilation_offsets init_do(
         .read_offsets(read_offsets)
     );
@@ -44,7 +46,7 @@ module conv #(
         .w(w),
         .acc_in(acc_in),
         .valid_out(s2),
-        .acc_out(acc_out)
+        .acc_out(acc_reg)
     );
 
     ReLU #(.DATA_LEN(32)) init_relu(
@@ -69,7 +71,7 @@ module conv #(
 
     // Some time mutiplexers
 
-    // Time MUX
+    // Weight MUX
     always_comb begin
         case (tap_idx)
             0 : w = weight_cache[0];
@@ -102,16 +104,19 @@ module conv #(
             s0 <= valid_in;
             s1 <= s0;
             // Don't set s2 here since its contolled by the mac
-            s3 <= s2;
+            // Also don't set s3 until the conv is done, otherwise we have bad writes
             s4 <= s3;
 
-            if (s2) begin
-                acc_reg <= acc_out;
-
-                if (tap_idx == KERNEL_LEN-1)
+            if (s1) begin
+                if (tap_idx == KERNEL_LEN-1) begin
                     tap_idx <= '0;
-                else
-                    tap_idx <= tap_idx + 1'b1;
+                    // Use s3 to give time for relu and quantize
+                    s3 <= s2;
+                    acc_out <= acc_reg;
+                end else begin
+                    tap_idx <= tap_idx + 1'b1;    
+                    s3 <= 1'b0;
+                end    
             end
         end
     end
