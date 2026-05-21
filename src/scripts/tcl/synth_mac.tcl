@@ -1,7 +1,7 @@
 # Paths in this file assume different structure from repo
 
-set target_library [list /dept/enee/software/synopsys/syn/X-2025.06-SP4/libraries/syn/lsi_10k.db]
-set link_library [concat * $target_library]
+set target_library [list ~/TCN/pdk/NangateOpenCellLibrary_typical.db]
+set link_library "* $target_library"
 
 # Combinational MAC first
 analyze -format sverilog ../rtl/mac/MAC_combi.sv
