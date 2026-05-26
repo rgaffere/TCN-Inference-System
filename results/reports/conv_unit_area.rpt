@@ -1,0 +1,46 @@
+ 
+****************************************
+Report : area
+Design : conv
+Version: X-2025.06-SP4
+Date   : Mon May 25 20:21:54 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
+    sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db)
+
+Number of ports:                           88
+Number of nets:                           975
+Number of cells:                          882
+Number of combinational cells:            794
+Number of sequential cells:                86
+Number of macros/black boxes:               1
+Number of buf/inv:                        174
+Number of references:                      41
+
+Combinational area:               4541.855933
+Buf/Inv area:                      745.715185
+Noncombinational area:            2159.571213
+Macro/Black Box area:           284538.468750
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:                291239.895895
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area               Local cell area
+                                  --------------------  --------------------------------- 
+Hierarchical cell                 Absolute     Percent  Combi-     Noncombi-  Black-
+                                  Total        Total    national   national   boxes        Design
+--------------------------------  -----------  -------  ---------  ---------  -----------  ---------
+conv                              291239.8959    100.0  3908.7487  1655.3376       0.0000  conv
+init_ring                         285675.8095     98.1   633.1072   504.2336  284538.4688  ring
+--------------------------------  -----------  -------  ---------  ---------  -----------  ---------
+Total                                                   4541.8559  2159.5712  284538.4688
+
+1

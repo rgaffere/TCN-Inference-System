@@ -3,29 +3,29 @@
 Report : area
 Design : conv_MAC
 Version: X-2025.06-SP4
-Date   : Wed May 20 22:57:47 2026
+Date   : Mon May 25 20:27:16 2026
 ****************************************
 
 Information: Updating design information... (UID-85)
 Library(s) Used:
 
-    NangateOpenCellLibrary (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/NangateOpenCellLibrary_typical.db)
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
 
 Number of ports:                           84
-Number of nets:                           648
-Number of cells:                          563
-Number of combinational cells:            479
+Number of nets:                           708
+Number of cells:                          641
+Number of combinational cells:            557
 Number of sequential cells:                84
 Number of macros/black boxes:               0
-Number of buf/inv:                         68
+Number of buf/inv:                         76
 Number of references:                      24
 
-Combinational area:                624.833998
-Buf/Inv area:                       36.442000
-Noncombinational area:             447.412014
+Combinational area:               3072.947130
+Buf/Inv area:                      285.273591
+Noncombinational area:            2102.016014
 Macro/Black Box area:                0.000000
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                  1072.246013
+Total cell area:                  5174.963145
 Total area:                 undefined
 1

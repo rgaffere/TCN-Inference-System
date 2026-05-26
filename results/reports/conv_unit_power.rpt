@@ -2,15 +2,16 @@
 ****************************************
 Report : power
         -analysis_effort low
-Design : conv_MAC
+Design : conv
 Version: X-2025.06-SP4
-Date   : Mon May 25 20:27:16 2026
+Date   : Mon May 25 20:21:54 2026
 ****************************************
 
 
 Library(s) Used:
 
     sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
+    sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db)
 
 
 Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
@@ -18,7 +19,7 @@ Wire Load Model Mode: top
 
 Design        Wire Load Model            Library
 ------------------------------------------------
-conv_MAC               Small             sky130_fd_sc_hd__tt_025C_1v80
+conv                   Small             sky130_fd_sc_hd__tt_025C_1v80
 
 
 Global Operating Voltage = 1.8  
@@ -35,24 +36,24 @@ Attributes
 i - Including register clock pin internal power
 
 
-  Cell Internal Power  = 857.8426 uW   (82%)
-  Net Switching Power  = 190.0851 uW   (18%)
+  Cell Internal Power  =  11.8990 mW   (99%)
+  Net Switching Power  = 161.6646 uW    (1%)
                          ---------
-Total Dynamic Power    =   1.0479 mW  (100%)
+Total Dynamic Power    =  12.0606 mW  (100%)
 
-Cell Leakage Power     =   2.1814 nW
+Cell Leakage Power     =  17.7290 uW
 
 
                  Internal         Switching           Leakage            Total
 Power Group      Power            Power               Power              Power   (   %    )  Attrs
 --------------------------------------------------------------------------------------------------
 io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
-memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory            11.0467        8.6117e-04        1.7726e+04           11.0653  (  91.61%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
-clock_network      0.6929            0.0000            0.0000            0.6929  (  66.12%)  i
-register       3.2141e-02        1.4856e-02            1.1163        4.6998e-02  (   4.48%)
+clock_network      0.7094            0.0000            0.0000            0.7094  (   5.87%)  i
+register       2.4617e-02        1.6859e-02            1.1531        4.1478e-02  (   0.34%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational      0.1328            0.1752            1.0651            0.3080  (  29.39%)
+combinational      0.1182            0.1439            1.8554            0.2621  (   2.17%)
 --------------------------------------------------------------------------------------------------
-Total              0.8578 mW         0.1901 mW         2.1814 nW         1.0479 mW
+Total             11.8990 mW         0.1617 mW     1.7729e+04 nW        12.0784 mW
 1

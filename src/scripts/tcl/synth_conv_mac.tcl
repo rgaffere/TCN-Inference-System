@@ -1,6 +1,4 @@
-# Paths in this file assume different structure from repo
-
-set target_library [list ~/TCN/pdk/NangateOpenCellLibrary_typical.db]
+set target_library [list ../pdk/sky130_fd_sc_hd__tt_025C_1v80.db]
 set link_library "* $target_library"
 
 # Combinational MAC first
@@ -9,7 +7,7 @@ analyze -format sverilog ../rtl/common/conv_MAC.sv
 elaborate conv_MAC
 current_design conv_MAC
 link
-create_clock -name clk -period 2.5 [get_ports clk]
+create_clock -name clk -period 5.0 [get_ports clk]
 compile_ultra
 
 report_area > ../logs/conv_area.rpt
