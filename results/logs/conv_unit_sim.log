@@ -1,0 +1,123 @@
+Reading pref.tcl
+
+# 2023.2
+
+# vsim -c conv_tb -do "run -all; quit" 
+# Start time: 20:44:43 on May 25,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2023.2 linux_x86_64 Apr 11 2023
+# //
+# //  Copyright 1991-2023 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.conv_tb(fast)
+# run -all
+# cycle=1 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=0 x=0 w=0 mac_out=0 relu_out=0 write_in=0 head=0 warmup=0
+# [PASS] reset clears s0
+# [PASS] reset clears s1
+# [PASS] reset clears s3
+# [PASS] reset clears tap_idx
+# cycle=2 valid_in=0 s0=0 s1=0 s2=0 s3=1 tap_idx=1 valid_out=1 saw_valid_out=0 x=0 w=2 mac_out=0 relu_out=0 write_in=10 head=0 warmup=0
+# cycle=3 valid_in=0 s0=0 s1=0 s2=0 s3=1 tap_idx=2 valid_out=1 saw_valid_out=1 x=0 w=3 mac_out=0 relu_out=0 write_in=20 head=1 warmup=1
+# cycle=4 valid_in=0 s0=0 s1=0 s2=0 s3=1 tap_idx=0 valid_out=1 saw_valid_out=1 x=0 w=1 mac_out=0 relu_out=0 write_in=30 head=2 warmup=2
+# cycle=5 valid_in=0 s0=0 s1=0 s2=0 s3=1 tap_idx=1 valid_out=1 saw_valid_out=1 x=0 w=2 mac_out=0 relu_out=0 write_in=40 head=3 warmup=3
+# cycle=6 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=20 w=3 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# [PASS] ring head after preload
+# [PASS] ring warmup after preload
+# cycle=7 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=20 w=1 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# [PASS] ring read offset 0 returns 40
+# cycle=8 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=40 w=2 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=9 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=30 w=3 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# [PASS] ring read offset 1 returns 30
+# cycle=10 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=30 w=1 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=11 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=40 w=2 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# [PASS] ring read offset 2 returns 20
+# cycle=12 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=20 w=3 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=13 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=20 w=1 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# [PASS] ring read offset 3 returns 10
+# cycle=14 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=10 w=2 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# 
+# Starting single convolution valid window...
+# 
+# cycle=15 valid_in=1 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=0 x=30 w=3 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=16 valid_in=1 s0=1 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=0 x=20 w=1 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=17 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=0 x=40 w=2 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=18 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=0 x=30 w=3 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=19 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=0 x=20 w=1 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=20 valid_in=0 s0=1 s1=1 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=0 x=40 w=2 mac_out=0 relu_out=0 write_in=0 head=4 warmup=4
+# cycle=21 valid_in=0 s0=0 s1=1 s2=1 s3=0 tap_idx=2 valid_out=0 saw_valid_out=0 x=30 w=3 mac_out=190 relu_out=190 write_in=0 head=4 warmup=4
+# cycle=22 valid_in=0 s0=0 s1=0 s2=0 s3=1 tap_idx=0 valid_out=1 saw_valid_out=0 x=20 w=1 mac_out=190 relu_out=190 write_in=0 head=4 warmup=4
+# cycle=23 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=40 w=2 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=24 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=40 w=3 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=25 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=30 w=1 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=26 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=27 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=40 w=3 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=28 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=30 w=1 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=29 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=30 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=40 w=3 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=31 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=30 w=1 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# [PASS] valid_out eventually asserted
+# [PASS] tap_idx stays in valid range
+# [PASS] mac_out matches current aligned convolution
+# [PASS] relu_out matches positive mac_out
+# [PASS] quant shifted result matches current quant behavior
+# [PASS] ring head advanced after conv write
+# [PASS] ring warmup advanced after conv write
+# [PASS] ring wrote quantized conv result
+# 
+# Single convolution cycle count:
+# conv_start_cycle = 14
+# conv_done_cycle  = 21
+# cycles_per_conv  = 7
+# 
+# Starting back-to-back convolution throughput test...
+# 
+# cycle=32 valid_in=1 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=33 valid_in=1 s0=1 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=40 w=3 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=34 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=30 w=1 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=35 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=190 relu_out=190 write_in=0 head=5 warmup=5
+# cycle=36 valid_in=1 s0=1 s1=1 s2=1 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=40 w=3 mac_out=30 relu_out=30 write_in=0 head=5 warmup=5
+# cycle=37 valid_in=1 s0=1 s1=1 s2=0 s3=1 tap_idx=0 valid_out=1 saw_valid_out=1 x=30 w=1 mac_out=30 relu_out=30 write_in=0 head=5 warmup=5
+# cycle=38 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=30 relu_out=30 write_in=0 head=6 warmup=6
+# cycle=39 valid_in=1 s0=1 s1=1 s2=1 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=0 w=3 mac_out=150 relu_out=150 write_in=0 head=6 warmup=6
+# cycle=40 valid_in=1 s0=1 s1=1 s2=0 s3=1 tap_idx=0 valid_out=1 saw_valid_out=1 x=40 w=1 mac_out=150 relu_out=150 write_in=0 head=6 warmup=6
+# cycle=41 valid_in=1 s0=1 s1=1 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=150 relu_out=150 write_in=0 head=7 warmup=7
+# cycle=42 valid_in=0 s0=1 s1=1 s2=1 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=0 w=3 mac_out=40 relu_out=40 write_in=0 head=7 warmup=7
+# cycle=43 valid_in=0 s0=0 s1=1 s2=0 s3=1 tap_idx=0 valid_out=1 saw_valid_out=1 x=0 w=1 mac_out=40 relu_out=40 write_in=0 head=7 warmup=7
+# cycle=44 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=40 relu_out=40 write_in=0 head=8 warmup=8
+# cycle=45 valid_in=0 s0=0 s1=0 s2=1 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=0 w=3 mac_out=0 relu_out=0 write_in=0 head=8 warmup=8
+# cycle=46 valid_in=0 s0=0 s1=0 s2=0 s3=1 tap_idx=0 valid_out=1 saw_valid_out=1 x=0 w=1 mac_out=0 relu_out=0 write_in=0 head=8 warmup=8
+# cycle=47 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=0 relu_out=0 write_in=0 head=9 warmup=9
+# cycle=48 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=0 w=3 mac_out=0 relu_out=0 write_in=0 head=9 warmup=9
+# cycle=49 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=0 valid_out=0 saw_valid_out=1 x=0 w=1 mac_out=0 relu_out=0 write_in=0 head=9 warmup=9
+# cycle=50 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=1 valid_out=0 saw_valid_out=1 x=0 w=2 mac_out=0 relu_out=0 write_in=0 head=9 warmup=9
+# cycle=51 valid_in=0 s0=0 s1=0 s2=0 s3=0 tap_idx=2 valid_out=0 saw_valid_out=1 x=0 w=3 mac_out=0 relu_out=0 write_in=0 head=9 warmup=9
+# [PASS] back-to-back test produced at least two valid outputs
+# [PASS] first valid cycle was captured
+# [PASS] second valid cycle was captured
+# 
+# Back-to-back throughput:
+# valid_count        = 4
+# first_valid_cycle  = 36
+# second_valid_cycle = 39
+# valid_spacing      = 3 cycles
+# [PASS] back-to-back valid spacing is 3 cycles
+# 
+# Tests run:    22
+# Tests failed: 0
+# 
+# ALL TESTS PASSED
+# ** Note: $finish    : ../tb/conv_tb.sv(290)
+#    Time: 535 ns  Iteration: 1  Instance: /conv_tb
+# End time: 20:44:44 on May 25,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
