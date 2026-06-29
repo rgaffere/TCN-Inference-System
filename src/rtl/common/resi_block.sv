@@ -222,17 +222,19 @@ module resi_block #(
     // residual register control
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            // im hardcoding this with the assumption that KERNAL_LEN is always 3 for now
-            // TODO parameterize this
-            for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                resi_reg[0][ch] <= '0;
-                resi_reg[1][ch] <= '0;
-                resi_reg[2][ch] <= '0;
+            for(int i = 0; i < KERNEL_LEN; i++) begin
+                for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
+                    resi_reg[i][ch] <= '0;
+                end
             end
         end else if(mac1_start) begin
-            for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                resi_reg[2][ch] <= resi_reg[1][ch];
-                resi_reg[1][ch] <= resi_reg[0][ch];
+            for(int i = KERNEL_LEN - 1; i > 0; i--) begin
+                for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
+                    resi_reg[i][ch] <= resi_reg[i-1][ch];
+                end
+            end
+
+            for(int ch = 0; ch < NUM_CHANNELS; ch++) begin
                 resi_reg[0][ch] <= inputVals[ch];
             end
         end
