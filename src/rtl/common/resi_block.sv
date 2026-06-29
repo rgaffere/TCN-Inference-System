@@ -1,4 +1,3 @@
-//TODO pipeline the residual since it can overwrite
 module resi_block #(
     parameter int NUM_CHANNELS = 16,
     parameter int W_BIT_WIDTH = 8,
@@ -49,7 +48,7 @@ module resi_block #(
     logic signed [W_BIT_WIDTH-1:0] w1_tap [0:NUM_CHANNELS-1];
     logic signed [W_BIT_WIDTH-1:0] w2_tap [0:NUM_CHANNELS-1];
 
-    logic signed [W_BIT_WIDTH - 1: 0] resi_reg [0: NUM_CHANNELS - 1];
+    logic signed [W_BIT_WIDTH - 1: 0] resi_reg [0: KERNEL_LEN - 1][0: NUM_CHANNELS - 1];
     // Need this one for overflow guard
     logic signed [W_BIT_WIDTH:0] resi_sum [0: NUM_CHANNELS - 1];
 
@@ -223,12 +222,18 @@ module resi_block #(
     // residual register control
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
+            // im hardcoding this with the assumption that KERNAL_LEN is always 3 for now
+            // TODO parameterize this
             for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                resi_reg[ch] <= '0;
+                resi_reg[0][ch] <= '0;
+                resi_reg[1][ch] <= '0;
+                resi_reg[2][ch] <= '0;
             end
         end else if(mac1_start) begin
             for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                resi_reg[ch] <= inputVals[ch];
+                resi_reg[2][ch] <= resi_reg[1][ch];
+                resi_reg[1][ch] <= resi_reg[0][ch];
+                resi_reg[0][ch] <= inputVals[ch];
             end
         end
     end
@@ -236,7 +241,7 @@ module resi_block #(
     // residual add
     always_comb begin
         for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-            resi_sum[ch] = $signed(quantOut2[ch]) + $signed(resi_reg[ch]);
+            resi_sum[ch] = $signed(quantOut2[ch]) + $signed(resi_reg[KERNEL_LEN - 1][ch]);
         end
     end
 
