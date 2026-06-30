@@ -37,10 +37,10 @@ module resi_block #(
     logic signed [W_BIT_WIDTH - 1: 0] quantOut2 [0: NUM_CHANNELS - 1];
 
     // now longer signed since its packed
-    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1:0] ringIn1  [0: NUM_RINGS-1];
+    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1:0] ringIn1 [0: NUM_RINGS-1];
     logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1:0] ringOut1 [0: NUM_RINGS-1];
 
-    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1: 0] ringIn2  [0: NUM_RINGS-1];
+    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1: 0] ringIn2 [0: NUM_RINGS-1];
     logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1: 0] ringOut2 [0: NUM_RINGS-1];
 
     logic signed [W_BIT_WIDTH-1:0] w1_tap [0:NUM_CHANNELS-1];
