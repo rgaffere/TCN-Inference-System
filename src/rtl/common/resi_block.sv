@@ -31,19 +31,17 @@ module resi_block #(
     logic signed [W_BIT_WIDTH - 1: 0] quantOut1 [0: NUM_CHANNELS - 1];
     logic signed [W_BIT_WIDTH - 1: 0] quantOut1_reg [0: NUM_CHANNELS - 1];
 
-    logic signed [W_BIT_WIDTH - 1:0] macIn2 [0:NUM_CHANNELS-1];
+    logic signed [W_BIT_WIDTH - 1: 0] macIn2 [0: NUM_CHANNELS - 1];
     logic signed [B_BIT_WIDTH - 1: 0] macOut2 [0: NUM_CHANNELS - 1];
     logic signed [B_BIT_WIDTH - 1: 0] reluOut2 [0: NUM_CHANNELS - 1];
     logic signed [W_BIT_WIDTH - 1: 0] quantOut2 [0: NUM_CHANNELS - 1];
 
-    logic signed [W_BIT_WIDTH-1:0] ringIn1  [0:NUM_RINGS-1][0:NUM_RINGS-1];
-    logic signed [W_BIT_WIDTH-1:0] ringOut1 [0:NUM_RINGS-1][0:NUM_RINGS-1];
+    // now longer signed since its packed
+    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1:0] ringIn1  [0: NUM_RINGS-1];
+    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1:0] ringOut1 [0: NUM_RINGS-1];
 
-    logic signed [W_BIT_WIDTH-1:0] ringIn2  [0:NUM_RINGS-1][0:NUM_RINGS-1];
-    logic signed [W_BIT_WIDTH-1:0] ringOut2 [0:NUM_RINGS-1][0:NUM_RINGS-1];
-
-    logic signed [W_BIT_WIDTH - 1: 0] ringOut1_flat [0: NUM_CHANNELS - 1];
-    logic signed [W_BIT_WIDTH - 1: 0] ringOut2_flat [0: NUM_CHANNELS - 1];
+    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1: 0] ringIn2  [0: NUM_RINGS-1];
+    logic [(NUM_CHANNELS / NUM_RINGS) * W_BIT_WIDTH - 1: 0] ringOut2 [0: NUM_RINGS-1];
 
     logic signed [W_BIT_WIDTH-1:0] w1_tap [0:NUM_CHANNELS-1];
     logic signed [W_BIT_WIDTH-1:0] w2_tap [0:NUM_CHANNELS-1];
@@ -112,16 +110,21 @@ module resi_block #(
     generate
         for(i = 0; i < NUM_RINGS; i++) begin : gen_ring_banks
 
-            for(j = 0; j < NUM_RINGS; j++) begin : gen_ring_lanes
-                localparam int CH = i * NUM_RINGS + j;
-
-                assign ringIn1[i][j] = inputVals[CH];
-                assign ringIn2[i][j] = quantOut1_reg[CH];
-                assign ringOut1_flat[CH] = ringOut1[i][j];
-                assign ringOut2_flat[CH] = ringOut2[i][j];
+            for(j = 0; j < (NUM_CHANNELS / NUM_RINGS); j++) begin : gen_ring_lanes
+                localparam int CH = i * (NUM_CHANNELS / NUM_RINGS) + j;
+                localparam int LO = j * W_BIT_WIDTH;
+    
+                assign ringIn1[i][LO +: W_BIT_WIDTH] = inputVals[CH];
+                assign ringIn2[i][LO +: W_BIT_WIDTH] = quantOut1_reg[CH];
+    
+                assign macIn1[CH] = useReadVals1 ? $signed(ringOut1[i][LO +: W_BIT_WIDTH]) : inputVals[CH];
+                assign macIn2[CH] = useReadVals2 ? $signed(ringOut2[i][LO +: W_BIT_WIDTH]) : quantOut1_reg[CH];
             end
 
-            ring ring_bank1 (
+            ring #(
+                .DEPTH(DEPTH),
+                .DATA_LEN(W_BIT_WIDTH)
+            ) ring_bank1 (
                 .clk(clk),
                 .rst_n(rst_n),
                 .write_en(mac1_start),
@@ -130,7 +133,10 @@ module resi_block #(
                 .data_out(ringOut1[i])
             );
 
-            ring ring_bank2 (
+            ring #(
+                .DEPTH(DEPTH),
+                .DATA_LEN(W_BIT_WIDTH)
+            ) ring_bank2 (
                 .clk(clk),
                 .rst_n(rst_n),
                 .write_en(s1),
@@ -181,20 +187,6 @@ module resi_block #(
         end
     end
 
-    // MAC 1 input control
-    always_comb begin
-        for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-            macIn1[ch] = useReadVals1 ? ringOut1_flat[ch] : inputVals[ch];
-        end
-    end
-
-    // MAC 2 input control
-    always_comb begin
-        for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-            macIn2[ch] = useReadVals2 ? ringOut2_flat[ch] : quantOut1_reg[ch];
-        end
-    end
-
     // Weight control
     always_comb begin
         for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
@@ -240,10 +232,13 @@ module resi_block #(
         end
     end
 
-    // residual add
+    // residual add, with 9 bits for saturation guard
     always_comb begin
         for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-            resi_sum[ch] = $signed(quantOut2[ch]) + $signed(resi_reg[KERNEL_LEN - 1][ch]);
+            resi_sum[ch] =
+                $signed({quantOut2[ch][W_BIT_WIDTH-1], quantOut2[ch]}) +
+                $signed({resi_reg[KERNEL_LEN - 1][ch][W_BIT_WIDTH-1],
+                         resi_reg[KERNEL_LEN - 1][ch]});
         end
     end
 
