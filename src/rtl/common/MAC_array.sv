@@ -42,27 +42,18 @@ module MAC_array #(
 
             assign prod_ext[i] = $signed(prod_reg[i]);
 
-            always_ff @(posedge clk or negedge rst_n) begin
-                if (!rst_n) begin
-                    prod_reg[i] <= '0;
-                    acc_reg[i] <= '0;
-                    acc_out[i] <= '0;
-                end else begin
+            always_ff @(posedge clk) begin
+                prod_reg[i] <= x[i] * w[i];
 
-                    if (valid_in) begin
-                        prod_reg[i] <= x[i] * w[i];
-                    end
-
-                    if (do_acc) begin
-                        if (tap_idx == KERNEL_LEN - 1) begin
-                            acc_out[i] <= acc_reg[i] + prod_ext[i];
-                            acc_reg[i] <= bias[i];
-                        end else begin
-                            acc_reg[i] <= acc_reg[i] + prod_ext[i];
-                        end
-                    end else begin
+                if (do_acc) begin
+                    if (tap_idx == KERNEL_LEN - 1) begin
+                        acc_out[i] <= acc_reg[i] + prod_ext[i];
                         acc_reg[i] <= bias[i];
+                    end else begin
+                        acc_reg[i] <= acc_reg[i] + prod_ext[i];
                     end
+                end else begin
+                    acc_reg[i] <= bias[i];
                 end
             end
 
