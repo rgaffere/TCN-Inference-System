@@ -24,10 +24,10 @@ module ring #(
 
     input logic clk, rst_n, write_en,
 
-    input logic signed [WORD_LEN - 1: 0] data_in,
+    input logic [WORD_LEN - 1: 0] data_in,
     input logic [ADDR_WIDTH - 1: 0] read_offset,
 
-    output logic signed [WORD_LEN - 1: 0] data_out
+    output logic [WORD_LEN - 1: 0] data_out
 );
     logic [ADDR_WIDTH - 1: 0] head;
     logic [ADDR_WIDTH: 0] warmup_count;
@@ -35,8 +35,6 @@ module ring #(
     logic valid_read, valid_read_q;
     logic [ADDR_WIDTH - 1: 0] read_addr;
 
-
-    logic [WORD_LEN - 1: 0] sram_din0;
     logic [WORD_LEN - 1: 0] sram_dout0;
     logic [WORD_LEN - 1: 0] sram_dout1;
 
@@ -64,7 +62,7 @@ module ring #(
     end
 
     `ifdef SYNTHESIS
-        assign data_out = valid_read_q & $signed(sram_dout1);
+    assign data_out = {WORD_LEN{valid_read_q}} & sram_dout1;
     
         sky130_sram_2kbyte_1rw1r_32x512_8 u_ring_sram (
         `ifdef USE_POWER_PINS
@@ -92,14 +90,14 @@ module ring #(
         logic [WORD_LEN - 1: 0] mem [0: DEPTH-1];
         logic [WORD_LEN - 1: 0] sim_dout_q;
 
-        assign data_out = valid_read_q & $signed(sim_dout_q);
+        assign data_out = {WORD_LEN{valid_read_q}} & sim_dout_q;
 
         always_ff @(posedge clk or negedge rst_n) begin
             if (!rst_n) begin
                 sim_dout_q <= '0;
             end else begin
                 if (write_en) begin
-                    mem[head] <= sram_din0;
+                    mem[head] <= data_in;
                 end
                 if (valid_read) begin
                     sim_dout_q <= mem[read_addr];
