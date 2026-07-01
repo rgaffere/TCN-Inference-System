@@ -21,9 +21,9 @@ module MAC_array #(
 
     input logic valid_in,
 
-    input logic signed [IN_LEN - 1: 0] x [0: NUM_CHANNELS - 1],
-    input logic signed [IN_LEN - 1: 0] w [0: NUM_CHANNELS - 1],
-    input logic signed [ACC_LEN - 1: 0] bias [0: NUM_CHANNELS - 1],
+    input var logic signed [IN_LEN - 1: 0] x [0: NUM_CHANNELS - 1],
+    input var logic signed [IN_LEN - 1: 0] w [0: NUM_CHANNELS - 1],
+    input var logic signed [ACC_LEN - 1: 0] bias [0: NUM_CHANNELS - 1],
 
     output logic valid_out,
     output logic signed [ACC_LEN - 1: 0] acc_out [0: NUM_CHANNELS - 1]

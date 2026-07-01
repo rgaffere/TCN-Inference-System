@@ -24,10 +24,10 @@ module ring #(
 
     input logic clk, rst_n, write_en,
 
-    input logic signed [DATA_LEN - 1: 0] data_in [0: NUM_BYTES - 1],
+    input var logic signed [DATA_LEN - 1: 0] data_in [0: NUM_BYTES - 1],
     input logic [ADDR_WIDTH - 1: 0] read_offset,
 
-    output logic signed [DATA_LEN - 1: 0] data_out [0: NUM_BYTES - 1]
+    output var logic signed [DATA_LEN - 1: 0] data_out [0: NUM_BYTES - 1]
 );
     logic [ADDR_WIDTH - 1: 0] head;
     logic [ADDR_WIDTH: 0] warmup_count;

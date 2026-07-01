@@ -5,8 +5,8 @@ module quant_array #(
     parameter int SHIFT = 8,
     parameter int NUM_CHANNELS = 16
 )(
-    input logic signed [IN_LEN-1:0] data_in [0:NUM_CHANNELS-1],
-    output logic signed [OUT_LEN-1:0] data_out [0:NUM_CHANNELS-1]
+    input var logic signed [IN_LEN-1:0] data_in [0:NUM_CHANNELS-1],
+    output var logic signed [OUT_LEN-1:0] data_out [0:NUM_CHANNELS-1]
 );
 
     genvar i;

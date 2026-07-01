@@ -121,7 +121,10 @@ module resi_block #(
                 assign ringOut2_flat[CH] = ringOut2[i][j];
             end
 
-            ring ring_bank1 (
+            ring #(
+                .DEPTH(DEPTH),
+                .DATA_LEN(W_BIT_WIDTH)
+            ) ring_bank1 (
                 .clk(clk),
                 .rst_n(rst_n),
                 .write_en(mac1_start),
@@ -130,7 +133,10 @@ module resi_block #(
                 .data_out(ringOut1[i])
             );
 
-            ring ring_bank2 (
+            ring #(
+                .DEPTH(DEPTH),
+                .DATA_LEN(W_BIT_WIDTH)
+            ) ring_bank2 (
                 .clk(clk),
                 .rst_n(rst_n),
                 .write_en(s1),
