@@ -3,7 +3,7 @@ Reading pref.tcl
 # 2023.2
 
 # vsim -c resi_block_tb -do "run -all; quit" 
-# Start time: 00:07:06 on Jun 30,2026
+# Start time: 00:55:26 on Jul 01,2026
 # ** Note: (vsim-3812) Design is being optimized...
 # //  Questa Sim-64
 # //  Version 2023.2 linux_x86_64 Apr 11 2023
@@ -47,5 +47,5 @@ Reading pref.tcl
 # PASS
 # ** Note: $finish    : ../tb/resi_block_tb.sv(633)
 #    Time: 35195 ns  Iteration: 1  Instance: /resi_block_tb
-# End time: 00:07:07 on Jun 30,2026, Elapsed time: 0:00:01
+# End time: 00:55:28 on Jul 01,2026, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0

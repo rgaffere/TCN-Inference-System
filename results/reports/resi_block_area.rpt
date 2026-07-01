@@ -1,0 +1,46 @@
+ 
+****************************************
+Report : area
+Design : resi_block
+Version: X-2025.06-SP4
+Date   : Wed Jul  1 01:01:08 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'resi_block' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
+    sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db)
+
+Number of ports:                         2052
+Number of nets:                         30683
+Number of cells:                        28161
+Number of combinational cells:          25049
+Number of sequential cells:              3104
+Number of macros/black boxes:               8
+Number of buf/inv:                       5669
+Number of references:                     101
+
+Combinational area:             141758.454797
+Buf/Inv area:                    22138.732169
+Noncombinational area:           66170.961889
+Macro/Black Box area:          2276307.750000
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:               2484237.166686
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area                  Local cell area
+                                  ---------------------  ------------------------------------- 
+Hierarchical cell                 Absolute      Percent  Combi-       Noncombi-   Black-
+                                  Total         Total    national     national    boxes         Design
+--------------------------------  ------------  -------  -----------  ----------  ------------  ---------
+resi_block                        2484237.1667    100.0  141758.4548  66170.9619  2276307.7500  resi_block
+--------------------------------  ------------  -------  -----------  ----------  ------------  ---------
+Total                                                    141758.4548  66170.9619  2276307.7500
+
+1
