@@ -24,10 +24,10 @@ module ring #(
 
     input logic clk, rst_n, write_en,
 
-    input var logic signed [DATA_LEN - 1: 0] data_in [0: NUM_BYTES - 1],
+    input var logic [WORD_LEN - 1: 0] data_in,
     input logic [ADDR_WIDTH - 1: 0] read_offset,
 
-    output var logic signed [DATA_LEN - 1: 0] data_out [0: NUM_BYTES - 1]
+    output var logic [WORD_LEN - 1: 0] data_out
 );
     logic [ADDR_WIDTH - 1: 0] head;
     logic [ADDR_WIDTH: 0] warmup_count;
@@ -35,17 +35,12 @@ module ring #(
     logic valid_read, valid_read_q;
     logic [ADDR_WIDTH - 1: 0] read_addr;
 
-
-    logic [WORD_LEN - 1: 0] sram_din0;
     logic [WORD_LEN - 1: 0] sram_dout0;
     logic [WORD_LEN - 1: 0] sram_dout1;
 
     // read logic
     assign read_addr = head - read_offset - 1'b1;
     assign valid_read = (read_offset < warmup_count);
-
-    // pack all four channel data into one word
-    assign sram_din0 = {data_in[3], data_in[2], data_in[1], data_in[0]};
 
     // write logic
     always_ff @(posedge clk or negedge rst_n) begin
@@ -67,11 +62,8 @@ module ring #(
     end
 
     `ifdef SYNTHESIS
-        assign data_out[0] = valid_read_q ? $signed(sram_dout1[DATA_LEN - 1: 0]) : '0;
-        assign data_out[1] = valid_read_q ? $signed(sram_dout1[2 * DATA_LEN - 1: DATA_LEN]) : '0;
-        assign data_out[2] = valid_read_q ? $signed(sram_dout1[3 * DATA_LEN - 1: 2 * DATA_LEN]) : '0;
-        assign data_out[3] = valid_read_q ? $signed(sram_dout1[WORD_LEN - 1: 3 * DATA_LEN]) : '0;
-        
+    assign data_out = {WORD_LEN{valid_read_q}} & sram_dout1;
+    
         sky130_sram_2kbyte_1rw1r_32x512_8 u_ring_sram (
         `ifdef USE_POWER_PINS
             .vccd1(vccd1),
@@ -84,7 +76,7 @@ module ring #(
             .web0(~write_en),
             .wmask0(4'b1111),
             .addr0(head),
-            .din0(sram_din0),
+            .din0(data_in),
             .dout0(sram_dout0),
 
             // Port 1: read-only port
@@ -98,17 +90,14 @@ module ring #(
         logic [WORD_LEN - 1: 0] mem [0: DEPTH-1];
         logic [WORD_LEN - 1: 0] sim_dout_q;
 
-        assign data_out[0] = valid_read_q ? $signed(sim_dout_q[DATA_LEN - 1: 0]) : '0;
-        assign data_out[1] = valid_read_q ? $signed(sim_dout_q[2 * DATA_LEN - 1: DATA_LEN]) : '0;
-        assign data_out[2] = valid_read_q ? $signed(sim_dout_q[3 * DATA_LEN - 1: 2 * DATA_LEN]) : '0;
-        assign data_out[3] = valid_read_q ? $signed(sim_dout_q[WORD_LEN - 1: 3 * DATA_LEN]) : '0;
+        assign data_out = {WORD_LEN{valid_read_q}} & sim_dout_q;
 
         always_ff @(posedge clk or negedge rst_n) begin
             if (!rst_n) begin
                 sim_dout_q <= '0;
             end else begin
                 if (write_en) begin
-                    mem[head] <= sram_din0;
+                    mem[head] <= data_in;
                 end
                 if (valid_read) begin
                     sim_dout_q <= mem[read_addr];
