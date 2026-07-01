@@ -1,0 +1,23 @@
+current_methodology /tmp/rgaffere/spyglass/vc_static/R-2020.12-SP1-1/SG_COMPAT/SPYGLASS_HOME/GuideWare/2017.12/block/initial_rtl
+set_option projectwdir ./work
+set_option top resi_block
+set_option enableSV yes
+set_option language_mode mixed
+set_option designread_enable_synthesis yes
+
+read_file -type sourcelist ./resi_block.f
+set_option projectwdir ./work
+set_option top resi_block
+set_option enableSV yes
+set_option enableSV09 yes
+set_option language_mode mixed
+set_option designread_enable_synthesis yes
+
+set_option projectwdir ./work
+set_option top resi_block
+set_option enableSV yes
+set_option enableSV09 yes
+set_option language_mode mixed
+set_option designread_enable_synthesis yes
+
+read_file -type sourcelist ./resi_block.f

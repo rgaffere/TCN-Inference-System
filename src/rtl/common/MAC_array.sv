@@ -40,7 +40,7 @@ module MAC_array #(
     generate
         for (i = 0; i < NUM_CHANNELS; i++) begin : gen_mac_lane
 
-            assign prod_ext[i] = $signed(prod_reg[i]);
+            assign prod_ext[i] = prod_reg[i];
 
             always_ff @(posedge clk) begin
                 prod_reg[i] <= x[i] * w[i];

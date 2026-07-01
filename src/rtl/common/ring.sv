@@ -40,7 +40,7 @@ module ring #(
 
     // read logic
     assign read_addr = head - read_offset - 1'b1;
-    assign valid_read = (read_offset < warmup_count);
+    assign valid_read = ({1'b0, read_offset} < warmup_count);
 
     // write logic
     always_ff @(posedge clk or negedge rst_n) begin
