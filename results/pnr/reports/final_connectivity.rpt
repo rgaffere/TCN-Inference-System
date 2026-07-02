@@ -1,0 +1,55 @@
+VERIFY_CONNECTIVITY use new engine.
+
+******** Start: VERIFY CONNECTIVITY ********
+Start Time: Wed Jul  1 21:05:32 2026
+
+Design Name: resi_block
+Database Units: 1000
+Design Boundary: (0.0000, 0.0000) (1897.0400, 1890.4000)
+Error Limit = 1000; Warning Limit = 50
+Check all nets
+**** 21:05:32 **** Processed 5000 nets.
+**WARN: (IMPVFC-97):	IO pin clk of net clk has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin rst_n of net rst_n has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin valid_in of net valid_in has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[127] of net inputVals[0][7] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[126] of net inputVals[0][6] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[125] of net inputVals[0][5] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[124] of net inputVals[0][4] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[123] of net inputVals[0][3] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[122] of net inputVals[0][2] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[121] of net inputVals[0][1] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[120] of net inputVals[0][0] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[119] of net inputVals[1][7] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[118] of net inputVals[1][6] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[117] of net inputVals[1][5] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[116] of net inputVals[1][4] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[115] of net inputVals[1][3] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[114] of net inputVals[1][2] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[113] of net inputVals[1][1] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[112] of net inputVals[1][0] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (IMPVFC-97):	IO pin inputVals[111] of net inputVals[2][7] has not been assigned. Please make sure it is assigned and rerun verifyConnectivity.
+**WARN: (EMS-27):	Message (IMPVFC-97) has exceeded the current message display limit of 20.
+To increase the message display limit, refer to the product command reference manual.
+**** 21:05:33 **** Processed 10000 nets.
+**** 21:05:33 **** Processed 15000 nets.
+**** 21:05:33 **** Processed 20000 nets.
+**** 21:05:33 **** Processed 25000 nets.
+**** 21:05:33 **** Processed 30000 nets.
+**** 21:05:33 **** Processed 35000 nets.
+Net vccd1: dangling Wire.
+**WARN: (IMPVFC-3):	Verify Connectivity stopped: Number of errors exceeds the limit 1000
+Type 'man IMPVFC-3' for more detail.
+
+Begin Summary 
+    1000 Problem(s) (IMPVFC-94): The net has dangling wire(s).
+    1000 total info(s) created.
+End Summary
+
+End Time: Wed Jul  1 21:05:33 2026
+Time Elapsed: 0:00:01.0
+
+******** End: VERIFY CONNECTIVITY ********
+  Verification Complete : 1000 Viols.  0 Wrngs.
+  (CPU Time: 0:00:01.1  MEM: 0.000M)
+

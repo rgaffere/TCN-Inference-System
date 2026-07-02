@@ -1,0 +1,211 @@
+Using Power View: view_typical.
+Load RC corner of view view_typical
+
+Begin Power Analysis
+
+             0V	    vssd1
+           1.8V	    vccd1
+
+Warning:
+  There are 2 power/gnd nets that are not connected
+vssd1 vccd1 ...
+Use 'globalNetConnect' to define rail connections.
+** WARN:  (VOLTUS_POWR-2035): There are 2 power/gnd nets that are not connected
+vssd1 vccd1 ...
+Use 'globalNetConnect' to define rail connections.
+
+
+
+Begin Processing Timing Library for Power Calculation
+
+Ended Processing Timing Library for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=2561.41MB/4508.10MB/3064.54MB)
+
+
+
+Begin Processing Power Net/Grid for Power Calculation
+
+Ended Processing Power Net/Grid for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=2561.41MB/4508.10MB/3064.54MB)
+
+Begin Processing Timing Window Data for Power Calculation
+
+CK: assigning clock clk to net clk
+Ended Processing Timing Window Data for Power Calculation: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=2561.41MB/4508.10MB/3064.54MB)
+
+Begin Processing User Attributes
+
+Ended Processing User Attributes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=2561.55MB/4508.10MB/3064.54MB)
+
+Begin Processing Signal Activity
+
+
+Starting Levelizing
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT)
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 10%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 20%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 30%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 40%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 50%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 60%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 70%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 80%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 90%
+
+Finished Levelizing
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT)
+
+Starting Activity Propagation
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT)
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 10%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 20%
+2026-Jul-01 21:05:21 (2026-Jul-02 01:05:21 GMT): 30%
+
+Finished Activity Propagation
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT)
+Ended Processing Signal Activity: (cpu=0:00:01, real=0:00:01, mem(process/total/peak)=2563.12MB/4508.10MB/3064.54MB)
+
+Begin Power Computation
+
+      ----------------------------------------------------------
+      # of cell(s) missing both power/leakage table: 0
+      # of cell(s) missing power table: 1
+      # of cell(s) missing leakage table: 0
+      ----------------------------------------------------------
+CellName                                  Missing Table(s)
+sky130_fd_sc_hd__conb_1                   internal power, 
+
+
+
+Starting Calculating power
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT)
+ ... Calculating switching power
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT): 10%
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT): 20%
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT): 30%
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT): 40%
+2026-Jul-01 21:05:22 (2026-Jul-02 01:05:22 GMT): 50%
+ ... Calculating internal and leakage power
+2026-Jul-01 21:05:23 (2026-Jul-02 01:05:23 GMT): 60%
+2026-Jul-01 21:05:23 (2026-Jul-02 01:05:23 GMT): 70%
+2026-Jul-01 21:05:24 (2026-Jul-02 01:05:24 GMT): 80%
+2026-Jul-01 21:05:24 (2026-Jul-02 01:05:24 GMT): 90%
+
+Finished Calculating power
+2026-Jul-01 21:05:25 (2026-Jul-02 01:05:25 GMT)
+      # of MSMV cell(s) missing power_level: 0
+Ended Power Computation: (cpu=0:00:02, real=0:00:02, mem(process/total/peak)=2563.25MB/4508.10MB/3064.54MB)
+
+Begin Processing User Attributes
+
+Ended Processing User Attributes: (cpu=0:00:00, real=0:00:00, mem(process/total/peak)=2563.25MB/4508.10MB/3064.54MB)
+
+Ended Power Analysis: (cpu=0:00:04, real=0:00:04, mem(process/total/peak)=2563.25MB/4508.10MB/3064.54MB)
+
+Begin Boundary Leakage Calculation
+Ended Boundary Leakage Calculation: (cpu=0:00:00, real=0:00:00,
+mem(process/total/peak)=2563.25MB/4508.10MB/3064.54MB)
+Begin Static Power Report Generation
+*----------------------------------------------------------------------------------------
+*	Innovus 21.19-s058_1 (64bit) 04/04/2024 09:59 (Linux 3.10.0-693.el7.x86_64)
+*	
+*
+* 	Date & Time:	2026-Jul-01 21:05:25 (2026-Jul-02 01:05:25 GMT)
+*
+*----------------------------------------------------------------------------------------
+*
+*	Design: resi_block
+*
+*	Liberty Libraries used:
+*	        view_typical: ../pdk/sky130_fd_sc_hd__tt_025C_1v80.lib
+*	        view_typical: ../pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib
+*
+*	Parasitic Files used:
+*
+*       Power View : view_typical
+*
+*       User-Defined Activity : N.A.
+*
+*       Activity File: N.A.
+*
+*       Hierarchical Global Activity: N.A.
+*
+*       Global Activity: N.A.
+*
+*       Sequential Element Activity: 0.200000
+*
+*       Primary Input Activity: 0.200000
+*
+*       Default icg ratio: N.A.
+*
+*       Global Comb ClockGate Ratio: N.A.
+*
+*	Power Units = 1mW
+*
+*	Time Units = 1e-09 secs
+*
+*       report_power
+*
+-----------------------------------------------------------------------------------------
+*
+
+
+
+Total Power
+-----------------------------------------------------------------------------------------
+Total Internal Power:      153.12912579 	   70.2862%
+Total Switching Power:      64.59410450 	   29.6487%
+Total Leakage Power:         0.14193269 	    0.0651%
+Total Power:               217.86516298
+-----------------------------------------------------------------------------------------
+
+
+Group                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Sequential                         28.48       2.582   2.878e-05       31.06       14.26
+Macro                              88.37      0.4464      0.1418       88.96       40.83
+IO                                     0           0           0           0           0
+Combinational                       29.6        47.4   9.231e-05          77       35.34
+Clock (Combinational)              6.674       14.16   3.595e-06       20.84       9.565
+Clock (Sequential)                     0           0           0           0           0
+-----------------------------------------------------------------------------------------
+Total                              153.1       64.59      0.1419       217.9         100
+-----------------------------------------------------------------------------------------
+
+
+Rail                  Voltage   Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+Default                   1.8      153.1       64.59      0.1419       217.9         100
+
+
+Clock                           Internal   Switching     Leakage       Total  Percentage 
+                                Power      Power         Power         Power  (%)        
+-----------------------------------------------------------------------------------------
+clk                                6.674       14.16   3.595e-06       20.84       9.565
+-----------------------------------------------------------------------------------------
+Total                              6.674       14.16   3.595e-06       20.84       9.565
+-----------------------------------------------------------------------------------------
+Clock: clk
+Clock Period: 0.005000 usec 
+Clock Toggle Rate:   400.0000 Mhz 
+Clock Static Probability:  0.5000
+  
+ 
+ 
+-----------------------------------------------------------------------------------------
+*	Power Distribution Summary: 
+*              Highest Average Power: gen_ring_banks[1].ring_bank1/u_ring_sram (sky130_sram_2kbyte_1rw1r_32x512_8):            11.19
+*              Highest Leakage Power: gen_ring_banks[0].ring_bank1/u_ring_sram (sky130_sram_2kbyte_1rw1r_32x512_8):          0.01773
+*                Total Cap:      5.19543e-10 F
+*                Total instances in design: 34279
+*                Total instances in design with no power:     0
+*                Total instances in design with no activty:     0
+
+*                Total Fillers and Decap:     0
+-----------------------------------------------------------------------------------------
+ 
+** INFO:  (VOLTUS_POWR-3465): There are 0 decaps and 0 fillers in the design
+
+Ended Static Power Report Generation: (cpu=0:00:00, real=0:00:00,
+mem(process/total/peak)=2576.30MB/4518.60MB/3064.54MB)
+

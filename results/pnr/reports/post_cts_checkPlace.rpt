@@ -1,0 +1,8 @@
+Begin checking placement ... (start mem=2729.7M, init mem=2729.7M)
+Overlapping with other instance:	3
+Pre-route DRC Violation:	1
+*info: Placed = 32634          (Fixed = 8)
+*info: Unplaced = 0           
+Placement Density:16.46%(253558/1539997)
+Placement Density (including fixed std cells):16.46%(253558/1539997)
+Finished checkPlace (total: cpu=0:00:00.8, real=0:00:01.0; vio checks: cpu=0:00:00.6, real=0:00:01.0; mem=2729.7M)
