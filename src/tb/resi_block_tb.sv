@@ -54,6 +54,38 @@ module resi_block_tb;
 
     wire dut_accept = dut.mac1_start;
 
+    // assertions
+    property valid_out_low_during_reset;
+        @(posedge clk)
+        !rst_n |-> !valid_out;
+    endproperty
+
+    assert property(valid_out_low_during_reset)
+        else $fatal(1, "valid_out is high during the reset");
+
+    property valid_out_known;
+        @(posedge clk)
+        disable iff(!rst_n)
+        !$isunknown(valid_out);
+    endproperty
+
+        assert property(valid_out_known)
+            else $fatal(1, "valid_out is unknown");
+
+    genvar sva_ch;
+    generate
+        for (sva_ch = 0; sva_ch < NUM_CHANNELS; sva_ch++) begin : sva_output_known
+            property output_known_when_valid;
+                @(posedge clk)
+                disable iff (!rst_n)
+                valid_out |-> !$isunknown(outputVals[sva_ch]);
+            endproperty
+
+            assert property (output_known_when_valid)
+                else $fatal(1, "outputVals[%0d] is unknown when valid_out is high", sva_ch);
+        end
+    endgenerate
+
     typedef struct {
         int token_id;
         longint accept_cycle;
