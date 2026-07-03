@@ -11,9 +11,13 @@ package resi_uvm_pkg;
     localparam int DILATION     = 1;
     localparam int NUM_RINGS    = 4;
     localparam int DEPTH        = 64;
+    localparam int SHIFT        = 8;
     localparam int CLK_PERIOD   = 10;
+
+    localparam int PRIME_TOKENS = (2 * (KERNEL_LEN - 1) * DILATION) + KERNEL_LEN;
+    localparam int FLUSH_TOKENS = KERNEL_LEN - 1;
     localparam int NUM_CHECKED_TXNS = 64;
-    localparam int WARMUP_TXNS      = 2;
+    localparam int TOTAL_TXNS = PRIME_TOKENS + NUM_CHECKED_TXNS + FLUSH_TOKENS;
 
     typedef logic signed [W_BIT_WIDTH-1:0] chvec_t [0:NUM_CHANNELS-1];
     typedef logic signed [W_BIT_WIDTH-1:0] wmat_t  [0:NUM_CHANNELS-1][0:KERNEL_LEN-1];
@@ -25,6 +29,8 @@ package resi_uvm_pkg;
     class resi_txn extends uvm_sequence_item;
         rand chvec_t inputVals;
         chvec_t outputVals;
+        bit check_en;
+        int token_id;
 
         constraint small_values_c {
             foreach (inputVals[i]) inputVals[i] inside {[-64:64]};
@@ -34,6 +40,12 @@ package resi_uvm_pkg;
 
         function new(string name = "resi_txn");
             super.new(name);
+            check_en = 1'b0;
+            token_id = -1;
+        endfunction
+
+        function void make_zero();
+            foreach (inputVals[ch]) inputVals[ch] = '0;
         endfunction
     endclass
 
@@ -46,14 +58,40 @@ package resi_uvm_pkg;
 
         task body();
             resi_txn tx;
+            int id;
 
-            repeat (NUM_CHECKED_TXNS + WARMUP_TXNS) begin
-                tx = resi_txn::type_id::create("tx");
+            id = 0;
+
+            repeat (PRIME_TOKENS) begin
+                tx = resi_txn::type_id::create($sformatf("prime_%0d", id));
+                start_item(tx);
+                tx.make_zero();
+                tx.check_en = 1'b0;
+                tx.token_id = id;
+                finish_item(tx);
+                id++;
+            end
+
+            repeat (NUM_CHECKED_TXNS) begin
+                tx = resi_txn::type_id::create($sformatf("real_%0d", id));
                 start_item(tx);
                 if (!tx.randomize()) begin
                     `uvm_fatal("RAND", "resi_txn randomization failed")
                 end
+                tx.check_en = 1'b1;
+                tx.token_id = id;
                 finish_item(tx);
+                id++;
+            end
+
+            repeat (FLUSH_TOKENS) begin
+                tx = resi_txn::type_id::create($sformatf("flush_%0d", id));
+                start_item(tx);
+                tx.make_zero();
+                tx.check_en = 1'b0;
+                tx.token_id = id;
+                finish_item(tx);
+                id++;
             end
         endtask
     endclass
@@ -65,7 +103,6 @@ package resi_uvm_pkg;
             super.new(name, parent);
         endfunction
     endclass
-
 endpackage
 
 interface resi_if(input logic clk);
@@ -108,33 +145,41 @@ package resi_uvm_components_pkg;
             end
         endfunction
 
-        task reset_dut();
+        task clear_dut_inputs();
             vif.valid_in <= 1'b0;
-            vif.rst_n    <= 1'b0;
 
             foreach (vif.inputVals[ch]) begin
                 vif.inputVals[ch] <= '0;
                 vif.bias1[ch]     <= '0;
                 vif.bias2[ch]     <= '0;
+            end
 
+            foreach (vif.weights1[ch]) begin
                 foreach (vif.weights1[ch, k]) begin
                     vif.weights1[ch][k] <= '0;
                     vif.weights2[ch][k] <= '0;
                 end
             end
+        endtask
+
+        task reset_dut();
+            clear_dut_inputs();
+            vif.rst_n <= 1'b0;
 
             repeat (5) @(posedge vif.clk);
+
+            @(negedge vif.clk);
             vif.rst_n <= 1'b1;
-            repeat (2) @(posedge vif.clk);
+
+            @(posedge vif.clk);
+            #2;
         endtask
 
         task run_phase(uvm_phase phase);
             resi_txn tx;
             resi_txn exp;
-            int tx_count;
 
             reset_dut();
-            tx_count = 0;
 
             forever begin
                 seq_item_port.get_next_item(tx);
@@ -147,14 +192,13 @@ package resi_uvm_components_pkg;
 
                 do @(posedge vif.clk); while (!vif.accept);
 
-                if (tx_count >= WARMUP_TXNS) begin
-                    exp = resi_txn::type_id::create("exp");
-                    foreach (exp.inputVals[ch]) begin
-                        exp.inputVals[ch] = tx.inputVals[ch];
-                    end
-                    exp_ap.write(exp);
+                exp = resi_txn::type_id::create("exp");
+                exp.check_en = tx.check_en;
+                exp.token_id = tx.token_id;
+                foreach (exp.inputVals[ch]) begin
+                    exp.inputVals[ch] = tx.inputVals[ch];
                 end
-                tx_count++;
+                exp_ap.write(exp);
 
                 @(negedge vif.clk);
                 vif.valid_in <= 1'b0;
@@ -185,19 +229,12 @@ package resi_uvm_components_pkg;
 
         task run_phase(uvm_phase phase);
             resi_txn act;
-            int valid_seen;
-
-            valid_seen = 0;
 
             forever begin
                 @(posedge vif.clk);
+                #1;
 
                 if (vif.rst_n && vif.valid_out) begin
-                    if (valid_seen < WARMUP_TXNS) begin
-                        valid_seen++;
-                        continue;
-                    end
-
                     act = resi_txn::type_id::create("act");
 
                     foreach (act.outputVals[ch]) begin
@@ -205,7 +242,6 @@ package resi_uvm_components_pkg;
                     end
 
                     act_ap.write(act);
-                    valid_seen++;
                 end
             end
         endtask
@@ -218,13 +254,21 @@ package resi_uvm_components_pkg;
         uvm_analysis_imp_act #(resi_txn, resi_scoreboard) act_imp;
 
         resi_txn exp_q[$];
+        int checked_tokens;
+        int unchecked_tokens;
         int checks;
         int mismatches;
+        int err_prints;
 
         function new(string name, uvm_component parent);
             super.new(name, parent);
             exp_imp = new("exp_imp", this);
             act_imp = new("act_imp", this);
+            checked_tokens = 0;
+            unchecked_tokens = 0;
+            checks = 0;
+            mismatches = 0;
+            err_prints = 0;
         endfunction
 
         function void write_exp(resi_txn tx);
@@ -236,24 +280,34 @@ package resi_uvm_components_pkg;
 
             if (exp_q.size() == 0) begin
                 mismatches++;
-                `uvm_error("SCOREBOARD", "valid_out observed with no expected transaction")
+                `uvm_error("SCOREBOARD", "spurious valid_out with no accepted token pending")
                 return;
             end
 
             exp = exp_q.pop_front();
 
-            foreach (act.outputVals[ch]) begin
-                checks++;
+            if (exp.check_en) begin
+                checked_tokens++;
 
-                if (act.outputVals[ch] !== exp.inputVals[ch]) begin
-                    mismatches++;
-                    `uvm_error("MISMATCH", $sformatf(
-                        "ch=%0d exp=%0d got=%0d",
-                        ch,
-                        exp.inputVals[ch],
-                        act.outputVals[ch]
-                    ))
+                foreach (act.outputVals[ch]) begin
+                    checks++;
+
+                    if (act.outputVals[ch] !== exp.inputVals[ch]) begin
+                        mismatches++;
+                        if (err_prints < 64) begin
+                            err_prints++;
+                            `uvm_error("MISMATCH", $sformatf(
+                                "tok=%0d ch=%0d exp=%0d got=%0d",
+                                exp.token_id,
+                                ch,
+                                exp.inputVals[ch],
+                                act.outputVals[ch]
+                            ))
+                        end
+                    end
                 end
+            end else begin
+                unchecked_tokens++;
             end
         endfunction
 
@@ -261,7 +315,17 @@ package resi_uvm_components_pkg;
             super.check_phase(phase);
 
             if (exp_q.size() != 0) begin
+                mismatches++;
                 `uvm_error("SCOREBOARD", $sformatf("%0d expected outputs never arrived", exp_q.size()))
+            end
+
+            if (checked_tokens != NUM_CHECKED_TXNS) begin
+                mismatches++;
+                `uvm_error("SCOREBOARD", $sformatf(
+                    "checked token count mismatch: exp=%0d got=%0d",
+                    NUM_CHECKED_TXNS,
+                    checked_tokens
+                ))
             end
         endfunction
 
@@ -269,9 +333,21 @@ package resi_uvm_components_pkg;
             super.report_phase(phase);
 
             if (mismatches == 0) begin
-                `uvm_info("RESULT", $sformatf("PASS: %0d channel checks completed", checks), UVM_LOW)
+                `uvm_info("RESULT", $sformatf(
+                    "PASS: %0d checked tokens, %0d unchecked prime/flush tokens, %0d channel checks",
+                    checked_tokens,
+                    unchecked_tokens,
+                    checks
+                ), UVM_LOW)
             end else begin
-                `uvm_error("RESULT", $sformatf("FAIL: %0d mismatches / %0d checks", mismatches, checks))
+                `uvm_error("RESULT", $sformatf(
+                    "FAIL: %0d mismatches / %0d checks, checked_tokens=%0d unchecked_tokens=%0d pending=%0d",
+                    mismatches,
+                    checks,
+                    checked_tokens,
+                    unchecked_tokens,
+                    exp_q.size()
+                ))
             end
         endfunction
     endclass
@@ -355,7 +431,6 @@ package resi_uvm_components_pkg;
             phase.drop_objection(this);
         endtask
     endclass
-
 endpackage
 
 module resi_block_uvm_tb;
