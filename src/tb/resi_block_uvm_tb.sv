@@ -5,17 +5,19 @@ package resi_uvm_pkg;
     `include "uvm_macros.svh"
 
     localparam int NUM_CHANNELS = 16;
-    localparam int W_BIT_WIDTH = 8;
-    localparam int B_BIT_WIDTH = 32;
-    localparam int KERNEL_LEN = 3;
-    localparam int DILATION = 1;
-    localparam int NUM_RINGS = 4;
-    localparam int DEPTH = 64;
-    localparam int CLK_PERIOD = 10;
+    localparam int W_BIT_WIDTH  = 8;
+    localparam int B_BIT_WIDTH  = 32;
+    localparam int KERNEL_LEN   = 3;
+    localparam int DILATION     = 1;
+    localparam int NUM_RINGS    = 4;
+    localparam int DEPTH        = 64;
+    localparam int CLK_PERIOD   = 10;
+    localparam int NUM_CHECKED_TXNS = 64;
+    localparam int WARMUP_TXNS      = 2;
 
     typedef logic signed [W_BIT_WIDTH-1:0] chvec_t [0:NUM_CHANNELS-1];
-    typedef logic signed [W_BIT_WIDTH-1:0] wmat_t [0:NUM_CHANNELS-1][0:KERNEL_LEN-1];
-    typedef logic signed [B_BIT_WIDTH-1:0] bvec_t [0:NUM_CHANNELS-1];
+    typedef logic signed [W_BIT_WIDTH-1:0] wmat_t  [0:NUM_CHANNELS-1][0:KERNEL_LEN-1];
+    typedef logic signed [B_BIT_WIDTH-1:0] bvec_t  [0:NUM_CHANNELS-1];
 
     `uvm_analysis_imp_decl(_exp)
     `uvm_analysis_imp_decl(_act)
@@ -45,7 +47,7 @@ package resi_uvm_pkg;
         task body();
             resi_txn tx;
 
-            repeat (64) begin
+            repeat (NUM_CHECKED_TXNS + WARMUP_TXNS) begin
                 tx = resi_txn::type_id::create("tx");
                 start_item(tx);
                 if (!tx.randomize()) begin
@@ -108,14 +110,14 @@ package resi_uvm_components_pkg;
 
         task reset_dut();
             vif.valid_in <= 1'b0;
-            vif.rst_n <= 1'b0;
+            vif.rst_n    <= 1'b0;
 
             foreach (vif.inputVals[ch]) begin
                 vif.inputVals[ch] <= '0;
-                vif.bias1[ch] <= '0;
-                vif.bias2[ch] <= '0;
+                vif.bias1[ch]     <= '0;
+                vif.bias2[ch]     <= '0;
 
-                foreach (vif.weights1[ch][k]) begin
+                foreach (vif.weights1[ch, k]) begin
                     vif.weights1[ch][k] <= '0;
                     vif.weights2[ch][k] <= '0;
                 end
@@ -129,8 +131,10 @@ package resi_uvm_components_pkg;
         task run_phase(uvm_phase phase);
             resi_txn tx;
             resi_txn exp;
+            int tx_count;
 
             reset_dut();
+            tx_count = 0;
 
             forever begin
                 seq_item_port.get_next_item(tx);
@@ -143,11 +147,14 @@ package resi_uvm_components_pkg;
 
                 do @(posedge vif.clk); while (!vif.accept);
 
-                exp = resi_txn::type_id::create("exp");
-                foreach (exp.inputVals[ch]) begin
-                    exp.inputVals[ch] = tx.inputVals[ch];
+                if (tx_count >= WARMUP_TXNS) begin
+                    exp = resi_txn::type_id::create("exp");
+                    foreach (exp.inputVals[ch]) begin
+                        exp.inputVals[ch] = tx.inputVals[ch];
+                    end
+                    exp_ap.write(exp);
                 end
-                exp_ap.write(exp);
+                tx_count++;
 
                 @(negedge vif.clk);
                 vif.valid_in <= 1'b0;
@@ -178,11 +185,19 @@ package resi_uvm_components_pkg;
 
         task run_phase(uvm_phase phase);
             resi_txn act;
+            int valid_seen;
+
+            valid_seen = 0;
 
             forever begin
                 @(posedge vif.clk);
 
                 if (vif.rst_n && vif.valid_out) begin
+                    if (valid_seen < WARMUP_TXNS) begin
+                        valid_seen++;
+                        continue;
+                    end
+
                     act = resi_txn::type_id::create("act");
 
                     foreach (act.outputVals[ch]) begin
@@ -190,6 +205,7 @@ package resi_uvm_components_pkg;
                     end
 
                     act_ap.write(act);
+                    valid_seen++;
                 end
             end
         endtask
@@ -264,8 +280,8 @@ package resi_uvm_components_pkg;
         `uvm_component_utils(resi_agent)
 
         resi_sequencer sqr;
-        resi_driver drv;
-        resi_monitor mon;
+        resi_driver    drv;
+        resi_monitor   mon;
 
         function new(string name, uvm_component parent);
             super.new(name, parent);
@@ -287,7 +303,7 @@ package resi_uvm_components_pkg;
     class resi_env extends uvm_env;
         `uvm_component_utils(resi_env)
 
-        resi_agent agent;
+        resi_agent      agent;
         resi_scoreboard sb;
 
         function new(string name, uvm_component parent);
@@ -297,7 +313,7 @@ package resi_uvm_components_pkg;
         function void build_phase(uvm_phase phase);
             super.build_phase(phase);
             agent = resi_agent::type_id::create("agent", this);
-            sb = resi_scoreboard::type_id::create("sb", this);
+            sb    = resi_scoreboard::type_id::create("sb", this);
         endfunction
 
         function void connect_phase(uvm_phase phase);
