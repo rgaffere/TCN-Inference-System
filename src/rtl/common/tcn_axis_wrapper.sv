@@ -65,7 +65,7 @@ module tcn_axis_wrapper #(
             // assign input vals and start computation
             if(s_tready && s_tvalid) begin
                 for(int i = 0; i < NUM_CHANNELS; i++) begin
-                    inputVals[i] <= $signed(s_tdata[(i + 1) * W_WIDTH - 1 : (i) * W_WIDTH]);
+                    inputVals[i] <= $signed(s_tdata[(i + 1) * W_WIDTH - 1 -: W_WIDTH]);
                 end
                 valid_in <= 1'b1;
             end else begin
@@ -74,7 +74,7 @@ module tcn_axis_wrapper #(
             // assign output vals
             if(valid_out) begin
                 for(int j = 0; j < NUM_CHANNELS; j++) begin
-                    m_tdata[(j + 1) * W_WIDTH - 1 : (j) * W_WIDTH] <= $unsigned(outputVals[j]);
+                    m_tdata[(j + 1) * W_WIDTH - 1 -: W_WIDTH] <= $unsigned(outputVals[j]);
                 end
             end
         end

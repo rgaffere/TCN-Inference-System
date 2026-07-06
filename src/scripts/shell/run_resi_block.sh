@@ -20,5 +20,5 @@ if [ ${PIPESTATUS[0]} -ne 0 ]; then
     exit 1
 fi
 
-vsim -c _tb -do "run -all; quit" \
+vsim -c resi_block_tb -do "run -all; quit" \
     | tee ../../../results/logs/resi_block_sim.log
