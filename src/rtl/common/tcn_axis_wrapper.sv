@@ -57,9 +57,9 @@ module tcn_axis_wrapper #(
         if(!rst_n) begin
             for(int CH = 0; CH < NUM_CHANNELS; CH++) begin
                 inputVals[CH] <= '0;
-                m_tdata <= '0;
-                valid_in <= 1'b0;
             end
+            m_tdata <= '0;
+            valid_in <= 1'b0;
         end else begin
             // DOING THE DATA BUS VALUES...
             // assign input vals and start computation
