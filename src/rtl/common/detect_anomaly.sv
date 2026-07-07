@@ -8,8 +8,8 @@ module detect_anomaly #(
   input logic clk,
   input logic rst_n,
   input logic valid_in,
-  input logic signed [DATA_WIDTH - 1: 0] latestIMUInput [0: NUM_CHANNELS - 1],
-  input logic signed [DATA_WIDTH - 1: 0] lastNNOutput [0: NUM_CHANNELS - 1],
+  input var logic signed [DATA_WIDTH - 1: 0] latestIMUInput [0: NUM_CHANNELS - 1],
+  input var logic signed [DATA_WIDTH - 1: 0] lastNNOutput [0: NUM_CHANNELS - 1],
   output logic anomalyDetected [0: NUM_CHANNELS - 1],
   output logic valid_out
 );
@@ -20,7 +20,7 @@ module detect_anomaly #(
   assign valid_out = s[NUM_STAGES - 1];
 
   
-  for(genvar i = 0; i < NUM_CHANNELS; i++) begin
+  for(genvar i = 0; i < NUM_CHANNELS; i++) begin : gen_anomaly_channels
     always_ff @(posedge clk or negedge rst_n) begin
       if(!rst_n) begin
         errors[i] <= '0;
