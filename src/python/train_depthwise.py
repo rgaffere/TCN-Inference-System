@@ -22,19 +22,7 @@ LAYER_COUNT = 7
 K = 3
 DILATIONS = [1, 2, 4, 8, 16, 32, 64]
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-
-
-def print_device_info():
-    print(f"Device: {DEVICE}")
-
-    if DEVICE == "cuda":
-        print(f"CUDA available: {torch.cuda.is_available()}")
-        print(f"CUDA device count: {torch.cuda.device_count()}")
-        print(f"CUDA device: {torch.cuda.get_device_name(0)}")
-    else:
-        print("WARNING: CUDA not available. Training on CPU.")
-
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def set_seed(seed):
     random.seed(seed)
@@ -44,9 +32,10 @@ def set_seed(seed):
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(seed)
 
-    # Reproducible, but potentially slower than benchmark mode.
+    # Make CUDA runs as reproducible as practical.
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+
 
 
 def receptive_field():
@@ -59,7 +48,7 @@ def receptive_field():
 
 class MultiFileIMUDataset(torch.utils.data.Dataset):
     def __init__(self, arrays):
-        self.arrays = [np.ascontiguousarray(a.astype(np.float32)) for a in arrays]
+        self.arrays = [a.astype(np.float32) for a in arrays]
         self.index = []
 
         for file_idx, data in enumerate(self.arrays):
@@ -77,12 +66,13 @@ class MultiFileIMUDataset(torch.utils.data.Dataset):
         x = data[start_idx : start_idx + T]
         y = data[start_idx + T]
 
-        # x.T is shape [channels, time]. np.ascontiguousarray avoids slow/non-contiguous tensor behavior.
+        # from_numpy avoids an extra copy versus torch.tensor().
+        # np.ascontiguousarray makes x.T safe/fast for PyTorch batching.
         return torch.from_numpy(np.ascontiguousarray(x.T)), torch.from_numpy(y)
 
 
 class CausalConv1d(nn.Module):
-    def __init__(self, in_ch, out_ch, kernel_size, dilation):
+    def __init__(self, in_ch, out_ch, kernel_size, dilation, groups=1):
         super().__init__()
         self.pad = dilation * (kernel_size - 1)
         self.conv = nn.Conv1d(
@@ -90,7 +80,8 @@ class CausalConv1d(nn.Module):
             out_ch,
             kernel_size,
             dilation=dilation,
-            padding=0
+            padding=0,
+            groups=groups
         )
 
     def forward(self, x):
@@ -99,11 +90,27 @@ class CausalConv1d(nn.Module):
 
 
 class ResidualBlock(nn.Module):
-    def __init__(self, in_ch, out_ch, dilation, use_projection):
+    def __init__(self, in_ch, out_ch, dilation, use_projection, depthwise_conv1):
         super().__init__()
 
-        self.conv1 = CausalConv1d(in_ch, out_ch, K, dilation)
-        self.conv2 = CausalConv1d(out_ch, out_ch, K, dilation)
+        conv1_groups = in_ch if depthwise_conv1 else 1
+
+        self.conv1 = CausalConv1d(
+            in_ch,
+            out_ch,
+            K,
+            dilation,
+            groups=conv1_groups
+        )
+
+        # Conv2 is always depthwise: one temporal kernel per output channel.
+        self.conv2 = CausalConv1d(
+            out_ch,
+            out_ch,
+            K,
+            dilation,
+            groups=out_ch
+        )
 
         if use_projection:
             self.residual = nn.Conv1d(in_ch, out_ch, kernel_size=1)
@@ -132,7 +139,8 @@ class StreamingTCN(nn.Module):
             in_ch=IN_CHANNELS,
             out_ch=CPL,
             dilation=DILATIONS[0],
-            use_projection=True
+            use_projection=True,
+            depthwise_conv1=False
         )
 
         self.hidden_layers = nn.ModuleList([
@@ -140,7 +148,8 @@ class StreamingTCN(nn.Module):
                 in_ch=CPL,
                 out_ch=CPL,
                 dilation=DILATIONS[i],
-                use_projection=False
+                use_projection=False,
+                depthwise_conv1=True
             )
             for i in range(1, LAYER_COUNT)
         ])
@@ -181,7 +190,7 @@ def export_for_cpp(model, mean, std, path):
         "inputFilter1": m.input_layer.conv1.conv.weight.detach().cpu().numpy().tolist(),
         "inputBias1": m.input_layer.conv1.conv.bias.detach().cpu().numpy().tolist(),
 
-        "inputFilter2": m.input_layer.conv2.conv.weight.detach().cpu().numpy().tolist(),
+        "inputFilter2": m.input_layer.conv2.conv.weight.detach().cpu().numpy()[:, 0, :].tolist(),
         "inputBias2": m.input_layer.conv2.conv.bias.detach().cpu().numpy().tolist(),
 
         "inputResidualFilter": m.input_layer.residual.weight.detach().cpu().numpy()[:, :, 0].tolist(),
@@ -198,13 +207,13 @@ def export_for_cpp(model, mean, std, path):
 
     for layer in m.hidden_layers:
         export["hiddenFilter1"].append(
-            layer.conv1.conv.weight.detach().cpu().numpy().tolist()
+            layer.conv1.conv.weight.detach().cpu().numpy()[:, 0, :].tolist()
         )
         export["hiddenBias1"].append(
             layer.conv1.conv.bias.detach().cpu().numpy().tolist()
         )
         export["hiddenFilter2"].append(
-            layer.conv2.conv.weight.detach().cpu().numpy().tolist()
+            layer.conv2.conv.weight.detach().cpu().numpy()[:, 0, :].tolist()
         )
         export["hiddenBias2"].append(
             layer.conv2.conv.bias.detach().cpu().numpy().tolist()
@@ -407,28 +416,16 @@ def compute_train_mean_std_from_window_masks(arrays, train_window_masks):
     return mean, std
 
 
-def make_loader(dataset, batch_size, shuffle, workers, generator=None):
-    kwargs = {
-        "batch_size": batch_size,
-        "shuffle": shuffle,
-        "num_workers": workers,
-        "pin_memory": (DEVICE == "cuda"),
-        "generator": generator,
-    }
-
-    if workers > 0:
-        kwargs["persistent_workers"] = True
-        kwargs["prefetch_factor"] = 2
-
-    return DataLoader(dataset, **kwargs)
-
-
 def train(args):
-    if args.seed is not None:
-        set_seed(args.seed)
-        print(f"Random seed: {args.seed}")
+    set_seed(args.seed)
+    print(f"Random seed: {args.seed}")
+    print(f"Device: {DEVICE}")
 
-    print_device_info()
+    if DEVICE.type == "cuda":
+        print(f"CUDA device: {torch.cuda.get_device_name(0)}")
+        print(f"CUDA capability: {torch.cuda.get_device_capability(0)}")
+    else:
+        print("WARNING: CUDA not available. Training on CPU.")
 
     arrays = [load_imu_csv(path) for path in args.csv]
 
@@ -493,37 +490,36 @@ def train(args):
         train_set = MultiFileIMUDataset(train_arrays)
         val_set = MultiFileIMUDataset(val_arrays)
 
-    print(f"Train windows: {len(train_set)}")
-    print(f"Validation windows: {len(val_set)}")
+    train_generator = torch.Generator()
+    train_generator.manual_seed(args.seed)
 
-    train_generator = None
-    if args.seed is not None:
-        train_generator = torch.Generator()
-        train_generator.manual_seed(args.seed)
+    use_cuda = DEVICE.type == "cuda"
 
-    train_loader = make_loader(
+    train_loader = DataLoader(
         train_set,
         batch_size=args.batch_size,
         shuffle=True,
-        workers=args.workers,
-        generator=train_generator
+        generator=train_generator,
+        num_workers=args.num_workers,
+        pin_memory=use_cuda,
+        persistent_workers=(args.num_workers > 0)
     )
-    val_loader = make_loader(
+    val_loader = DataLoader(
         val_set,
         batch_size=args.batch_size,
         shuffle=False,
-        workers=args.workers
+        num_workers=args.num_workers,
+        pin_memory=use_cuda,
+        persistent_workers=(args.num_workers > 0)
     )
 
     model = StreamingTCN().to(DEVICE)
-    print(f"Model parameter device: {next(model.parameters()).device}")
-
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     loss_fn = nn.MSELoss()
 
     best_val = math.inf
 
-    patience = args.patience
+    patience = 8
     bad_epochs = 0
 
     for epoch in range(args.epochs):
@@ -537,7 +533,7 @@ def train(args):
             pred = model(x)
             loss = loss_fn(pred, y)
 
-            optimizer.zero_grad(set_to_none=True)
+            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
 
@@ -594,7 +590,7 @@ def plot_validation(model, val_set, mean, std, plot_path):
     with torch.no_grad():
         for i in range(min(1000, len(val_set))):
             x, y = val_set[i]
-            x = x.unsqueeze(0).to(DEVICE, non_blocking=True)
+            x = x.unsqueeze(0).to(DEVICE)
 
             pred = model(x).cpu().numpy()[0]
 
@@ -648,18 +644,17 @@ if __name__ == "__main__":
     parser.add_argument("--csv", required=True, nargs="+")
     parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--batch_size", type=int, default=64)
+    parser.add_argument("--num_workers", type=int, default=4)
     parser.add_argument("--lr", type=float, default=1e-3)
-    parser.add_argument("--seed", type=int, default=None)
-    parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--patience", type=int, default=8)
+    parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--split_mode", choices=["random_window", "time", "file", "lofo"], default="random_window")
     parser.add_argument("--val_fraction", type=float, default=0.2)
     parser.add_argument("--val_file_idx", type=int, default=-1)
     parser.add_argument("--block_size", type=int, default=4096)
     parser.add_argument("--purge_gap", type=int, default=T)
 
-    parser.add_argument("--model_out", default="tcn_imu_model.pt")
-    parser.add_argument("--export_json", default="tcn_imu_weights.json")
+    parser.add_argument("--model_out", default="tcn_imu_model_depthwise.pt")
+    parser.add_argument("--export_json", default="tcn_imu_weights_depthwise.json")
     parser.add_argument("--plot_out", default="validation")
 
     args = parser.parse_args()
