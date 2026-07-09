@@ -1,0 +1,1155 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : resi_block_mixer
+Version: X-2025.06-SP4
+Date   : Thu Jul  9 00:50:00 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+  Startpoint: gen_ring_banks[2].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[7][13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/dout1[17] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 f
+  U17581/Y (sky130_fd_sc_hd__nand2_1)                     0.04       3.33 r
+  U5125/Y (sky130_fd_sc_hd__inv_1)                        0.05       3.38 f
+  U2744/Y (sky130_fd_sc_hd__a2bb2oi_1)                    0.12       3.50 r
+  U3522/Y (sky130_fd_sc_hd__nand3_1)                      0.08       3.58 f
+  U3337/Y (sky130_fd_sc_hd__nor2_1)                       0.09       3.67 r
+  U3336/Y (sky130_fd_sc_hd__nand2_1)                      0.09       3.76 f
+  U5759/Y (sky130_fd_sc_hd__nand2_4)                      0.14       3.90 r
+  U5144/Y (sky130_fd_sc_hd__inv_8)                        0.14       4.04 f
+  U21208/Y (sky130_fd_sc_hd__xnor2_1)                     0.19       4.23 r
+  U21209/Y (sky130_fd_sc_hd__o22ai_1)                     0.11       4.34 f
+  U21210/Y (sky130_fd_sc_hd__nor2_1)                      0.10       4.44 r
+  U21211/Y (sky130_fd_sc_hd__inv_1)                       0.06       4.50 f
+  U2542/Y (sky130_fd_sc_hd__a21oi_1)                      0.22       4.72 r
+  U21220/Y (sky130_fd_sc_hd__o21ai_2)                     0.12       4.84 f
+  U6877/Y (sky130_fd_sc_hd__a21oi_2)                      0.16       5.00 r
+  U6876/X (sky130_fd_sc_hd__o21a_2)                       0.20       5.20 r
+  U7979/Y (sky130_fd_sc_hd__o21ai_1)                      0.09       5.29 f
+  U4132/Y (sky130_fd_sc_hd__a21oi_2)                      0.18       5.47 r
+  U21251/Y (sky130_fd_sc_hd__o21ai_1)                     0.09       5.56 f
+  U21252/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac2/prod_reg_reg[7][13]/D (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[7][13]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[1].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[2][9]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/dout1[13] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3288/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3903/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.44 f
+  U3902/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U6566/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5380/Y (sky130_fd_sc_hd__nand2_2)                      0.11       3.74 r
+  U4452/Y (sky130_fd_sc_hd__nand2_4)                      0.08       3.82 f
+  U4455/Y (sky130_fd_sc_hd__inv_4)                        0.12       3.94 r
+  U6334/Y (sky130_fd_sc_hd__inv_6)                        0.15       4.10 f
+  U2839/Y (sky130_fd_sc_hd__xnor2_1)                      0.17       4.27 f
+  U3949/X (sky130_fd_sc_hd__o22a_1)                       0.23       4.50 f
+  U3948/Y (sky130_fd_sc_hd__xnor2_1)                      0.14       4.64 r
+  U16342/SUM (sky130_fd_sc_hd__fah_1)                     0.31       4.95 f
+  U6225/Y (sky130_fd_sc_hd__nor2_2)                       0.12       5.07 r
+  U6352/Y (sky130_fd_sc_hd__nor2_1)                       0.06       5.13 f
+  U2436/Y (sky130_fd_sc_hd__nor2b_1)                      0.17       5.29 r
+  U6277/Y (sky130_fd_sc_hd__o21ai_1)                      0.09       5.39 f
+  U5933/Y (sky130_fd_sc_hd__a21oi_1)                      0.19       5.58 r
+  U6276/X (sky130_fd_sc_hd__xor2_1)                       0.16       5.74 r
+  init_mac1/prod_reg_reg[2][9]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.74 r
+  data arrival time                                                  5.74
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[2][9]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.07       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[1].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[14][11]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/dout1[13] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3288/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3903/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.44 f
+  U3902/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U6566/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5380/Y (sky130_fd_sc_hd__nand2_2)                      0.11       3.74 r
+  U5531/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.82 f
+  U4509/X (sky130_fd_sc_hd__buf_6)                        0.15       3.97 f
+  U4006/Y (sky130_fd_sc_hd__inv_4)                        0.07       4.04 r
+  U4007/Y (sky130_fd_sc_hd__inv_4)                        0.07       4.12 f
+  U5689/X (sky130_fd_sc_hd__xor2_1)                       0.15       4.27 f
+  U5763/Y (sky130_fd_sc_hd__a2bb2oi_2)                    0.18       4.45 r
+  U6473/Y (sky130_fd_sc_hd__xnor2_1)                      0.13       4.59 r
+  U11911/SUM (sky130_fd_sc_hd__fah_1)                     0.31       4.90 f
+  U2506/Y (sky130_fd_sc_hd__nor2_1)                       0.09       4.99 r
+  U6913/X (sky130_fd_sc_hd__o21a_2)                       0.17       5.17 r
+  U4071/Y (sky130_fd_sc_hd__o21ai_2)                      0.06       5.23 f
+  U5690/Y (sky130_fd_sc_hd__a21oi_2)                      0.23       5.46 r
+  U11932/Y (sky130_fd_sc_hd__o21ai_1)                     0.10       5.56 f
+  U11933/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac1/prod_reg_reg[14][11]/D (sky130_fd_sc_hd__dfxbp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[14][11]/CLK (sky130_fd_sc_hd__dfxbp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[0].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[15][13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[0].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[0].ring_bank1/u_ring_sram/dout1[1] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 f
+  U6535/Y (sky130_fd_sc_hd__nand2_1)                      0.04       3.33 r
+  U6017/Y (sky130_fd_sc_hd__nand4_1)                      0.09       3.43 f
+  U6016/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.53 r
+  U5852/Y (sky130_fd_sc_hd__nand3_1)                      0.07       3.60 f
+  U5851/Y (sky130_fd_sc_hd__nand2_1)                      0.08       3.68 r
+  U5854/Y (sky130_fd_sc_hd__inv_2)                        0.09       3.76 f
+  U5853/X (sky130_fd_sc_hd__buf_6)                        0.14       3.91 f
+  U3701/Y (sky130_fd_sc_hd__inv_4)                        0.09       4.00 r
+  U4101/Y (sky130_fd_sc_hd__inv_6)                        0.08       4.08 f
+  U11482/Y (sky130_fd_sc_hd__xnor2_1)                     0.19       4.27 r
+  U11484/Y (sky130_fd_sc_hd__o22ai_1)                     0.13       4.40 f
+  U3213/X (sky130_fd_sc_hd__xor2_1)                       0.20       4.59 f
+  U2667/Y (sky130_fd_sc_hd__nor2_1)                       0.15       4.75 r
+  U4060/Y (sky130_fd_sc_hd__nor2_2)                       0.06       4.81 f
+  U9221/Y (sky130_fd_sc_hd__nor2_1)                       0.08       4.90 r
+  U4923/Y (sky130_fd_sc_hd__nor2_1)                       0.05       4.94 f
+  U4408/X (sky130_fd_sc_hd__o22a_1)                       0.20       5.15 f
+  U4804/Y (sky130_fd_sc_hd__nand2_1)                      0.07       5.22 r
+  U4043/Y (sky130_fd_sc_hd__nand2_2)                      0.07       5.29 f
+  U3219/Y (sky130_fd_sc_hd__nand2_2)                      0.07       5.36 r
+  U3587/Y (sky130_fd_sc_hd__nand2_2)                      0.07       5.43 f
+  U3464/Y (sky130_fd_sc_hd__nand3_2)                      0.07       5.50 r
+  U3461/Y (sky130_fd_sc_hd__nand3_2)                      0.07       5.57 f
+  U6313/Y (sky130_fd_sc_hd__xnor2_1)                      0.12       5.69 f
+  init_mac1/prod_reg_reg[15][13]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[15][13]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[2].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[6][10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/dout1[17] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 f
+  U17581/Y (sky130_fd_sc_hd__nand2_1)                     0.04       3.33 r
+  U5125/Y (sky130_fd_sc_hd__inv_1)                        0.05       3.38 f
+  U2744/Y (sky130_fd_sc_hd__a2bb2oi_1)                    0.12       3.50 r
+  U3522/Y (sky130_fd_sc_hd__nand3_1)                      0.08       3.58 f
+  U3337/Y (sky130_fd_sc_hd__nor2_1)                       0.09       3.67 r
+  U3336/Y (sky130_fd_sc_hd__nand2_1)                      0.09       3.76 f
+  U5759/Y (sky130_fd_sc_hd__nand2_4)                      0.14       3.90 r
+  U3178/X (sky130_fd_sc_hd__clkbuf_1)                     0.16       4.06 r
+  U6634/X (sky130_fd_sc_hd__xor2_1)                       0.22       4.28 r
+  U3727/Y (sky130_fd_sc_hd__o22ai_2)                      0.12       4.40 f
+  U6667/X (sky130_fd_sc_hd__xor2_1)                       0.18       4.58 r
+  U3605/X (sky130_fd_sc_hd__xor2_1)                       0.16       4.75 r
+  U21653/SUM (sky130_fd_sc_hd__fah_1)                     0.31       5.05 f
+  U3643/Y (sky130_fd_sc_hd__nor2_2)                       0.17       5.23 r
+  U21693/Y (sky130_fd_sc_hd__o21ai_2)                     0.11       5.34 f
+  U6816/Y (sky130_fd_sc_hd__inv_2)                        0.06       5.39 r
+  U6815/Y (sky130_fd_sc_hd__nand2_1)                      0.06       5.45 f
+  U6811/Y (sky130_fd_sc_hd__nand2_1)                      0.06       5.51 r
+  U6810/Y (sky130_fd_sc_hd__nand2_1)                      0.06       5.57 f
+  U21725/Y (sky130_fd_sc_hd__xnor2_1)                     0.12       5.69 f
+  init_mac2/prod_reg_reg[6][10]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[6][10]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[3].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[11][13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[3].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[3].ring_bank2/u_ring_sram/dout1[20] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 r
+  U6133/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 f
+  U6132/Y (sky130_fd_sc_hd__nand2_1)                      0.10       3.45 r
+  U6131/Y (sky130_fd_sc_hd__inv_1)                        0.05       3.50 f
+  U6127/Y (sky130_fd_sc_hd__nand3_1)                      0.06       3.56 r
+  U5054/Y (sky130_fd_sc_hd__inv_1)                        0.06       3.61 f
+  U6006/Y (sky130_fd_sc_hd__nand3_2)                      0.10       3.72 r
+  U4051/Y (sky130_fd_sc_hd__nand2_2)                      0.09       3.81 f
+  U9242/Y (sky130_fd_sc_hd__inv_2)                        0.21       4.02 r
+  U4059/X (sky130_fd_sc_hd__buf_2)                        0.18       4.19 r
+  U9418/X (sky130_fd_sc_hd__xor2_1)                       0.17       4.36 r
+  U19381/Y (sky130_fd_sc_hd__o22ai_1)                     0.11       4.47 f
+  U19402/COUT (sky130_fd_sc_hd__fah_1)                    0.30       4.77 f
+  U6638/Y (sky130_fd_sc_hd__nand2_1)                      0.07       4.84 r
+  U6636/Y (sky130_fd_sc_hd__nand2_1)                      0.06       4.90 f
+  U19405/X (sky130_fd_sc_hd__or2_1)                       0.25       5.15 f
+  U9100/Y (sky130_fd_sc_hd__a21oi_1)                      0.18       5.33 r
+  U2418/Y (sky130_fd_sc_hd__a21boi_1)                     0.17       5.50 r
+  U19469/Y (sky130_fd_sc_hd__o21ai_1)                     0.09       5.59 f
+  U19470/Y (sky130_fd_sc_hd__xnor2_1)                     0.14       5.73 r
+  init_mac2/prod_reg_reg[11][13]/D (sky130_fd_sc_hd__dfsbp_1)
+                                                          0.00       5.74 r
+  data arrival time                                                  5.74
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[11][13]/CLK (sky130_fd_sc_hd__dfsbp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[3].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[8][13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/dout1[7] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3076/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3080/Y (sky130_fd_sc_hd__nand4_1)                      0.11       3.46 f
+  U9766/Y (sky130_fd_sc_hd__nor2_1)                       0.10       3.56 r
+  U5986/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5652/Y (sky130_fd_sc_hd__nand2_2)                      0.09       3.71 r
+  U2938/Y (sky130_fd_sc_hd__nand2_4)                      0.08       3.79 f
+  U9116/Y (sky130_fd_sc_hd__inv_2)                        0.12       3.91 r
+  U9715/Y (sky130_fd_sc_hd__inv_2)                        0.05       3.96 f
+  U9138/Y (sky130_fd_sc_hd__inv_2)                        0.09       4.05 r
+  U5333/Y (sky130_fd_sc_hd__inv_4)                        0.09       4.13 f
+  U2679/Y (sky130_fd_sc_hd__xnor2_1)                      0.26       4.39 r
+  U3789/Y (sky130_fd_sc_hd__o22ai_2)                      0.12       4.51 f
+  U3340/Y (sky130_fd_sc_hd__xnor2_1)                      0.19       4.70 r
+  U14323/SUM (sky130_fd_sc_hd__fah_1)                     0.42       5.12 r
+  U4054/Y (sky130_fd_sc_hd__nor2_4)                       0.06       5.18 f
+  U4510/Y (sky130_fd_sc_hd__o21ai_2)                      0.18       5.36 r
+  U3103/Y (sky130_fd_sc_hd__a21oi_2)                      0.07       5.43 f
+  U14331/Y (sky130_fd_sc_hd__o21ai_1)                     0.16       5.59 r
+  U14332/Y (sky130_fd_sc_hd__xnor2_1)                     0.14       5.73 r
+  init_mac1/prod_reg_reg[8][13]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.74 r
+  data arrival time                                                  5.74
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[8][13]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[3].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[8][11]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/dout1[7] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3076/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3080/Y (sky130_fd_sc_hd__nand4_1)                      0.11       3.46 f
+  U9766/Y (sky130_fd_sc_hd__nor2_1)                       0.10       3.56 r
+  U5986/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5652/Y (sky130_fd_sc_hd__nand2_2)                      0.09       3.71 r
+  U2938/Y (sky130_fd_sc_hd__nand2_4)                      0.08       3.79 f
+  U9116/Y (sky130_fd_sc_hd__inv_2)                        0.12       3.91 r
+  U9715/Y (sky130_fd_sc_hd__inv_2)                        0.05       3.96 f
+  U9138/Y (sky130_fd_sc_hd__inv_2)                        0.09       4.05 r
+  U5333/Y (sky130_fd_sc_hd__inv_4)                        0.09       4.13 f
+  U2679/Y (sky130_fd_sc_hd__xnor2_1)                      0.26       4.39 r
+  U3789/Y (sky130_fd_sc_hd__o22ai_2)                      0.12       4.51 f
+  U3340/Y (sky130_fd_sc_hd__xnor2_1)                      0.19       4.70 r
+  U14323/SUM (sky130_fd_sc_hd__fah_1)                     0.42       5.12 r
+  U4054/Y (sky130_fd_sc_hd__nor2_4)                       0.06       5.18 f
+  U4510/Y (sky130_fd_sc_hd__o21ai_2)                      0.18       5.36 r
+  U3103/Y (sky130_fd_sc_hd__a21oi_2)                      0.07       5.43 f
+  U14339/Y (sky130_fd_sc_hd__o21ai_1)                     0.16       5.59 r
+  U14340/Y (sky130_fd_sc_hd__xnor2_1)                     0.14       5.73 r
+  init_mac1/prod_reg_reg[8][11]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.74 r
+  data arrival time                                                  5.74
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[8][11]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[1].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[14][14]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/dout1[13] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3288/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3903/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.44 f
+  U3902/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U6566/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5380/Y (sky130_fd_sc_hd__nand2_2)                      0.11       3.74 r
+  U5531/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.82 f
+  U5649/Y (sky130_fd_sc_hd__inv_1)                        0.06       3.88 r
+  U3092/Y (sky130_fd_sc_hd__nand2_1)                      0.06       3.93 f
+  U3090/Y (sky130_fd_sc_hd__nand2_2)                      0.09       4.02 r
+  U9311/X (sky130_fd_sc_hd__and2_4)                       0.19       4.21 r
+  U6914/Y (sky130_fd_sc_hd__inv_4)                        0.08       4.29 f
+  U3059/Y (sky130_fd_sc_hd__o22ai_1)                      0.12       4.41 r
+  U3058/Y (sky130_fd_sc_hd__inv_1)                        0.09       4.50 f
+  U4839/Y (sky130_fd_sc_hd__xnor2_1)                      0.19       4.69 r
+  U4838/X (sky130_fd_sc_hd__xor2_1)                       0.17       4.86 r
+  U11861/SUM (sky130_fd_sc_hd__fah_1)                     0.33       5.19 f
+  U4002/Y (sky130_fd_sc_hd__nand2_2)                      0.09       5.28 r
+  U3896/Y (sky130_fd_sc_hd__o21ai_1)                      0.07       5.35 f
+  U11920/Y (sky130_fd_sc_hd__a21oi_1)                     0.12       5.47 r
+  U11921/Y (sky130_fd_sc_hd__o21ai_1)                     0.09       5.56 f
+  U11922/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac1/prod_reg_reg[14][14]/D (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[14][14]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[2].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[2][10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/dout1[24] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 f
+  U5900/Y (sky130_fd_sc_hd__nand3_1)                      0.05       3.34 r
+  U2976/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.44 f
+  U2975/Y (sky130_fd_sc_hd__inv_1)                        0.06       3.51 r
+  U4558/Y (sky130_fd_sc_hd__nand3_1)                      0.07       3.57 f
+  U6545/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.65 r
+  U3002/Y (sky130_fd_sc_hd__nand3_2)                      0.07       3.72 f
+  U4399/Y (sky130_fd_sc_hd__inv_2)                        0.09       3.81 r
+  U6544/Y (sky130_fd_sc_hd__inv_4)                        0.07       3.88 f
+  U9243/X (sky130_fd_sc_hd__buf_6)                        0.18       4.05 f
+  U23451/Y (sky130_fd_sc_hd__nand2b_1)                    0.15       4.21 f
+  U6540/Y (sky130_fd_sc_hd__o22ai_1)                      0.18       4.38 r
+  U6539/X (sky130_fd_sc_hd__xor2_1)                       0.20       4.59 r
+  U23496/SUM (sky130_fd_sc_hd__fah_1)                     0.30       4.89 f
+  U2566/Y (sky130_fd_sc_hd__nor2_1)                       0.12       5.01 r
+  U2544/Y (sky130_fd_sc_hd__o21ai_1)                      0.10       5.11 f
+  U6542/Y (sky130_fd_sc_hd__nand2_1)                      0.08       5.19 r
+  U6541/Y (sky130_fd_sc_hd__nand2_2)                      0.08       5.27 f
+  U4957/Y (sky130_fd_sc_hd__a21oi_2)                      0.19       5.46 r
+  U4525/Y (sky130_fd_sc_hd__o21ai_1)                      0.09       5.56 f
+  U23515/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac2/prod_reg_reg[2][10]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[2][10]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[1].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[9][12]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/dout1[2] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 f
+  U5340/Y (sky130_fd_sc_hd__nand3_1)                      0.05       3.34 r
+  U5550/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.45 f
+  U5548/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U5547/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.63 f
+  U5342/Y (sky130_fd_sc_hd__nand2_2)                      0.07       3.70 r
+  U5398/Y (sky130_fd_sc_hd__nand3_1)                      0.07       3.77 f
+  U3997/Y (sky130_fd_sc_hd__clkinv_1)                     0.06       3.83 r
+  U5582/Y (sky130_fd_sc_hd__nand2_2)                      0.07       3.90 f
+  U3084/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.98 r
+  U3083/Y (sky130_fd_sc_hd__nand2_1)                      0.06       4.04 f
+  U3082/Y (sky130_fd_sc_hd__inv_2)                        0.11       4.15 r
+  U3324/Y (sky130_fd_sc_hd__inv_4)                        0.10       4.25 f
+  U4822/X (sky130_fd_sc_hd__buf_6)                        0.14       4.39 f
+  U4480/Y (sky130_fd_sc_hd__o22ai_2)                      0.21       4.60 r
+  U4981/Y (sky130_fd_sc_hd__xnor2_1)                      0.16       4.77 r
+  U13891/Y (sky130_fd_sc_hd__nor2_1)                      0.06       4.83 f
+  U13892/Y (sky130_fd_sc_hd__inv_1)                       0.07       4.89 r
+  U3124/Y (sky130_fd_sc_hd__a21oi_1)                      0.07       4.96 f
+  U4457/X (sky130_fd_sc_hd__o21a_1)                       0.19       5.15 f
+  U4502/Y (sky130_fd_sc_hd__o21ai_2)                      0.18       5.33 r
+  U9511/Y (sky130_fd_sc_hd__a21oi_2)                      0.10       5.44 f
+  U9529/Y (sky130_fd_sc_hd__o21ai_1)                      0.15       5.59 r
+  U13924/Y (sky130_fd_sc_hd__xnor2_1)                     0.14       5.73 r
+  init_mac1/prod_reg_reg[9][12]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.74 r
+  data arrival time                                                  5.74
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[9][12]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[1].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[9][13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/dout1[2] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 f
+  U5340/Y (sky130_fd_sc_hd__nand3_1)                      0.05       3.34 r
+  U5550/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.45 f
+  U5548/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U5547/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.63 f
+  U5342/Y (sky130_fd_sc_hd__nand2_2)                      0.07       3.70 r
+  U5398/Y (sky130_fd_sc_hd__nand3_1)                      0.07       3.77 f
+  U3997/Y (sky130_fd_sc_hd__clkinv_1)                     0.06       3.83 r
+  U5582/Y (sky130_fd_sc_hd__nand2_2)                      0.07       3.90 f
+  U3084/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.98 r
+  U3083/Y (sky130_fd_sc_hd__nand2_1)                      0.06       4.04 f
+  U3082/Y (sky130_fd_sc_hd__inv_2)                        0.11       4.15 r
+  U3324/Y (sky130_fd_sc_hd__inv_4)                        0.10       4.25 f
+  U4822/X (sky130_fd_sc_hd__buf_6)                        0.14       4.39 f
+  U4480/Y (sky130_fd_sc_hd__o22ai_2)                      0.21       4.60 r
+  U4981/Y (sky130_fd_sc_hd__xnor2_1)                      0.16       4.77 r
+  U13891/Y (sky130_fd_sc_hd__nor2_1)                      0.06       4.83 f
+  U13892/Y (sky130_fd_sc_hd__inv_1)                       0.07       4.89 r
+  U3124/Y (sky130_fd_sc_hd__a21oi_1)                      0.07       4.96 f
+  U4457/X (sky130_fd_sc_hd__o21a_1)                       0.19       5.15 f
+  U4502/Y (sky130_fd_sc_hd__o21ai_2)                      0.18       5.33 r
+  U9511/Y (sky130_fd_sc_hd__a21oi_2)                      0.10       5.44 f
+  U9528/Y (sky130_fd_sc_hd__o21ai_1)                      0.15       5.59 r
+  U13919/Y (sky130_fd_sc_hd__xnor2_1)                     0.14       5.73 r
+  init_mac1/prod_reg_reg[9][13]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.74 r
+  data arrival time                                                  5.74
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[9][13]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.74
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[3].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[9][14]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/dout1[7] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3076/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3080/Y (sky130_fd_sc_hd__nand4_1)                      0.11       3.46 f
+  U9766/Y (sky130_fd_sc_hd__nor2_1)                       0.10       3.56 r
+  U5986/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5652/Y (sky130_fd_sc_hd__nand2_2)                      0.09       3.71 r
+  U2938/Y (sky130_fd_sc_hd__nand2_4)                      0.08       3.79 f
+  U9116/Y (sky130_fd_sc_hd__inv_2)                        0.12       3.91 r
+  U9715/Y (sky130_fd_sc_hd__inv_2)                        0.05       3.96 f
+  U9138/Y (sky130_fd_sc_hd__inv_2)                        0.09       4.05 r
+  U5334/Y (sky130_fd_sc_hd__inv_2)                        0.11       4.15 f
+  U13670/Y (sky130_fd_sc_hd__xnor2_1)                     0.21       4.36 r
+  U4997/Y (sky130_fd_sc_hd__o22ai_1)                      0.12       4.48 f
+  U4996/Y (sky130_fd_sc_hd__xnor2_1)                      0.26       4.74 r
+  U4549/Y (sky130_fd_sc_hd__xnor2_1)                      0.13       4.88 f
+  U9850/Y (sky130_fd_sc_hd__xnor2_1)                      0.16       5.04 f
+  U3267/Y (sky130_fd_sc_hd__nor2_2)                       0.16       5.21 r
+  U3266/Y (sky130_fd_sc_hd__nor2_2)                       0.07       5.28 f
+  U4976/Y (sky130_fd_sc_hd__a21oi_2)                      0.19       5.47 r
+  U9530/Y (sky130_fd_sc_hd__o21ai_1)                      0.09       5.56 f
+  U13913/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac1/prod_reg_reg[9][14]/D (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[9][14]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[1].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[14][13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[1].ring_bank1/u_ring_sram/dout1[13] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3288/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3903/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.44 f
+  U3902/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U6566/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5380/Y (sky130_fd_sc_hd__nand2_2)                      0.11       3.74 r
+  U5531/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.82 f
+  U4509/X (sky130_fd_sc_hd__buf_6)                        0.15       3.97 f
+  U4006/Y (sky130_fd_sc_hd__inv_4)                        0.07       4.04 r
+  U4007/Y (sky130_fd_sc_hd__inv_4)                        0.07       4.12 f
+  U5689/X (sky130_fd_sc_hd__xor2_1)                       0.15       4.27 f
+  U5763/Y (sky130_fd_sc_hd__a2bb2oi_2)                    0.18       4.45 r
+  U6473/Y (sky130_fd_sc_hd__xnor2_1)                      0.13       4.59 r
+  U11911/SUM (sky130_fd_sc_hd__fah_1)                     0.31       4.90 f
+  U2506/Y (sky130_fd_sc_hd__nor2_1)                       0.09       4.99 r
+  U6913/X (sky130_fd_sc_hd__o21a_2)                       0.17       5.17 r
+  U4071/Y (sky130_fd_sc_hd__o21ai_2)                      0.06       5.23 f
+  U5690/Y (sky130_fd_sc_hd__a21oi_2)                      0.23       5.46 r
+  U11925/Y (sky130_fd_sc_hd__o21ai_1)                     0.10       5.56 f
+  U11926/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac1/prod_reg_reg[14][13]/D (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[14][13]/CLK (sky130_fd_sc_hd__dfxtp_4)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[2].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[1][10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/dout1[10] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 r
+  U2919/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 f
+  U3129/Y (sky130_fd_sc_hd__nand4_1)                      0.11       3.46 r
+  U2974/Y (sky130_fd_sc_hd__inv_1)                        0.06       3.52 f
+  U2970/Y (sky130_fd_sc_hd__nand3_1)                      0.06       3.58 r
+  U3869/Y (sky130_fd_sc_hd__inv_1)                        0.05       3.63 f
+  U3033/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.71 r
+  U5740/Y (sky130_fd_sc_hd__nand2_4)                      0.10       3.81 f
+  U4138/Y (sky130_fd_sc_hd__inv_12)                       0.20       4.01 r
+  U3053/Y (sky130_fd_sc_hd__xnor2_1)                      0.16       4.17 r
+  U23901/Y (sky130_fd_sc_hd__o22ai_1)                     0.12       4.29 f
+  U23923/SUM (sky130_fd_sc_hd__ha_1)                      0.32       4.60 f
+  U2522/Y (sky130_fd_sc_hd__nor2_1)                       0.15       4.75 r
+  U9241/Y (sky130_fd_sc_hd__o21ai_2)                      0.09       4.85 f
+  U6900/Y (sky130_fd_sc_hd__a21boi_2)                     0.16       5.01 r
+  U2492/X (sky130_fd_sc_hd__o21a_2)                       0.19       5.20 r
+  U6866/Y (sky130_fd_sc_hd__o21ai_4)                      0.08       5.28 f
+  U9462/Y (sky130_fd_sc_hd__a21oi_1)                      0.18       5.46 r
+  U23961/Y (sky130_fd_sc_hd__o21ai_1)                     0.09       5.56 f
+  U23962/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac2/prod_reg_reg[1][10]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[1][10]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[2].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[7][12]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/dout1[28] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3432/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U2753/Y (sky130_fd_sc_hd__nand3_1)                      0.10       3.44 f
+  U3431/Y (sky130_fd_sc_hd__inv_2)                        0.07       3.51 r
+  U4532/Y (sky130_fd_sc_hd__nand3_2)                      0.08       3.59 f
+  U3481/Y (sky130_fd_sc_hd__inv_2)                        0.06       3.65 r
+  U6006/Y (sky130_fd_sc_hd__nand3_2)                      0.10       3.75 f
+  U4051/Y (sky130_fd_sc_hd__nand2_2)                      0.12       3.86 r
+  U6145/Y (sky130_fd_sc_hd__inv_4)                        0.11       3.97 f
+  U21153/Y (sky130_fd_sc_hd__xnor2_1)                     0.20       4.17 r
+  U21154/Y (sky130_fd_sc_hd__o22ai_1)                     0.12       4.30 f
+  U2560/COUT (sky130_fd_sc_hd__ha_1)                      0.23       4.52 f
+  U21168/SUM (sky130_fd_sc_hd__fah_1)                     0.28       4.80 r
+  U21195/SUM (sky130_fd_sc_hd__fah_1)                     0.30       5.10 f
+  U3408/Y (sky130_fd_sc_hd__nor2_4)                       0.13       5.23 r
+  U21235/Y (sky130_fd_sc_hd__o21ai_2)                     0.09       5.32 f
+  U9103/Y (sky130_fd_sc_hd__a21oi_2)                      0.15       5.47 r
+  U21255/Y (sky130_fd_sc_hd__o21ai_1)                     0.09       5.56 f
+  U21256/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac2/prod_reg_reg[7][12]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[7][12]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[3].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[8][10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/dout1[7] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U3076/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U3080/Y (sky130_fd_sc_hd__nand4_1)                      0.11       3.46 f
+  U9766/Y (sky130_fd_sc_hd__nor2_1)                       0.10       3.56 r
+  U5986/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.62 f
+  U5652/Y (sky130_fd_sc_hd__nand2_2)                      0.09       3.71 r
+  U2938/Y (sky130_fd_sc_hd__nand2_4)                      0.08       3.79 f
+  U9116/Y (sky130_fd_sc_hd__inv_2)                        0.12       3.91 r
+  U9715/Y (sky130_fd_sc_hd__inv_2)                        0.05       3.96 f
+  U9138/Y (sky130_fd_sc_hd__inv_2)                        0.09       4.05 r
+  U5333/Y (sky130_fd_sc_hd__inv_4)                        0.09       4.13 f
+  U2679/Y (sky130_fd_sc_hd__xnor2_1)                      0.26       4.39 r
+  U3789/Y (sky130_fd_sc_hd__o22ai_2)                      0.12       4.51 f
+  U3340/Y (sky130_fd_sc_hd__xnor2_1)                      0.19       4.70 r
+  U14323/SUM (sky130_fd_sc_hd__fah_1)                     0.42       5.12 r
+  U4054/Y (sky130_fd_sc_hd__nor2_4)                       0.06       5.18 f
+  U4510/Y (sky130_fd_sc_hd__o21ai_2)                      0.18       5.36 r
+  U3786/Y (sky130_fd_sc_hd__a21oi_1)                      0.08       5.44 f
+  U14342/Y (sky130_fd_sc_hd__o21ai_1)                     0.15       5.59 r
+  U14343/Y (sky130_fd_sc_hd__xnor2_1)                     0.14       5.73 r
+  init_mac1/prod_reg_reg[8][10]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.73 r
+  data arrival time                                                  5.73
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[8][10]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.73
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[2].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[0][11]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[2].ring_bank2/u_ring_sram/dout1[10] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 r
+  U2919/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 f
+  U3129/Y (sky130_fd_sc_hd__nand4_1)                      0.11       3.46 r
+  U2974/Y (sky130_fd_sc_hd__inv_1)                        0.06       3.52 f
+  U2970/Y (sky130_fd_sc_hd__nand3_1)                      0.06       3.58 r
+  U3869/Y (sky130_fd_sc_hd__inv_1)                        0.05       3.63 f
+  U3033/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.71 r
+  U5740/Y (sky130_fd_sc_hd__nand2_4)                      0.10       3.81 f
+  U4138/Y (sky130_fd_sc_hd__inv_12)                       0.20       4.01 r
+  U2707/X (sky130_fd_sc_hd__xor2_1)                       0.20       4.20 r
+  U24346/Y (sky130_fd_sc_hd__o22ai_1)                     0.11       4.31 f
+  U24366/SUM (sky130_fd_sc_hd__ha_1)                      0.30       4.62 r
+  U24367/Y (sky130_fd_sc_hd__nor2_1)                      0.05       4.67 f
+  U2593/Y (sky130_fd_sc_hd__o21ai_1)                      0.15       4.82 r
+  U2554/Y (sky130_fd_sc_hd__a21oi_1)                      0.11       4.93 f
+  U3334/X (sky130_fd_sc_hd__o21a_1)                       0.22       5.15 f
+  U24373/Y (sky130_fd_sc_hd__o21ai_2)                     0.17       5.32 r
+  U6789/Y (sky130_fd_sc_hd__nand2_1)                      0.07       5.39 f
+  U6431/Y (sky130_fd_sc_hd__nand2_1)                      0.10       5.49 r
+  U6430/Y (sky130_fd_sc_hd__nand2b_1)                     0.08       5.57 f
+  U3335/Y (sky130_fd_sc_hd__o211ai_1)                     0.16       5.72 r
+  init_mac2/prod_reg_reg[0][11]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.73 r
+  data arrival time                                                  5.73
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[0][11]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.73
+  data required time                                                 5.73
+  --------------------------------------------------------------------------
+  data required time                                                 5.73
+  data arrival time                                                 -5.73
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[0].ring_bank2/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac2/prod_reg_reg[4][11]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[0].ring_bank2/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[0].ring_bank2/u_ring_sram/dout1[13] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.40       3.31 f
+  U6704/Y (sky130_fd_sc_hd__nand3_2)                      0.04       3.35 r
+  U6703/Y (sky130_fd_sc_hd__nand4_1)                      0.10       3.45 f
+  U3383/Y (sky130_fd_sc_hd__nor2_1)                       0.11       3.56 r
+  U17445/Y (sky130_fd_sc_hd__nand2_1)                     0.07       3.63 f
+  U9175/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.71 r
+  U9174/Y (sky130_fd_sc_hd__nand2_4)                      0.09       3.80 f
+  U9444/X (sky130_fd_sc_hd__buf_6)                        0.18       3.98 f
+  U22562/Y (sky130_fd_sc_hd__xnor2_1)                     0.18       4.16 r
+  U22563/Y (sky130_fd_sc_hd__o22ai_1)                     0.14       4.30 f
+  U9428/COUT (sky130_fd_sc_hd__fah_1)                     0.37       4.67 f
+  U22565/SUM (sky130_fd_sc_hd__fah_1)                     0.32       4.99 f
+  U2444/Y (sky130_fd_sc_hd__nor2_1)                       0.16       5.15 r
+  U9411/Y (sky130_fd_sc_hd__nor2_1)                       0.11       5.26 f
+  U3128/Y (sky130_fd_sc_hd__a21oi_2)                      0.21       5.47 r
+  U2370/Y (sky130_fd_sc_hd__o21ai_1)                      0.10       5.56 f
+  U22636/Y (sky130_fd_sc_hd__xnor2_1)                     0.13       5.69 f
+  init_mac2/prod_reg_reg[4][11]/D (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.69 f
+  data arrival time                                                  5.69
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac2/prod_reg_reg[4][11]/CLK (sky130_fd_sc_hd__dfxtp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.12       5.69
+  data required time                                                 5.69
+  --------------------------------------------------------------------------
+  data required time                                                 5.69
+  data arrival time                                                 -5.69
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: gen_ring_banks[3].ring_bank1/u_ring_sram/clk1
+              (internal path startpoint clocked by clk)
+  Endpoint: init_mac1/prod_reg_reg[0][11]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  resi_block_mixer   Small                 sky130_fd_sc_hd__tt_025C_1v80
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (fall edge)                                   2.91       2.91
+  clock network delay (ideal)                             0.00       2.91
+  input external delay                                    0.00       2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/clk1 (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.00 #     2.91 f
+  gen_ring_banks[3].ring_bank1/u_ring_sram/dout1[15] (sky130_sram_2kbyte_1rw1r_32x512_8)
+                                                          0.39       3.29 r
+  U7440/Y (sky130_fd_sc_hd__nand3_1)                      0.05       3.34 f
+  U4995/Y (sky130_fd_sc_hd__nand4_1)                      0.14       3.48 r
+  U4544/Y (sky130_fd_sc_hd__nor2_1)                       0.05       3.53 f
+  U5986/Y (sky130_fd_sc_hd__nand2_1)                      0.07       3.60 r
+  U5652/Y (sky130_fd_sc_hd__nand2_2)                      0.08       3.67 f
+  U2938/Y (sky130_fd_sc_hd__nand2_4)                      0.10       3.77 r
+  U5818/X (sky130_fd_sc_hd__clkbuf_1)                     0.11       3.88 r
+  U4769/Y (sky130_fd_sc_hd__inv_2)                        0.06       3.94 f
+  U2731/Y (sky130_fd_sc_hd__inv_4)                        0.20       4.14 r
+  U16900/Y (sky130_fd_sc_hd__xnor2_1)                     0.16       4.30 r
+  U6547/Y (sky130_fd_sc_hd__nand2b_1)                     0.13       4.43 r
+  U6546/Y (sky130_fd_sc_hd__nand2_1)                      0.09       4.52 f
+  U4688/Y (sky130_fd_sc_hd__xnor2_1)                      0.18       4.70 r
+  U4687/Y (sky130_fd_sc_hd__xnor2_1)                      0.14       4.84 r
+  U17135/SUM (sky130_fd_sc_hd__fah_1)                     0.31       5.15 f
+  U5799/Y (sky130_fd_sc_hd__inv_1)                        0.06       5.21 r
+  U5798/Y (sky130_fd_sc_hd__nand2_1)                      0.07       5.28 f
+  U4130/Y (sky130_fd_sc_hd__nand3_2)                      0.10       5.37 r
+  U4136/Y (sky130_fd_sc_hd__nand3_2)                      0.09       5.47 f
+  U6505/Y (sky130_fd_sc_hd__nand2_1)                      0.07       5.54 r
+  U6852/Y (sky130_fd_sc_hd__nand2_1)                      0.06       5.60 f
+  U6851/Y (sky130_fd_sc_hd__xnor2_1)                      0.13       5.73 r
+  init_mac1/prod_reg_reg[0][11]/D (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.73 r
+  data arrival time                                                  5.73
+
+  clock clk (rise edge)                                   5.81       5.81
+  clock network delay (ideal)                             0.00       5.81
+  init_mac1/prod_reg_reg[0][11]/CLK (sky130_fd_sc_hd__dfstp_1)
+                                                          0.00       5.81 r
+  library setup time                                     -0.08       5.74
+  data required time                                                 5.74
+  --------------------------------------------------------------------------
+  data required time                                                 5.74
+  data arrival time                                                 -5.73
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+1

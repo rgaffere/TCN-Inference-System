@@ -1,0 +1,17 @@
+QuestaSim-64 vlog 2023.2 Compiler 2023.04 Apr 11 2023
+Start time: 00:15:12 on Jul 09,2026
+vlog -sv ../rtl/common/resi_block_mixer.sv ../rtl/common/ring.sv ../rtl/common/MAC_array.sv ../rtl/common/ReLU_array.sv ../rtl/common/quant_array.sv ../tb/resi_block_mixer_tb.sv 
+-- Compiling module resi_block_mixer
+-- Compiling module ring
+-- Compiling module MAC_array
+-- Compiling module ReLU_array
+-- Compiling module quant_array
+** Warning: ../rtl/common/quant_array.sv(21): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: ../rtl/common/quant_array.sv(23): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: ../rtl/common/quant_array.sv(25): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+-- Compiling module resi_block_mixer_tb
+
+Top level modules:
+	resi_block_mixer_tb
+End time: 00:15:12 on Jul 09,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 3

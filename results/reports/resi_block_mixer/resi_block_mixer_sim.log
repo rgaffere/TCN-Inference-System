@@ -1,0 +1,51 @@
+Reading pref.tcl
+
+# 2023.2
+
+# vsim -c resi_block_mixer_tb -do "run -all; quit" 
+# Start time: 00:15:14 on Jul 09,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  Questa Sim-64
+# //  Version 2023.2 linux_x86_64 Apr 11 2023
+# //
+# //  Copyright 1991-2023 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.resi_block_mixer_tb(fast)
+# run -all
+# 
+# === resi_block_mixer cadence-locked bit-exact TB ===
+# NUM_CHANNELS=16 KERNEL_LEN=3 DILATION=1 DEPTH=64
+# PRIME_TOKENS=7 FLUSH_TOKENS=2
+# 
+# PHASE 0: reset
+# PHASE 1: dense zero-weight residual alignment
+# PHASE 2: constant arithmetic sanity, no history ambiguity
+# PHASE 3: tap isolation with zero primed history
+# PHASE 4: mixed deterministic dense stream
+# PHASE 5: saturation boundaries
+# PHASE 6: randomized dense regression
+# PHASE 8: mid-stream reset recovery
+# 
+# === SUMMARY ===
+# accepted tokens       : 1068
+# checked tokens        : 880
+# unchecked outputs     : 186
+# datapath checks       : pass=14080 fail=0
+# valid_out             : missing=0 spurious=0
+# drain timeouts        : 0
+# measured latency      : min=99 max=99 cycles
+# PASS
+# ** Note: $finish    : ../tb/resi_block_mixer_tb.sv(681)
+#    Time: 524345 ns  Iteration: 1  Instance: /resi_block_mixer_tb
+# End time: 00:15:17 on Jul 09,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 0

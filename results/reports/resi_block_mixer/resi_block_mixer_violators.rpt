@@ -1,0 +1,525 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+Design : resi_block_mixer
+Version: X-2025.06-SP4
+Date   : Thu Jul  9 00:50:00 2026
+****************************************
+
+
+   max_transition
+
+                             Required        Actual
+   Net                      Transition     Transition        Slack
+   -----------------------------------------------------------------
+   n33984                       0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/web0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/csb0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/web0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/csb0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/web0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/csb0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/web0
+                                0.50           0.63          -0.13  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/csb0
+                                0.50           0.63          -0.13  (VIOLATED)
+   n32707                       0.50           0.59          -0.09  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/web0
+                                0.50           0.59          -0.09  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/web0
+                                0.50           0.59          -0.09  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/csb0
+                                0.50           0.59          -0.09  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/web0
+                                0.50           0.59          -0.09  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/csb0
+                                0.50           0.59          -0.09  (VIOLATED)
+   n32722                       0.50           0.54          -0.04  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/csb0
+                                0.50           0.54          -0.04  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/csb0
+                                0.50           0.54          -0.04  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/web0
+                                0.50           0.54          -0.04  (VIOLATED)
+   n22506                       1.49           1.51          -0.02  (VIOLATED)
+       PIN :   init_mac2/valid_out_reg/D
+                                1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28760/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28762/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28932/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28952/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28631/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28945/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28589/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28976/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29319/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29099/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28574/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29018/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29083/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28593/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29264/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28567/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28629/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28624/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28751/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28645/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28720/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29301/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28564/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U28572/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29122/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29124/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29126/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29173/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29271/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29283/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29285/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29287/B         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U29085/A1        1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U24443/A         1.50           1.51          -0.01  (VIOLATED)
+       PIN :   U24442/Y         1.49           1.51          -0.02  (VIOLATED)
+   gen_ring_banks[0].ring_bank2/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[1].ring_bank2/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[2].ring_bank2/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[3].ring_bank2/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5301                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5302                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5303                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5327                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5329                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5331                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5333                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5335                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5337                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5339                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5341                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5229                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5230                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5231                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5232                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5233                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5234                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5235                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5236                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[8]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5342                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5343                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5344                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5345                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5228                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5305                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5306                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5307                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5308                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5309                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5310                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5311                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5312                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5313                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5314                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5315                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5316                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5317                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5318                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[4]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5319                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5304                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[3].ring_bank1/head[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5263                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5265                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5261                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[0].ring_bank1/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[0].ring_bank2/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[1].ring_bank1/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[1].ring_bank2/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[2].ring_bank1/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[2].ring_bank2/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[3].ring_bank1/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[3].ring_bank2/read_addr[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr1[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[0].ring_bank1/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[1].ring_bank1/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[2].ring_bank1/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[3].ring_bank1/read_addr[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[0].ring_bank1/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[1].ring_bank1/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[2].ring_bank1/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[0].ring_bank2/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[1].ring_bank2/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[2].ring_bank2/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   gen_ring_banks[3].ring_bank2/read_addr[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5351                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5353                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5355                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5357                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5289                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5281                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5283                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5285                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5287                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5359                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5361                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5363                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5365                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5367                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5369                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5371                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5373                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5375                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5377                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5379                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5381                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5383                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5385                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5387                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[7]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5388                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5389                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5390                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5391                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[3]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5220                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5222                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5224                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5226                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5346                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5347                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5348                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5349                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5218                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[5]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5323                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr1[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5324                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr1[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5267                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5269                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5271                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5273                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr0[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5279                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5275                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank1/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5277                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr0[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5325                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank1/u_ring_sram/addr1[1]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5321                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5322                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5320                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[6]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n4888                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank2/u_ring_sram/addr1[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n4889                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[2].ring_bank2/u_ring_sram/addr1[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n4890                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[1].ring_bank2/u_ring_sram/addr1[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n4891                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank2/u_ring_sram/addr1[2]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5254                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[3].ring_bank1/u_ring_sram/addr1[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5255                        0.04           0.05          -0.01  (VIOLATED)
+       PIN :   gen_ring_banks[0].ring_bank1/u_ring_sram/addr1[0]
+                                0.04           0.05          -0.01  (VIOLATED)
+   n5256                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5257                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5258                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5259                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5238                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5240                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5243                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5245                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5247                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5249                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5251                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5237                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5239                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5241                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5242                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5252                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5253                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5244                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5246                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5248                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+   n5250                        0.04           0.04           0.00  (VIOLATED: increase significant digits)
+
+   -----------------------------------------------------------------
+   Total                      148                -1.64  
+
+   max_area
+
+                             Required        Actual
+   Design                      Area           Area           Slack
+   -----------------------------------------------------------------
+   resi_block_mixer             0.00       2545357.00     -2545357.00
+                                                                    (VIOLATED)
+
+
+   max_leakage_power
+
+                             Required        Actual
+   Design                   Leakage Power  Leakage Power     Slack
+   -----------------------------------------------------------------
+   resi_block_mixer             0.00       141911.31      -141911.31
+                                                                    (VIOLATED)
+
+
+1
