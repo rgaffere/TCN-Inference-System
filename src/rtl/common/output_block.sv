@@ -1,9 +1,9 @@
 module output_block #(
-    parameter int IN_CHANNELS  = 16,
+    parameter int IN_CHANNELS = 16,
     parameter int OUT_CHANNELS = 6,
-    parameter int W_BIT_WIDTH  = 8,
-    parameter int B_BIT_WIDTH  = 32,
-    parameter int QUANT_SHIFT  = 8,
+    parameter int W_BIT_WIDTH = 8,
+    parameter int B_BIT_WIDTH = 32,
+    parameter int QUANT_SHIFT = 8,
 
     localparam int IN_CH_IDX_DEPTH = (IN_CHANNELS <= 1) ? 1 : $clog2(IN_CHANNELS)
 )(
