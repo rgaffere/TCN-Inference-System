@@ -1,0 +1,106 @@
+Reading pref.tcl
+
+# 2023.2
+
+# vsim -c -voptargs="+acc" tcn_block_tb -do "run -all; quit" 
+# Start time: 16:21:52 on Jul 17,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
+# //  Questa Sim-64
+# //  Version 2023.2 linux_x86_64 Apr 11 2023
+# //
+# //  Copyright 1991-2023 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tcn_block_tb(fast)
+# Loading work.tcn_block(fast)
+# Loading work.input_block(fast)
+# Loading work.MAC_array(fast)
+# Loading work.ReLU_array(fast)
+# Loading work.quant_array(fast)
+# Loading work.MAC_array(fast__1)
+# Loading work.MAC_array(fast__2)
+# Loading work.ring(fast)
+# Loading work.resi_block(fast)
+# Loading work.MAC_array(fast__3)
+# Loading work.resi_block(fast__1)
+# Loading work.resi_block(fast__2)
+# Loading work.resi_block(fast__3)
+# Loading work.resi_block(fast__4)
+# Loading work.resi_block(fast__5)
+# Loading work.resi_block(fast__6)
+# Loading work.output_block(fast)
+# Loading work.MAC_array(fast__4)
+# Loading work.quant_array(fast__1)
+# run -all
+# TCN randomized integration test
+#   Seed:                 1422139430 (0x54c42026)
+#   Clock period:         5.88 ns
+#   MACs per sample:      1920
+#   Stress ready rate:    70%
+# 
+# [50000] Starting phase 'zero_model_check'
+# Phase:                         zero_model_check
+#   Inputs accepted:              8
+#   Outputs transferred:          8
+#   Measurement cycles:           1303
+#   Core latency avg/min/max:     158.00 / 158 / 158 cycles
+#   AXIS latency avg/min/max:     160.12 / 160 / 161 cycles
+#   Sustained throughput:         0.00612960 samples/cycle
+#   Sustained sample rate:        1.0421 MSamples/s at 5.88 ns
+#   Effective whole-TCN rate:     2.0008 GMAC/s (1920 MAC/sample)
+# 
+# [7773000] Starting phase 'randomized_protocol_stress'
+# Phase:                         randomized_protocol_stress
+#   Inputs accepted:              128
+#   Outputs transferred:          128
+#   Measurement cycles:           20969
+#   Core latency avg/min/max:     158.00 / 158 / 158 cycles
+#   AXIS latency avg/min/max:     160.34 / 160 / 163 cycles
+#   Sustained throughput:         0.00610342 samples/cycle
+#   Sustained sample rate:        1.0376 MSamples/s at 5.88 ns
+#   Effective whole-TCN rate:     1.9923 GMAC/s (1920 MAC/sample)
+# 
+# [131166000] Starting phase 'power_warmup'
+# Phase:                         power_warmup
+#   Inputs accepted:              512
+#   Outputs transferred:          512
+#   Measurement cycles:           82943
+#   Core latency avg/min/max:     158.00 / 158 / 158 cycles
+#   AXIS latency avg/min/max:     160.00 / 160 / 160 cycles
+#   Sustained throughput:         0.00617284 samples/cycle
+#   Sustained sample rate:        1.0494 MSamples/s at 5.88 ns
+#   Effective whole-TCN rate:     2.0149 GMAC/s (1920 MAC/sample)
+# 
+# [619036000] Starting phase 'sustained_load_power'
+# Phase:                         sustained_load_power
+#   Inputs accepted:              256
+#   Outputs transferred:          256
+#   Measurement cycles:           41471
+#   Core latency avg/min/max:     158.00 / 158 / 158 cycles
+#   AXIS latency avg/min/max:     160.00 / 160 / 160 cycles
+#   Sustained throughput:         0.00617284 samples/cycle
+#   Sustained sample rate:        1.0494 MSamples/s at 5.88 ns
+#   Effective whole-TCN rate:     2.0149 GMAC/s (1920 MAC/sample)
+# 
+# ============================================================
+# TCN TOP-LEVEL RANDOMIZED TEST PASSED
+# Generated: tcn_transaction_metrics.csv
+# Generated: tcn_performance_summary.csv
+# Generated: tcn_block_activity.vcd
+# ============================================================
+# 
+# ** Note: $finish    : ../tb/tcn_block_tb.sv(732)
+#    Time: 862998217 ps  Iteration: 1  Instance: /tcn_block_tb
+# End time: 16:21:54 on Jul 17,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 1

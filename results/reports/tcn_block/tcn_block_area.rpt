@@ -1,0 +1,46 @@
+ 
+****************************************
+Report : area
+Design : tcn_block
+Version: X-2025.06-SP4
+Date   : Fri Jul 17 16:51:57 2026
+****************************************
+
+Information: Updating design information... (UID-85)
+Warning: Design 'tcn_block' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
+    sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db)
+
+Number of ports:                        24358
+Number of nets:                        253092
+Number of cells:                       221793
+Number of combinational cells:         195001
+Number of sequential cells:             26730
+Number of macros/black boxes:              62
+Number of buf/inv:                      39217
+Number of references:                     137
+
+Combinational area:            1179934.127174
+Buf/Inv area:                   153408.376333
+Noncombinational area:          569187.134045
+Macro/Black Box area:         17641385.062500
+Net Interconnect area:      undefined  (Wire load has zero net area)
+
+Total cell area:              19390506.323719
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area                    Local cell area
+                                  ----------------------  ---------------------------------------- 
+Hierarchical cell                 Absolute       Percent  Combi-        Noncombi-    Black-
+                                  Total          Total    national      national     boxes          Design
+--------------------------------  -------------  -------  ------------  -----------  -------------  ---------
+tcn_block                         19390506.3237    100.0  1179934.1272  569187.1340  17641385.0625  tcn_block
+--------------------------------  -------------  -------  ------------  -----------  -------------  ---------
+Total                                                     1179934.1272  569187.1340  17641385.0625
+
+1

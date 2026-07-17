@@ -1,0 +1,59 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : tcn_block
+Version: X-2025.06-SP4
+Date   : Fri Jul 17 16:52:09 2026
+****************************************
+
+
+Library(s) Used:
+
+    sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
+    sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db)
+
+
+Operating Conditions: tt_025C_1v80   Library: sky130_fd_sc_hd__tt_025C_1v80
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+tcn_block              Small             sky130_fd_sc_hd__tt_025C_1v80
+
+
+Global Operating Voltage = 1.8  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  = 782.7709 mW   (98%)
+  Net Switching Power  =  15.1026 mW    (2%)
+                         ---------
+Total Dynamic Power    = 797.8735 mW  (100%)
+
+Cell Leakage Power     =   1.0998 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory           582.1620            0.1983        1.0990e+06          583.4596  (  73.03%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network    185.6459            0.0000            0.0000          185.6459  (  23.24%)  i
+register           3.4658            1.4111          258.3279            4.8802  (   0.61%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     11.4993           13.4927          489.5902           24.9924  (   3.13%)
+--------------------------------------------------------------------------------------------------
+Total            782.7729 mW        15.1022 mW     1.0998e+06 nW       798.9781 mW
+1
