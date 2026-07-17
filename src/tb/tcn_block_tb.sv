@@ -15,7 +15,7 @@ module tcn_block_tb;
     localparam int AXIS_WIDTH      = W_WIDTH * IMU_CHANNELS;
 
     // Change this to match the synthesized clock constraint.
-    localparam real CLK_PERIOD_NS = 5.0;
+    localparam real CLK_PERIOD_NS = 5.882;
 
     // Whole-network MAC count per accepted sample:
     // input conv1 + input conv2 + input residual projection
