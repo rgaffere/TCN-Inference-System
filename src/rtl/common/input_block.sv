@@ -6,11 +6,11 @@ module input_block #(
     parameter int B_BIT_WIDTH = 32,
     parameter int KERNEL_LEN = 3,
     parameter int DILATION = 1,
-    parameter int DEPTH = 512,
     parameter int NUM_RINGS = 4,
     parameter int CHANNELS_PER_RING = 4,
     parameter int QUANT_SHIFT = 8,
-
+    
+    localparam int DEPTH = 4 * DILATION,
     localparam int ADDR_DEPTH = (DEPTH <= 1) ? 1 : $clog2(DEPTH),
     localparam int K_IDX_DEPTH = (KERNEL_LEN <= 1) ? 1 : $clog2(KERNEL_LEN),
     localparam int IN_CH_IDX_DEPTH = (IN_CHANNELS <= 1) ? 1 : $clog2(IN_CHANNELS),

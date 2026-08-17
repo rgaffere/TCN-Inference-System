@@ -5,7 +5,7 @@ module resi_block #(
     parameter int KERNEL_LEN = 3,
     parameter int DILATION = 1,
     parameter int NUM_RINGS = 4,
-    parameter int DEPTH = 512,
+    localparam int DEPTH = 4 * DILATION,
     localparam int ADDR_WIDTH = $clog2(DEPTH)
 )(
     input logic clk, rst_n, valid_in,

@@ -7,7 +7,7 @@ This module models a 1RW1R ring-buffered activation memory.
 Each SRAM word stores 4 INT8 channels. One read returns 4 channel activations.
 Four ring instances cover 16 channels.
 
-We use all 32 bits so we can have one ring per 4 channels, giving 100% sram usage.
+We use all 32 bits so we can have one ring per 4 channels, giving 100% sram word-width usage.
 */
 
 module ring #(
@@ -29,6 +29,16 @@ module ring #(
 
     output var logic [WORD_LEN - 1: 0] data_out
 );
+    `ifndef SYNTHESIS
+        initial begin
+            assert (
+                DEPTH >= 4 &&
+                DEPTH <= 512 &&
+                ((DEPTH & (DEPTH - 1)) == 0)
+            ) else $fatal(1, "ring: unsupported SRAM depth %0d", DEPTH);
+        end
+    `endif
+
     logic [ADDR_WIDTH - 1: 0] head;
     logic [ADDR_WIDTH: 0] warmup_count;
     
@@ -62,29 +72,181 @@ module ring #(
     end
 
     `ifdef SYNTHESIS
-    assign data_out = {WORD_LEN{valid_read_q}} & sram_dout1;
-    
-        sky130_sram_2kbyte_1rw1r_32x512_8 u_ring_sram (
-        `ifdef USE_POWER_PINS
-            .vccd1(vccd1),
-            .vssd1(vssd1),
-        `endif
+        assign data_out = {WORD_LEN{valid_read_q}} & sram_dout1;
 
-            // Port 0: write/read-write port
-            .clk0(clk),
-            .csb0(~write_en),
-            .web0(~write_en),
-            .wmask0(4'b1111),
-            .addr0(head),
-            .din0(data_in),
-            .dout0(sram_dout0),
+        generate
+            if (DEPTH == 4) begin : gen_sram_32x4
 
-            // Port 1: read-only port
-            .clk1(clk),
-            .csb1(~valid_read),
-            .addr1(read_addr),
-            .dout1(sram_dout1)
-        );
+                sky130_sram_16byte_1rw1r_32x4_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 8) begin : gen_sram_32x8
+
+                sky130_sram_32byte_1rw1r_32x8_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 16) begin : gen_sram_32x16
+
+                sky130_sram_64byte_1rw1r_32x16_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 32) begin : gen_sram_32x32
+
+                sky130_sram_128byte_1rw1r_32x32_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 64) begin : gen_sram_32x64
+
+                sky130_sram_256byte_1rw1r_32x64_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 128) begin : gen_sram_32x128
+
+                sky130_sram_512byte_1rw1r_32x128_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 256) begin : gen_sram_32x256
+
+                sky130_sram_1kbyte_1rw1r_32x256_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end else if (DEPTH == 512) begin : gen_sram_32x512
+
+                // Keep existing macro as fallback/backward-compatible option.
+                sky130_sram_2kbyte_1rw1r_32x512_8 u_ring_sram (
+                `ifdef USE_POWER_PINS
+                    .vccd1(vccd1),
+                    .vssd1(vssd1),
+                `endif
+                    .clk0(clk),
+                    .csb0(~write_en),
+                    .web0(~write_en),
+                    .wmask0(4'b1111),
+                    .addr0(head),
+                    .din0(data_in),
+                    .dout0(sram_dout0),
+
+                    .clk1(clk),
+                    .csb1(~valid_read),
+                    .addr1(read_addr),
+                    .dout1(sram_dout1)
+                );
+
+            end
+        endgenerate
+
     `else
 
         logic [WORD_LEN - 1: 0] mem [0: DEPTH-1];
