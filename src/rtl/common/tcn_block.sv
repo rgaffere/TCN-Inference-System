@@ -3,7 +3,7 @@
 module tcn_block #(
     parameter int IMU_CHANNELS = 6,
     parameter int HIDDEN_CHANNELS = 16,
-    parameter int NUM_HIDDEN = 7,
+    parameter int NUM_HIDDEN = 6,
     parameter int W_WIDTH = 8,
     parameter int B_WIDTH = 32,
     parameter int BASE_DILATION = 2,
@@ -64,16 +64,9 @@ module tcn_block #(
     logic signed [W_WIDTH - 1: 0] o_weights [0: IMU_CHANNELS - 1][0: HIDDEN_CHANNELS - 1];
     logic signed [B_WIDTH - 1: 0] o_bias [0: IMU_CHANNELS - 1];
 
-    // IGNORE CUZ WERE DOING SEQUENTIAL NOW
-    // AXI4-S input/output control
-    // for(genvar i = 0; i < IMU_CHANNELS; i++) begin : gen_axis_channels
-    //     assign i_input_vals[i] = s_tdata[i * W_WIDTH +: W_WIDTH];
-    //     assign m_tdata[i * W_WIDTH +: W_WIDTH] = o_output_vals[i];
-    // end
-
     // instantiations
 
-    // Network: INPUT -> 7 x HIDDEN -> OUTPUT
+    // Network: INPUT -> 6 x HIDDEN -> OUTPUT
 
     input_block #(
         .IN_CHANNELS(IMU_CHANNELS),
@@ -104,7 +97,7 @@ module tcn_block #(
                 .W_BIT_WIDTH(W_WIDTH),
                 .B_BIT_WIDTH(B_WIDTH),
                 .KERNEL_LEN(KERNEL_LEN),
-                .DILATION(BASE_DILATION ** HRB)
+                .DILATION(BASE_DILATION ** (HRB + 1))
             ) hidden_layer (
                 .clk(clk),
                 .rst_n(rst_n),
