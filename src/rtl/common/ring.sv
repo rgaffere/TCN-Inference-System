@@ -88,13 +88,13 @@ module ring #(
                     .csb0(~write_en),
                     .web0(~write_en),
                     .wmask0(4'b1111),
-                    .addr0(head),
+                    .addr0({{(4-ADDR_WIDTH){1'b0}}, head}),
                     .din0(data_in),
                     .dout0(sram_dout0),
 
                     .clk1(clk),
                     .csb1(~valid_read),
-                    .addr1(read_addr),
+                    .addr1({{(4-ADDR_WIDTH){1'b0}}, read_addr}),
                     .dout1(sram_dout1)
                 );
 
