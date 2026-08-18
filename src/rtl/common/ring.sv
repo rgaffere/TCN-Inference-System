@@ -8,6 +8,8 @@ Each SRAM word stores 4 INT8 channels. One read returns 4 channel activations.
 Four ring instances cover 16 channels.
 
 We use all 32 bits so we can have one ring per 4 channels, giving 100% sram word-width usage.
+
+smallest supported sram by openram is 16 word depth
 */
 
 module ring #(
@@ -75,49 +77,7 @@ module ring #(
         assign data_out = {WORD_LEN{valid_read_q}} & sram_dout1;
 
         generate
-            if (DEPTH == 4) begin : gen_sram_32x4
-
-                sky130_sram_16byte_1rw1r_32x4_8 u_ring_sram (
-                `ifdef USE_POWER_PINS
-                    .vccd1(vccd1),
-                    .vssd1(vssd1),
-                `endif
-                    .clk0(clk),
-                    .csb0(~write_en),
-                    .web0(~write_en),
-                    .wmask0(4'b1111),
-                    .addr0(head),
-                    .din0(data_in),
-                    .dout0(sram_dout0),
-
-                    .clk1(clk),
-                    .csb1(~valid_read),
-                    .addr1(read_addr),
-                    .dout1(sram_dout1)
-                );
-
-            end else if (DEPTH == 8) begin : gen_sram_32x8
-
-                sky130_sram_32byte_1rw1r_32x8_8 u_ring_sram (
-                `ifdef USE_POWER_PINS
-                    .vccd1(vccd1),
-                    .vssd1(vssd1),
-                `endif
-                    .clk0(clk),
-                    .csb0(~write_en),
-                    .web0(~write_en),
-                    .wmask0(4'b1111),
-                    .addr0(head),
-                    .din0(data_in),
-                    .dout0(sram_dout0),
-
-                    .clk1(clk),
-                    .csb1(~valid_read),
-                    .addr1(read_addr),
-                    .dout1(sram_dout1)
-                );
-
-            end else if (DEPTH == 16) begin : gen_sram_32x16
+            if (DEPTH <= 16) begin : gen_sram_32x16
 
                 sky130_sram_64byte_1rw1r_32x16_8 u_ring_sram (
                 `ifdef USE_POWER_PINS
