@@ -1,5 +1,10 @@
 set target_library [list \
     ../pdk/sky130_fd_sc_hd__tt_025C_1v80.db \
+    ../pdk/sky130_sram_64byte_1rw1r_32x16_8_TT_1p8V_25C.db \
+    ../pdk/sky130_sram_128byte_1rw1r_32x32_8_TT_1p8V_25C.db \
+    ../pdk/sky130_sram_256byte_1rw1r_32x64_8_TT_1p8V_25C.db \
+    ../pdk/sky130_sram_512byte_1rw1r_32x128_8_TT_1p8V_25C.db \
+    ../pdk/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.db \
     ../pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db \
 ]
 
