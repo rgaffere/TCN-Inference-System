@@ -1,4 +1,5 @@
 // same as resi block except it does channel mixing
+//TODO: update the shift to be dynamic 
 module resi_block_mixer #(
     parameter int NUM_CHANNELS = 16,
     parameter int W_BIT_WIDTH = 8,

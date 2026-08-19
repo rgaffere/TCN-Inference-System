@@ -3,9 +3,9 @@ module output_block #(
     parameter int OUT_CHANNELS = 6,
     parameter int W_BIT_WIDTH = 8,
     parameter int B_BIT_WIDTH = 32,
-    parameter int QUANT_SHIFT = 8,
 
-    localparam int IN_CH_IDX_DEPTH = (IN_CHANNELS <= 1) ? 1 : $clog2(IN_CHANNELS)
+    localparam int IN_CH_IDX_DEPTH = (IN_CHANNELS <= 1) ? 1 : $clog2(IN_CHANNELS),
+    localparam int SHIFT_LEN = (B_BIT_WIDTH <= 1) ? 1 : $clog2(B_BIT_WIDTH)
 )(
     input logic clk,
     input logic rst_n,
@@ -14,6 +14,8 @@ module output_block #(
     input var logic signed [W_BIT_WIDTH - 1: 0] inputVals [0: IN_CHANNELS - 1],
     input var logic signed [W_BIT_WIDTH - 1: 0] weights [0: OUT_CHANNELS - 1][0: IN_CHANNELS - 1],
     input var logic signed [B_BIT_WIDTH - 1: 0] bias [0: OUT_CHANNELS - 1],
+
+    input logic [SHIFT_LEN - 1: 0] shift,
 
     output var logic signed [W_BIT_WIDTH - 1: 0] outputVals [0: OUT_CHANNELS - 1],
     output logic valid_out
@@ -77,9 +79,9 @@ module output_block #(
     quant_array #(
         .IN_LEN(B_BIT_WIDTH),
         .OUT_LEN(W_BIT_WIDTH),
-        .SHIFT(QUANT_SHIFT),
         .NUM_CHANNELS(OUT_CHANNELS)
     ) init_output_quant (
+        .shift(shift),
         .data_in(mac_out),
         .data_out(quant_out)
     );

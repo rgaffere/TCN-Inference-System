@@ -9,7 +9,8 @@ module tcn_block #(
     parameter int BASE_DILATION = 2,
     parameter int KERNEL_LEN = 3,
 
-    localparam int AXIS_WIDTH = W_WIDTH * IMU_CHANNELS
+    localparam int AXIS_WIDTH = W_WIDTH * IMU_CHANNELS,
+    localparam int SHIFT_LEN = (B_WIDTH <= 1) ? 1 : $clog2(B_WIDTH)
 ) (
     input logic clk,
     input logic rst_n,
@@ -64,6 +65,16 @@ module tcn_block #(
     logic signed [W_WIDTH - 1: 0] o_weights [0: IMU_CHANNELS - 1][0: HIDDEN_CHANNELS - 1];
     logic signed [B_WIDTH - 1: 0] o_bias [0: IMU_CHANNELS - 1];
 
+    // shift vars
+    logic [SHIFT_LEN - 1: 0] i_shift1;
+    logic [SHIFT_LEN - 1: 0] i_shift2;
+    logic [SHIFT_LEN - 1: 0] i_residual_shift;
+
+    logic [SHIFT_LEN - 1: 0] h_shift1 [0: NUM_HIDDEN - 1];
+    logic [SHIFT_LEN - 1: 0] h_shift2 [0: NUM_HIDDEN - 1];
+
+    logic [SHIFT_LEN - 1: 0] o_shift;
+
     // instantiations
 
     // Network: INPUT -> 6 x HIDDEN -> OUTPUT
@@ -85,6 +96,9 @@ module tcn_block #(
         .bias1(i_bias1),
         .bias2(i_bias2),
         .residual_bias(i_residual_bias),
+        .shift1(i_shift1),
+        .shift2(i_shift2),
+        .residualShift(i_residual_shift),
         .outputVals(i_output_vals),
         .valid_out(i_valid_out)
     );
@@ -107,6 +121,8 @@ module tcn_block #(
                 .weights2(h_weights2[HRB]),
                 .bias1(h_bias1[HRB]),
                 .bias2(h_bias2[HRB]),
+                .shift1(h_shift1[HRB]),
+                .shift2(h_shift2[HRB]),
                 .outputVals(h_output_vals[HRB]),
                 .valid_out(h_valid_out[HRB])
             );
@@ -125,6 +141,7 @@ module tcn_block #(
         .inputVals(h_output_vals[NUM_HIDDEN - 1]),
         .weights(o_weights),
         .bias(o_bias),
+        .shift(o_shift),
         .outputVals(o_output_vals),
         .valid_out(o_valid_out)
     );

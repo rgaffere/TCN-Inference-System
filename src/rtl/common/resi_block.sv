@@ -13,7 +13,8 @@ module resi_block #(
     parameter int DILATION = 1,
     parameter int NUM_RINGS = 4,
     localparam int DEPTH = 4 * DILATION,
-    localparam int ADDR_WIDTH = $clog2(DEPTH)
+    localparam int ADDR_WIDTH = $clog2(DEPTH),
+    localparam int SHIFT_LEN = (B_BIT_WIDTH <= 1) ? 1 : $clog2(B_BIT_WIDTH)
 )(
     input logic clk, rst_n, valid_in,
     input var logic signed [W_BIT_WIDTH - 1: 0] inputVals [0: NUM_CHANNELS - 1],
@@ -21,6 +22,10 @@ module resi_block #(
     input var logic signed [W_BIT_WIDTH - 1: 0] weights2 [0: NUM_CHANNELS - 1][0: KERNEL_LEN - 1],
     input var logic signed [B_BIT_WIDTH - 1: 0] bias1 [0: NUM_CHANNELS - 1],
     input var logic signed [B_BIT_WIDTH - 1: 0] bias2 [0: NUM_CHANNELS - 1],
+
+    input logic [SHIFT_LEN - 1: 0] shift1,
+    input logic [SHIFT_LEN - 1: 0] shift2,
+
     output var logic signed [W_BIT_WIDTH - 1: 0] outputVals [0: NUM_CHANNELS - 1],
     output logic valid_out
 );
@@ -86,7 +91,12 @@ module resi_block #(
         .data_out(reluOut1)
     );
 
-    quant_array init_quant1 (
+    quant_array #(
+        .IN_LEN(B_BIT_WIDTH),
+        .OUT_LEN(W_BIT_WIDTH),
+        .NUM_CHANNELS(NUM_CHANNELS)
+    ) init_quant1 (
+        .shift(shift1),
         .data_in(reluOut1),
         .data_out(quantOut1)
     );
@@ -107,7 +117,12 @@ module resi_block #(
         .data_out(reluOut2)
     );
 
-    quant_array init_quant2 (
+    quant_array #(
+        .IN_LEN(B_BIT_WIDTH),
+        .OUT_LEN(W_BIT_WIDTH),
+        .NUM_CHANNELS(NUM_CHANNELS)
+    ) init_quant2 (
+        .shift(shift2),
         .data_in(reluOut2),
         .data_out(quantOut2)
     );

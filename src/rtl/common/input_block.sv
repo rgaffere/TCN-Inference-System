@@ -8,7 +8,6 @@ module input_block #(
     parameter int DILATION = 1,
     parameter int NUM_RINGS = 4,
     parameter int CHANNELS_PER_RING = 4,
-    parameter int QUANT_SHIFT = 8,
     
     localparam int DEPTH = 4 * DILATION,
     localparam int ADDR_DEPTH = (DEPTH <= 1) ? 1 : $clog2(DEPTH),
@@ -17,7 +16,8 @@ module input_block #(
     localparam int OUT_CH_IDX_DEPTH = (OUT_CHANNELS <= 1) ? 1 : $clog2(OUT_CHANNELS),
     localparam int IN_NUM_RINGS = (IN_CHANNELS + CHANNELS_PER_RING - 1) / CHANNELS_PER_RING,
     localparam int OUT_NUM_RINGS = NUM_RINGS,
-    localparam int RING_WORD_WIDTH = CHANNELS_PER_RING * W_BIT_WIDTH
+    localparam int RING_WORD_WIDTH = CHANNELS_PER_RING * W_BIT_WIDTH,
+    localparam int SHIFT_LEN = (B_BIT_WIDTH <= 1) ? 1 : $clog2(B_BIT_WIDTH)
 )(
     input logic clk,
     input logic rst_n,
@@ -32,6 +32,10 @@ module input_block #(
     input var logic signed [B_BIT_WIDTH - 1: 0] bias1 [0: OUT_CHANNELS - 1],
     input var logic signed [B_BIT_WIDTH - 1: 0] bias2 [0: OUT_CHANNELS - 1],
     input var logic signed [B_BIT_WIDTH - 1: 0] residual_bias [0: OUT_CHANNELS - 1],
+
+    input logic [SHIFT_LEN - 1: 0] shift1,
+    input logic [SHIFT_LEN - 1: 0] shift2,
+    input logic [SHIFT_LEN - 1: 0] residualShift,
 
     output var logic signed [W_BIT_WIDTH - 1: 0] outputVals [0: OUT_CHANNELS - 1],
     output logic valid_out
@@ -116,9 +120,9 @@ module input_block #(
     quant_array #(
         .IN_LEN(B_BIT_WIDTH),
         .OUT_LEN(W_BIT_WIDTH),
-        .SHIFT(QUANT_SHIFT),
         .NUM_CHANNELS(OUT_CHANNELS)
     ) init_quant1 (
+        .shift(shift1),
         .data_in(reluOut1),
         .data_out(quantOut1)
     );
@@ -149,9 +153,9 @@ module input_block #(
     quant_array #(
         .IN_LEN(B_BIT_WIDTH),
         .OUT_LEN(W_BIT_WIDTH),
-        .SHIFT(QUANT_SHIFT),
         .NUM_CHANNELS(OUT_CHANNELS)
     ) init_quant2 (
+        .shift(shift2),
         .data_in(reluOut2),
         .data_out(quantOut2)
     );
@@ -175,9 +179,9 @@ module input_block #(
     quant_array #(
         .IN_LEN(B_BIT_WIDTH),
         .OUT_LEN(W_BIT_WIDTH),
-        .SHIFT(QUANT_SHIFT),
         .NUM_CHANNELS(OUT_CHANNELS)
     ) init_quant_residual (
+        .shift(residualShift),
         .data_in(residualMacOut),
         .data_out(residualQuantOut)
     );
