@@ -1,3 +1,10 @@
+/* note on residual register update:
+this thing used to be able to hold three residuals assuming new samples are coming in every 3 cycles,
+however since the input block uses channel maxing and is therefore much slower (69 cycles i believe),
+as well as setting the handshake scheme to only take one at a time,
+im therefore updating the residual register to hold only one value and add it after mac1_start
+so it stays with its transaction and no one else
+*/
 module resi_block #(
     parameter int NUM_CHANNELS = 16,
     parameter int W_BIT_WIDTH = 8,
@@ -46,7 +53,7 @@ module resi_block #(
     logic signed [W_BIT_WIDTH-1:0] w1_tap [0:NUM_CHANNELS-1];
     logic signed [W_BIT_WIDTH-1:0] w2_tap [0:NUM_CHANNELS-1];
 
-    logic signed [W_BIT_WIDTH - 1: 0] resi_reg [0: KERNEL_LEN - 1][0: NUM_CHANNELS - 1];
+    logic signed [W_BIT_WIDTH - 1: 0] resi_reg [0: NUM_CHANNELS - 1];
     // Need this one for overflow guard
     logic signed [W_BIT_WIDTH:0] resi_sum [0: NUM_CHANNELS - 1];
 
@@ -214,20 +221,12 @@ module resi_block #(
     // residual register control
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            for(int i = 0; i < KERNEL_LEN; i++) begin
-                for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                    resi_reg[i][ch] <= '0;
-                end
+            for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
+                resi_reg[ch] <= '0;
             end
         end else if(mac1_start) begin
-            for(int i = KERNEL_LEN - 1; i > 0; i--) begin
-                for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                    resi_reg[i][ch] <= resi_reg[i-1][ch];
-                end
-            end
-
             for(int ch = 0; ch < NUM_CHANNELS; ch++) begin
-                resi_reg[0][ch] <= inputVals[ch];
+                resi_reg[ch] <= inputVals[ch];
             end
         end
     end
@@ -236,9 +235,8 @@ module resi_block #(
     always_comb begin
         for (int ch = 0; ch < NUM_CHANNELS; ch++) begin
             resi_sum[ch] =
-                $signed({quantOut2[ch][W_BIT_WIDTH-1], quantOut2[ch]}) +
-                $signed({resi_reg[KERNEL_LEN - 1][ch][W_BIT_WIDTH-1],
-                         resi_reg[KERNEL_LEN - 1][ch]});
+                $signed({quantOut2[ch][W_BIT_WIDTH - 1], quantOut2[ch]}) +
+                $signed({resi_reg[ch][W_BIT_WIDTH - 1], resi_reg[ch]});
         end
     end
 
