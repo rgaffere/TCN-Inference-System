@@ -3,14 +3,14 @@
 Report : qor
 Design : tcn_block
 Version: X-2025.06-SP4
-Date   : Fri Jul 17 16:52:10 2026
+Date   : Wed Aug 19 12:45:49 2026
 ****************************************
 
 
   Timing Path Group 'clk'
   -----------------------------------
-  Levels of Logic:              14.00
-  Critical Path Length:          2.82
+  Levels of Logic:              24.00
+  Critical Path Length:          5.54
   Critical Path Slack:           0.00
   Critical Path Clk Period:      5.88
   Total Negative Slack:          0.00
@@ -23,54 +23,54 @@ Date   : Fri Jul 17 16:52:10 2026
 
   Cell Count
   -----------------------------------
-  Hierarchical Cell Count:          0
-  Hierarchical Port Count:          0
-  Leaf Cell Count:             221793
-  Buf/Inv Cell Count:           39217
-  Buf Cell Count:                2752
-  Inv Cell Count:               36465
+  Hierarchical Cell Count:         24
+  Hierarchical Port Count:      23865
+  Leaf Cell Count:             329473
+  Buf/Inv Cell Count:           61112
+  Buf Cell Count:                2488
+  Inv Cell Count:               58624
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:    195001
-  Sequential Cell Count:        26792
+  Combinational Cell Count:    305781
+  Sequential Cell Count:        23692
   Macro Count:                      0
   -----------------------------------
 
 
   Area
   -----------------------------------
-  Combinational Area:  1179934.127174
+  Combinational Area:  1653763.554912
   Noncombinational Area:
-                        569187.134045
-  Buf/Inv Area:         153408.376333
-  Total Buffer Area:         14177.35
-  Total Inverter Area:      139231.03
+                        493149.207468
+  Buf/Inv Area:         233924.344805
+  Total Buffer Area:         12877.35
+  Total Inverter Area:      221046.99
   Macro/Black Box Area:
-                      17641385.062500
+                       5305796.710938
   Net Area:                  0.000000
   -----------------------------------
-  Cell Area:          19390506.323719
-  Design Area:        19390506.323719
+  Cell Area:           7452709.473317
+  Design Area:         7452709.473317
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:        253092
-  Nets With Violations:           673
-  Max Trans Violations:           673
+  Total Number of Nets:        358201
+  Nets With Violations:           163
+  Max Trans Violations:           163
   Max Cap Violations:               0
   -----------------------------------
 
 
-  Hostname: compute11.eng.umd.edu
+  Hostname: compute9.eng.umd.edu
 
   Compile CPU Statistics
   -----------------------------------------
-  Resource Sharing:                   36.82
-  Logic Optimization:                137.16
-  Mapping Optimization:              379.68
+  Resource Sharing:                   26.92
+  Logic Optimization:                322.85
+  Mapping Optimization:              769.46
   -----------------------------------------
-  Overall Compile Time:              979.53
-  Overall Compile Wall Clock Time:   986.91
+  Overall Compile Time:             1851.93
+  Overall Compile Wall Clock Time:  1871.55
 
   --------------------------------------------------------------------
 

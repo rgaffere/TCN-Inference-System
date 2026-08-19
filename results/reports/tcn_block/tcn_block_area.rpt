@@ -3,44 +3,90 @@
 Report : area
 Design : tcn_block
 Version: X-2025.06-SP4
-Date   : Fri Jul 17 16:51:57 2026
+Date   : Wed Aug 19 12:45:28 2026
 ****************************************
 
 Information: Updating design information... (UID-85)
-Warning: Design 'tcn_block' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Warning: Design 'tcn_block' contains 2 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
 Library(s) Used:
 
     sky130_fd_sc_hd__tt_025C_1v80 (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_fd_sc_hd__tt_025C_1v80.db)
-    sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.db)
+    sky130_sram_64byte_1rw1r_32x16_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_64byte_1rw1r_32x16_8_TT_1p8V_25C.db)
+    sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_1kbyte_1rw1r_32x256_8_TT_1p8V_25C.db)
+    sky130_sram_512byte_1rw1r_32x128_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_512byte_1rw1r_32x128_8_TT_1p8V_25C.db)
+    sky130_sram_256byte_1rw1r_32x64_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_256byte_1rw1r_32x64_8_TT_1p8V_25C.db)
+    sky130_sram_128byte_1rw1r_32x32_8_TT_1p8V_25C_lib (File: /afs/glue.umd.edu/home/glue/r/g/rgaffere/home/TCN/pdk/sky130_sram_128byte_1rw1r_32x32_8_TT_1p8V_25C.db)
 
-Number of ports:                        24358
-Number of nets:                        253092
-Number of cells:                       221793
-Number of combinational cells:         195001
-Number of sequential cells:             26730
-Number of macros/black boxes:              62
-Number of buf/inv:                      39217
-Number of references:                     137
+Number of ports:                        46511
+Number of nets:                        381788
+Number of cells:                       329497
+Number of combinational cells:         305781
+Number of sequential cells:             23638
+Number of macros/black boxes:              54
+Number of buf/inv:                      61112
+Number of references:                     131
 
-Combinational area:            1179934.127174
-Buf/Inv area:                   153408.376333
-Noncombinational area:          569187.134045
-Macro/Black Box area:         17641385.062500
+Combinational area:            1653763.554912
+Buf/Inv area:                   233924.344805
+Noncombinational area:          493149.207468
+Macro/Black Box area:          5305796.710938
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:              19390506.323719
+Total cell area:               7452709.473317
 Total area:                 undefined
 
 Hierarchical area distribution
 ------------------------------
 
-                                  Global cell area                    Local cell area
-                                  ----------------------  ---------------------------------------- 
-Hierarchical cell                 Absolute       Percent  Combi-        Noncombi-    Black-
-                                  Total          Total    national      national     boxes          Design
---------------------------------  -------------  -------  ------------  -----------  -------------  ---------
-tcn_block                         19390506.3237    100.0  1179934.1272  569187.1340  17641385.0625  tcn_block
---------------------------------  -------------  -------  ------------  -----------  -------------  ---------
-Total                                                     1179934.1272  569187.1340  17641385.0625
+                                  Global cell area                   Local cell area
+                                  ---------------------  --------------------------------------- 
+Hierarchical cell                 Absolute      Percent  Combi-        Noncombi-    Black-
+                                  Total         Total    national      national     boxes         Design
+--------------------------------  ------------  -------  ------------  -----------  ------------  -----------------------------------------------
+tcn_block                         7452709.4733    100.0   533539.1953  123134.3454  5305796.7109  tcn_block
+gen_hidden_resi_blocks[0].hidden_layer/init_mac1
+                                    80404.6124      1.1    54679.9412   25724.6712        0.0000  MAC_array_11
+gen_hidden_resi_blocks[0].hidden_layer/init_mac2
+                                    80684.8812      1.1    54960.2100   25724.6712        0.0000  MAC_array_10
+gen_hidden_resi_blocks[0].hidden_layer/init_quant1
+                                    32932.8344      0.4    32932.8344       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_11
+gen_hidden_resi_blocks[1].hidden_layer/init_mac1
+                                    80860.0492      1.1    55135.3780   25724.6712        0.0000  MAC_array_9
+gen_hidden_resi_blocks[1].hidden_layer/init_mac2
+                                    80878.8172      1.1    55147.8900   25730.9272        0.0000  MAC_array_8
+gen_hidden_resi_blocks[1].hidden_layer/init_quant1
+                                    32911.5640      0.4    32911.5640       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_9
+gen_hidden_resi_blocks[2].hidden_layer/init_mac1
+                                    80243.2076      1.1    54518.5364   25724.6712        0.0000  MAC_array_7
+gen_hidden_resi_blocks[2].hidden_layer/init_mac2
+                                    80773.7164      1.1    55049.0452   25724.6712        0.0000  MAC_array_6
+gen_hidden_resi_blocks[2].hidden_layer/init_quant1
+                                    32961.6120      0.4    32961.6120       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_7
+gen_hidden_resi_blocks[3].hidden_layer/init_mac1
+                                    80495.9500      1.1    54771.2788   25724.6712        0.0000  MAC_array_5
+gen_hidden_resi_blocks[3].hidden_layer/init_mac2
+                                    80758.7020      1.1    55034.0308   25724.6712        0.0000  MAC_array_4
+gen_hidden_resi_blocks[3].hidden_layer/init_quant1
+                                    32911.5640      0.4    32911.5640       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_5
+gen_hidden_resi_blocks[4].hidden_layer/init_mac1
+                                    80787.4796      1.1    55062.8084   25724.6712        0.0000  MAC_array_3
+gen_hidden_resi_blocks[4].hidden_layer/init_mac2
+                                    81391.8092      1.1    55667.1380   25724.6712        0.0000  MAC_array_2
+gen_hidden_resi_blocks[4].hidden_layer/init_quant1
+                                    32955.3560      0.4    32955.3560       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_3
+gen_hidden_resi_blocks[5].hidden_layer/init_mac1
+                                    81280.4524      1.1    55555.7812   25724.6712        0.0000  MAC_array_1
+gen_hidden_resi_blocks[5].hidden_layer/init_mac2
+                                    81349.2684      1.1    55624.5972   25724.6712        0.0000  MAC_array_0
+gen_hidden_resi_blocks[5].hidden_layer/init_quant1
+                                    32896.5496      0.4    32896.5496       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_1
+input_layer/init_mac1               83402.4875      1.1    57602.7443   25799.7432        0.0000  MAC_array_IN_LEN8_KERNEL_LEN18_NUM_CHANNELS16
+input_layer/init_quant1             32909.0616      0.4    32909.0616       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_14
+input_layer/init_quant_residual     69208.8754      0.9    69208.8754       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS16_12
+input_layer/init_residual_mac       83276.1164      1.1    57522.6676   25753.4488        0.0000  MAC_array_IN_LEN8_KERNEL_LEN6_NUM_CHANNELS16
+output_layer/init_output_mac        28193.2889      0.4    18433.9292    9759.3597        0.0000  MAC_array_IN_LEN8_KERNEL_LEN16_NUM_CHANNELS6
+output_layer/init_output_quant      25770.9659      0.3    25770.9659       0.0000        0.0000  quant_array_IN_LEN32_OUT_LEN8_NUM_CHANNELS6
+--------------------------------  ------------  -------  ------------  -----------  ------------  -----------------------------------------------
+Total                                                    1653763.5549  493149.2075  5305796.7109
 
 1
