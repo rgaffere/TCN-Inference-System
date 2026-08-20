@@ -178,7 +178,7 @@ module tcn_block #(
     always_ff @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
             s_tready <= 1'b1;
-        end else if(m_tvalid && m_tready) begin
+        end else if(i_valid_out) begin
             s_tready <= 1'b1;
         end else if(s_tvalid && s_tready) begin
             s_tready <= 1'b0;
